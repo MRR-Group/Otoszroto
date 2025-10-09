@@ -12,7 +12,7 @@ export default ({ mode }) => {
     },
     server: {
       host: true,
-      port: 5174,
+      port: 5173,
       strictPort: true,
       origin: "http://" + process.env.VITE_DEV_SERVER_DOCKER_HOST_NAME,
       cors: true, // Allow any origin

@@ -22,8 +22,8 @@
         <env name="APP_KEY" value="base64:SKEJSy9oF9chQBCMbxqgj5zhtAvug9kwZ+cDiP1Y8A8="/>
         <env name="BCRYPT_ROUNDS" value="4"/>
         <env name="CACHE_STORE" value="array"/>
-        <env name="DB_HOST" value="Otoszroto-db-dev"/>
-        <env name="DB_DATABASE" value="Otoszroto-test"/>
+        <env name="DB_HOST" value="otoszroto-db-dev"/>
+        <env name="DB_DATABASE" value="otoszroto-test"/>
         <env name="DB_USERNAME" value="Otoszroto"/>
         <env name="MAIL_MAILER" value="array"/>
         <env name="QUEUE_CONNECTION" value="sync"/>

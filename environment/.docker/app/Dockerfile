@@ -30,6 +30,8 @@ RUN apt-get update \
 COPY ./environment/.docker/app/entrypoint.sh /entrypoint.sh
 COPY ./environment/.docker/app/nginx.conf /etc/nginx/nginx.conf
 
+RUN chmod +x /entrypoint.sh
+
 WORKDIR /application
 
 ENTRYPOINT ["/entrypoint.sh"]

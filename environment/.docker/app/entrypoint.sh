@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # -e is for "automatic error detection", tell shell to abort any time an error occurred
-set -e
+# set -e
 
 # bash is not responding to the sigterm and container always have 10 second timeout (when stop/restart)
 # exec is related with
