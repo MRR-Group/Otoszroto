@@ -1,0 +1,39 @@
+<?php
+
+namespace Otoszroto\Http\Controllers;
+
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Otoszroto\Actions\Auth\ChangePasswordAction;
+use Otoszroto\Http\Requests\Auth\ChangePasswordRequest;
+use Symfony\Component\HttpFoundation\Response;
+
+class ChangePasswordController extends Controller
+{
+    public function create(): \Inertia\Response
+    {
+        return Inertia::render("User/ChangePassword", []);
+    }
+
+
+    public function store(ChangePasswordRequest $request, ChangePasswordAction $changePasswordAction): RedirectResponse
+    {
+        $user = $request->user();
+        $validated = $request->validated();
+
+        $currentPassword = $validated["current_password"];
+        $newPassword = $validated["password"];
+
+        $success = $changePasswordAction->execute(
+            $user,
+            $currentPassword,
+            $newPassword,
+        );
+
+        return $success
+            ? redirect()->route("login")->with(["message" => "Your password has been changed."])
+            : redirect()->route("login")->with(["message" => "Something went wrong. Please try again later."]);
+    }
+}
