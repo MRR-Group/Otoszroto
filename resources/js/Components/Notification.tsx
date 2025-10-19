@@ -1,4 +1,5 @@
 import React from 'react';
+import {type Flash} from "@/Types/flash";
 
 type Props = {
     errors: {

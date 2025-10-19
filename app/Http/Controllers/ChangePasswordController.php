@@ -1,14 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Otoszroto\Http\Controllers;
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Otoszroto\Actions\Auth\ChangePasswordAction;
 use Otoszroto\Http\Requests\Auth\ChangePasswordRequest;
-use Symfony\Component\HttpFoundation\Response;
 
 class ChangePasswordController extends Controller
 {
@@ -16,7 +15,6 @@ class ChangePasswordController extends Controller
     {
         return Inertia::render("User/ChangePassword", []);
     }
-
 
     public function store(ChangePasswordRequest $request, ChangePasswordAction $changePasswordAction): RedirectResponse
     {

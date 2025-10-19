@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Otoszroto\Http\Controllers\Auth;
 
 use Illuminate\Http\RedirectResponse;
@@ -18,7 +20,6 @@ class ForgotPasswordController extends Controller
         return Inertia::render("Auth/ForgotPassword", []);
     }
 
-
     public function store(ForgotPasswordRequest $request, GenerateResetCodeAction $generateResetCodeAction): RedirectResponse
     {
         $validated = $request->validated();
@@ -28,7 +29,6 @@ class ForgotPasswordController extends Controller
 
         $user = User::query()->where("email", $email)->first();
         $user?->notify(new ForgotPasswordNotification($code));
-
 
         return redirect()->route("auth.resetPassword.create")->with(["message" => "If your email exists, we have sent you a code to reset your password."]);
     }
