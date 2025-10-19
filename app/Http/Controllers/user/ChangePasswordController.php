@@ -2,16 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Http\Controllers;
+namespace Otoszroto\Http\Controllers\user;
 
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
+use Inertia\Response;
 use Otoszroto\Actions\Auth\ChangePasswordAction;
+use Otoszroto\Http\Controllers\Controller;
 use Otoszroto\Http\Requests\Auth\ChangePasswordRequest;
 
 class ChangePasswordController extends Controller
 {
-    public function create(): \Inertia\Response
+    public function create(): Response
     {
         return Inertia::render("User/ChangePassword", []);
     }

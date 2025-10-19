@@ -9,7 +9,7 @@ use Otoszroto\Http\Controllers\Auth\LoginController;
 use Otoszroto\Http\Controllers\Auth\LogoutController;
 use Otoszroto\Http\Controllers\Auth\RegisterController;
 use Otoszroto\Http\Controllers\Auth\ResetPasswordController;
-use Otoszroto\Http\Controllers\ChangePasswordController;
+use Otoszroto\Http\Controllers\user\ChangePasswordController;
 
 Route::get("/", fn(): Response => inertia("Welcome"))->name("home");
 
