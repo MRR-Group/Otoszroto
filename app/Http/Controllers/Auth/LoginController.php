@@ -25,6 +25,7 @@ class LoginController extends Controller
     {
         $credentials = $request->validated();
         $key = 'login:'.strtolower($request->input('email')).'|'.$request->ip();
+
         if (RateLimiter::tooManyAttempts($key, 5)) {
             $seconds = RateLimiter::availableIn($key);
             throw ValidationException::withMessages([

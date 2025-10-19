@@ -33,7 +33,7 @@ class ChangePasswordController extends Controller
         );
 
         return $success
-            ? redirect()->route("login")->with(["message" => "Your password has been changed."])
-            : redirect()->route("login")->with(["message" => "Something went wrong. Please try again later."]);
+            ? redirect()->route("home")->with(["message" => "Your password has been changed."])
+            : redirect()->route("user.changePassword.create")->with(["error" => "Your current password is invalid."]);
     }
 }

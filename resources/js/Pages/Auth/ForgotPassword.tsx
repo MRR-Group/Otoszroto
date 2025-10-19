@@ -4,11 +4,11 @@ import {Form} from "@inertiajs/react";
 type Props = {
     errors: any;
 }
-export function ResetPassword({errors}: Props) {
+export function ForgotPassword({errors}: Props) {
     return (
         <>
-            <h1>Reset Password</h1>
-            {errors?.message && <p>{errors.message}</p>}
+            <h1 className={"text-lg font-semibold"}>Reset Password</h1>
+            <a href="/reset-password">Already have code</a>
             <Form
                 action={"/forgot-password"}
                 method="POST"

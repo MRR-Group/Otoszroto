@@ -7,15 +7,19 @@ type Props = {
 export function Register({errors}: Props) {
     return (
         <>
-            <h1>Register</h1>
-            {errors?.message && <p>{errors.message}</p>}
-            <a href="/login">Login</a>
+            <h1 className={"text-lg font-semibold"}>Register</h1>
             <Form
                 action={"/register"}
                 method="POST"
             >
-                <input type="text" placeholder="Name" name="name" required />
-                {errors?.name && <p>{errors.name}</p>}
+                <input type="text" placeholder="Firstname" name="firstname" required />
+                {errors?.firstname && <p>{errors.firstname}</p>}
+
+                <input type="text" placeholder="Surname" name="surname" required />
+                {errors?.surname && <p>{errors.surname}</p>}
+
+                <input type="text" placeholder="Phone number" name="phone" required />
+                {errors?.phone && <p>{errors.phone}</p>}
 
                 <input type="email" placeholder="Email" name="email" required />
                 {errors?.email && <p>{errors.email}</p>}

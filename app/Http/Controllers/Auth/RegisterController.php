@@ -27,6 +27,6 @@ class RegisterController extends Controller
         $user->password = Hash::make($validated["password"]);
         $user->save();
 
-        return redirect()->route("home");
+        return redirect()->route("home")->with(["message" => "Your account has been created."]);
     }
 }

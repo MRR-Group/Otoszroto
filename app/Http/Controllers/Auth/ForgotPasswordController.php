@@ -2,9 +2,9 @@
 
 namespace Otoszroto\Http\Controllers\Auth;
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
+use Inertia\Response;
 use Otoszroto\Actions\Auth\GenerateResetCodeAction;
 use Otoszroto\Http\Controllers\Controller;
 use Otoszroto\Http\Requests\Auth\ForgotPasswordRequest;
@@ -13,9 +13,9 @@ use Otoszroto\Notifications\ForgotPasswordNotification;
 
 class ForgotPasswordController extends Controller
 {
-    public function create(): \Inertia\Response
+    public function create(): Response
     {
-        return Inertia::render("Auth/ResetPassword", []);
+        return Inertia::render("Auth/ForgotPassword", []);
     }
 
 
@@ -30,6 +30,6 @@ class ForgotPasswordController extends Controller
         $user?->notify(new ForgotPasswordNotification($code));
 
 
-        return redirect()->route("login")->with(["message" => "If your email exists, we have sent you a code to reset your password."]);
+        return redirect()->route("auth.resetPassword.create")->with(["message" => "If your email exists, we have sent you a code to reset your password."]);
     }
 }

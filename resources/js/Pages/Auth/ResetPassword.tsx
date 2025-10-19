@@ -7,8 +7,8 @@ type Props = {
 export function ResetPassword({errors}: Props) {
     return (
         <>
-            <h1>Reset Password</h1>
-            {errors?.message && <p>{errors.message}</p>}
+            <h1 className={"text-lg font-semibold"}>Reset Password</h1>
+            <a href="/forgot-password">Don't have reset code</a>
             <Form
                 action={"/reset-password"}
                 method="POST"

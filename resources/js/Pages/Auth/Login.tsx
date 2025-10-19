@@ -1,15 +1,16 @@
 import React from 'react';
-import {Form, router} from "@inertiajs/react";
+import {Form} from "@inertiajs/react";
 
 type Props = {
     errors: any;
+    message: any
 }
 export function Login({errors}: Props) {
     return (
         <>
-            <h1>Login</h1>
-            {errors?.message && <p>{errors.message}</p>}
-            <a href="/register">Register</a>
+            <h1 className={"text-lg font-semibold"}>Login</h1>
+            <br/>
+            <a href="/forgot-password">Forgot password</a>
             <Form
                 action="/login"
                 method="POST"

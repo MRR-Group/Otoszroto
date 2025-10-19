@@ -1,15 +1,13 @@
 import React from 'react';
-import {Form, router} from "@inertiajs/react";
+import {Form} from "@inertiajs/react";
 
 type Props = {
     errors: any;
 }
-export function Login({errors}: Props) {
+export function ChangePassword({errors}: Props) {
     return (
         <>
-            <h1>Change password</h1>
-            {errors?.message && <p>{errors.message}</p>}
-            <a href="/">Home</a>
+            <h1 className={"text-lg font-semibold"}>Change password</h1>
             <Form
                 action="/user/change-password"
                 method="POST"
