@@ -18,7 +18,7 @@ export function ChangePassword({errors}: Props) {
                 <input type="password" placeholder="Password" name="password" required />
                 {errors?.password && <p>{errors.password}</p>}
 
-                <input type="password" placeholder="Password" name="password_confirmation" required />
+                <input type="password" placeholder="Confirm password" name="password_confirmation" required />
 
                 <input type="submit"></input>
             </Form>

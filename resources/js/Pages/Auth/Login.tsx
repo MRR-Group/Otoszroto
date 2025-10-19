@@ -2,8 +2,10 @@ import React from 'react';
 import {Form} from "@inertiajs/react";
 
 type Props = {
-    errors: any;
-    message: any
+    errors: {
+        email: string,
+        password: string,
+    };
 }
 export function Login({errors}: Props) {
     return (

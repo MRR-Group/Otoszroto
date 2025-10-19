@@ -1,5 +1,5 @@
 export type Flash = {
     message?: string,
-    error?: Record<string, string[]>
+    error?: string
     status?: string
 }
