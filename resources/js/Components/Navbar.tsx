@@ -5,6 +5,7 @@ import {type User} from "@/Types/user";
 type Props = {
     user?: User;
 }
+
 export function Navbar({ user }: Props) {
     const isLoggedIn = !!user;
 

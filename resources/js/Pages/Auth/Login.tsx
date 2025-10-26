@@ -7,6 +7,7 @@ type Props = {
         password: string,
     };
 }
+
 export function Login({errors}: Props) {
     return (
         <>

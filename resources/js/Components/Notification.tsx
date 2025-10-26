@@ -9,7 +9,6 @@ type Props = {
 }
 
 export function Notification({errors, flash}: Props) {
-
     return <>
         {errors?.message &&
             <div className={"bg-red-900"}>{errors.message}</div>

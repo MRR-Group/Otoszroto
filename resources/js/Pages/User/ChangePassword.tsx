@@ -4,6 +4,7 @@ import {Form} from "@inertiajs/react";
 type Props = {
     errors: any;
 }
+
 export function ChangePassword({errors}: Props) {
     return (
         <>
