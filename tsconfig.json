@@ -3,16 +3,12 @@
         "baseUrl": "./",
         "target": "ESNext",
         "module": "ESNext",
-        "moduleResolution": "node",
-        "jsx": "preserve",
+        "moduleResolution": "Bundler",
+        "jsx": "react-jsx",
         "isolatedModules": true,
         "skipLibCheck": true,
         "strict": true,
-        "types": [
-            "@types/node",
-            "vite/client",
-            "vitest/globals"
-        ],
+        "types": ["@types/node", "vite/client", "vitest/globals"],
         "resolveJsonModule": true,
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
@@ -22,19 +18,22 @@
         "paths": {
             "@/*": ["resources/js/*"]
         },
-        "outDir": "./public/build/assets"
+        "typeRoots": [
+            "node_modules/@types",
+            "resources/js/Types"
+        ]
     },
-    "typeRoots": [
-        "node_modules/@types",
-        "resources/js/Types"
-    ],
     "include": [
         "resources/js/**/*.ts",
         "resources/js/**/*.d.ts",
-        "resources/js/**/*.vue",
+        "resources/js/**/*.tsx"
     ],
     "exclude": [
         "node_modules",
+        "vendor",
         "public",
+        "storage",
+        "bootstrap/cache",
+        "dist"
     ]
 }
