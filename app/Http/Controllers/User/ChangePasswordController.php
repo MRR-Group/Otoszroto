@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Http\Controllers\user;
+namespace Otoszroto\Http\Controllers\User;
 
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
