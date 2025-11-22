@@ -47,6 +47,7 @@ return new class() extends Migration {
             $table->id();
             $table->string("name");
         });
+
     }
 
     public function down(): void
@@ -57,5 +58,6 @@ return new class() extends Migration {
         Schema::dropIfExists("categories");
         Schema::dropIfExists("conditions");
         Schema::dropIfExists("auction_states");
+        
     }
 };
