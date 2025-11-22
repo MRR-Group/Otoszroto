@@ -6,6 +6,7 @@ namespace Otoszroto\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $id
@@ -35,28 +36,30 @@ class Auction extends Model
         "auction_state_id",
     ];
 
-    public function owner()
+    public function owner(): BelongsTo
     {
         return $this->belongsTo(User::class, "owner_id");
     }
 
-    public function model()
+    public function model(): BelongsTo
     {
         return $this->belongsTo(CarModel::class, "model_id");
     }
 
-    public function category()
+    public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class, "category_id");
     }
 
-    public function condition()
+    public function condition(): BelongsTo
     {
         return $this->belongsTo(Condition::class, "condition_id");
     }
 
-    public function auctionState()
+    public function auctionState(): BelongsTo
     {
         return $this->belongsTo(AuctionState::class, "auction_state_id");
     }
+
+    public $timestamps = false;
 }

@@ -20,4 +20,6 @@ class CarModel extends Model
         "name",
         "brand_id",
     ];
+
+    public $timestamps = false;
 }
