@@ -36,7 +36,7 @@ Route::post("/user/change-password", [ChangePasswordController::class, "store"])
 
 Route::post("/logout", [LogoutController::class, "logout"])->name("auth.logout");
 
-Route::middleware('auth')->group(function () {
+Route::middleware("auth")->group(function (): void {
     Route::get("/auction", [AuctionController::class, "create"])->name("auction.create");
     Route::post("/auction", [AuctionController::class, "store"])->name("auction.store");
 
@@ -51,7 +51,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get("/auction/category", [CategoryController::class, "create"])->name("auction.category.create");
     Route::post("/auction/category", [CategoryController::class, "store"])->name("auction.category.store");
-    
+
     Route::get("/auction/condition", [ConditionController::class, "create"])->name("auction.condition.create");
     Route::post("/auction/condition", [ConditionController::class, "store"])->name("auction.condition.store");
 });

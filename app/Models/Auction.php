@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Otoszroto\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -19,11 +20,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $category_id
  * @property int $condition_id
  * @property int $auction_state_id
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class Auction extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $fillable = [
         "name",
         "description",
@@ -60,6 +64,4 @@ class Auction extends Model
     {
         return $this->belongsTo(AuctionState::class, "auction_state_id");
     }
-
-    public $timestamps = false;
 }

@@ -12,27 +12,32 @@ return new class() extends Migration {
         Schema::create("brands", function (Blueprint $table): void {
             $table->id();
             $table->string("name");
+            $table->timestamps();
         });
 
         Schema::create("categories", function (Blueprint $table): void {
             $table->id();
             $table->string("name");
+            $table->timestamps();
         });
 
         Schema::create("conditions", function (Blueprint $table): void {
             $table->id();
             $table->string("name");
+            $table->timestamps();
         });
 
         Schema::create("auction_states", function (Blueprint $table): void {
             $table->id();
             $table->string("name");
+            $table->timestamps();
         });
 
         Schema::create("car_models", function (Blueprint $table): void {
             $table->id();
             $table->string("name");
             $table->foreignId("brand_id")->constrained("brands", "id");
+            $table->timestamps();
         });
 
         Schema::create("auctions", function (Blueprint $table): void {
@@ -46,6 +51,7 @@ return new class() extends Migration {
             $table->foreignId("category_id")->constrained("categories", "id");
             $table->foreignId("condition_id")->constrained("conditions", "id");
             $table->foreignId("auction_state_id")->constrained("auction_states", "id");
+            $table->timestamps();
         });
     }
 
