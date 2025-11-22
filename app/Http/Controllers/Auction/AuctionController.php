@@ -15,7 +15,7 @@ class AuctionController extends Controller
 {
     public function create(): Response
     {
-        return Inertia::render("Auction/Auction", []);
+        return Inertia::render("Auction/CreateAuction", []);
     }
 
     public function store(CreateAuctionRequest $request): RedirectResponse

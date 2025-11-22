@@ -15,7 +15,7 @@ class CategoryController extends Controller
 {
     public function create(): Response
     {
-        return Inertia::render("Auction/Category", []);
+        return Inertia::render("Auction/CreateCategory", []);
     }
 
     public function store(CreateCategoryRequest $request): RedirectResponse

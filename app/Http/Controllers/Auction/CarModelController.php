@@ -15,7 +15,7 @@ class CarModelController extends Controller
 {
     public function create(): Response
     {
-        return Inertia::render("Auction/CarModel", []);
+        return Inertia::render("Auction/CreateCarModel", []);
     }
 
     public function store(CreateCarModelRequest $request): RedirectResponse

@@ -15,7 +15,7 @@ class ConditionController extends Controller
 {
     public function create(): Response
     {
-        return Inertia::render("Auction/Condition", []);
+        return Inertia::render("Auction/CreateCondition", []);
     }
 
     public function store(CreateConditionRequest $request): RedirectResponse

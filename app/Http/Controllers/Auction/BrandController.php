@@ -15,7 +15,7 @@ class BrandController extends Controller
 {
     public function create(): Response
     {
-        return Inertia::render("Auction/Brand", []);
+        return Inertia::render("Auction/CreateBrand", []);
     }
 
     public function store(CreateBrandRequest $request): RedirectResponse
