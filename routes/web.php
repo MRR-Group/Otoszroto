@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Response;
-use Otoszroto\Http\Controllers\Auth\ForgotPasswordController;
-use Otoszroto\Http\Controllers\Auth\LoginController;
-use Otoszroto\Http\Controllers\Auth\LogoutController;
-use Otoszroto\Http\Controllers\Auth\RegisterController;
-use Otoszroto\Http\Controllers\Auth\ResetPasswordController;
-use Otoszroto\Http\Controllers\User\ChangePasswordController;
 use Otoszroto\Http\Controllers\Auction\AuctionController;
 use Otoszroto\Http\Controllers\Auction\AuctionStateController;
 use Otoszroto\Http\Controllers\Auction\BrandController;
 use Otoszroto\Http\Controllers\Auction\CarModelController;
 use Otoszroto\Http\Controllers\Auction\CategoryController;
 use Otoszroto\Http\Controllers\Auction\ConditionController;
+use Otoszroto\Http\Controllers\Auth\ForgotPasswordController;
+use Otoszroto\Http\Controllers\Auth\LoginController;
+use Otoszroto\Http\Controllers\Auth\LogoutController;
+use Otoszroto\Http\Controllers\Auth\RegisterController;
+use Otoszroto\Http\Controllers\Auth\ResetPasswordController;
+use Otoszroto\Http\Controllers\User\ChangePasswordController;
 
 Route::get("/", fn(): Response => inertia("Welcome"))->name("home");
 

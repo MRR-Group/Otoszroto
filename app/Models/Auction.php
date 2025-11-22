@@ -37,26 +37,26 @@ class Auction extends Model
 
     public function owner()
     {
-        return $this->belongsTo(User::class, 'owner_id');
+        return $this->belongsTo(User::class, "owner_id");
     }
 
     public function model()
     {
-        return $this->belongsTo(CarModel::class, 'model_id');
+        return $this->belongsTo(CarModel::class, "model_id");
     }
 
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(Category::class, "category_id");
     }
 
     public function condition()
     {
-        return $this->belongsTo(Condition::class, 'condition_id');
+        return $this->belongsTo(Condition::class, "condition_id");
     }
 
     public function auctionState()
     {
-        return $this->belongsTo(AuctionState::class, 'auction_state_id');
+        return $this->belongsTo(AuctionState::class, "auction_state_id");
     }
 }

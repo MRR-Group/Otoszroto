@@ -6,11 +6,11 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Otoszroto\Models\Auction;
-use Otoszroto\Models\User;
+use Otoszroto\Models\AuctionState;
 use Otoszroto\Models\CarModel;
 use Otoszroto\Models\Category;
 use Otoszroto\Models\Condition;
-use Otoszroto\Models\AuctionState;
+use Otoszroto\Models\User;
 
 /**
  * @extends Factory<Auction>

@@ -15,17 +15,17 @@ return new class() extends Migration {
             $table->string("description");
             $table->string("photo_url");
             $table->float("price");
-            $table->foreignId("owner_id")->constrained("users","id");
-            $table->foreignId("model_id")->constrained("car_models","id");
-            $table->foreignId("category_id")->constrained("categories","id");
-            $table->foreignId("condition_id")->constrained("conditions","id");
-            $table->foreignId("auction_state_id")->constrained("auction_states","id");
+            $table->foreignId("owner_id")->constrained("users", "id");
+            $table->foreignId("model_id")->constrained("car_models", "id");
+            $table->foreignId("category_id")->constrained("categories", "id");
+            $table->foreignId("condition_id")->constrained("conditions", "id");
+            $table->foreignId("auction_state_id")->constrained("auction_states", "id");
         });
 
         Schema::create("car_models", function (Blueprint $table): void {
             $table->id();
             $table->string("name");
-            $table->foreignId("brand_id")->constrained("brands","id");
+            $table->foreignId("brand_id")->constrained("brands", "id");
         });
 
         Schema::create("brands", function (Blueprint $table): void {
@@ -47,7 +47,6 @@ return new class() extends Migration {
             $table->id();
             $table->string("name");
         });
-
     }
 
     public function down(): void
@@ -58,6 +57,5 @@ return new class() extends Migration {
         Schema::dropIfExists("categories");
         Schema::dropIfExists("conditions");
         Schema::dropIfExists("auction_states");
-        
     }
 };
