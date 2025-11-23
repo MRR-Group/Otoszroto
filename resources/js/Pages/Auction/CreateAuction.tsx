@@ -10,7 +10,7 @@ export function CreateAuction({errors}: Props) {
         <>
             <h1 className={"text-lg font-semibold"}>Create auction</h1>
             <Form
-                action={"/auction"}
+                action={"/auctions"}
                 method="POST"
             >
                 <input type="text" placeholder="Name" name="name" required />
@@ -34,8 +34,8 @@ export function CreateAuction({errors}: Props) {
                 <input type="number" placeholder="Condition id" name="condition_id" required />
                 {errors?.condition_id && <p>{errors.condition_id}</p>}
                 
-                <input type="number" placeholder="Auction id" name="auction_id" required />
-                {errors?.auction_id && <p>{errors.auction_id}</p>}
+                <input type="number" placeholder="Auction State" name="auction_state" required />
+                {errors?.auction_state && <p>{errors.auction_state}</p>}
 
                 <input type="submit"></input>
             </Form>

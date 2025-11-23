@@ -25,10 +25,10 @@ class AuctionFactory extends Factory
             "photo_url" => fake()->imageUrl(),
             "price" => fake()->randomFloat(2, 100, 10000),
             "owner_id" => User::factory(),
-            "model_id" => CarModel::factory(),
-            "category_id" => Category::factory(),
-            "condition_id" => Condition::factory(),
-            "auction_state_id" => AuctionState::factory(),
+            "model_id" => CarModel::inRandomOrder()->first()->id,
+            "category_id" => Category::inRandomOrder()->first()->id,
+            "condition_id" => Condition::inRandomOrder()->first()->id,
+            "auction_state" => AuctionState::inRandomOrder()->first()->id,
         ];
     }
 }

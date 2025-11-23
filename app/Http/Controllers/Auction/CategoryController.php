@@ -7,9 +7,9 @@ namespace Otoszroto\Http\Controllers\Auction;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
+use Otoszroto\Actions\Auction\CreateCategoryAction;
 use Otoszroto\Http\Controllers\Controller;
 use Otoszroto\Http\Requests\Auction\CreateCategoryRequest;
-use Otoszroto\Models\Category;
 
 class CategoryController extends Controller
 {
@@ -18,13 +18,13 @@ class CategoryController extends Controller
         return Inertia::render("Auction/CreateCategory", []);
     }
 
-    public function store(CreateCategoryRequest $request): RedirectResponse
+    public function store(CreateCategoryRequest $request, CreateCategoryAction $createCategoryAction): RedirectResponse
     {
         $validated = $request->validated();
+        $success = $createCategoryAction->execute($validated);
 
-        $category = new Category($validated);
-        $category->save();
-
-        return redirect()->route("home")->with(["message" => "Category has been created."]);
+        return $success
+            ? redirect()->route("auction.category.create")->with(["message" => "Category has been created."])
+            : redirect()->route("auction.category.create")->with(["message" => "Invalid request."])->withInput();
     }
 }

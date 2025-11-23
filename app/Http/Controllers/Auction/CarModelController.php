@@ -7,9 +7,9 @@ namespace Otoszroto\Http\Controllers\Auction;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
+use Otoszroto\Actions\Auction\CreateCarModelAction;
 use Otoszroto\Http\Controllers\Controller;
 use Otoszroto\Http\Requests\Auction\CreateCarModelRequest;
-use Otoszroto\Models\CarModel;
 
 class CarModelController extends Controller
 {
@@ -18,13 +18,13 @@ class CarModelController extends Controller
         return Inertia::render("Auction/CreateCarModel", []);
     }
 
-    public function store(CreateCarModelRequest $request): RedirectResponse
+    public function store(CreateCarModelRequest $request, CreateCarModelAction $createCarModelAction): RedirectResponse
     {
         $validated = $request->validated();
+        $success = $createCarModelAction->execute($validated);
 
-        $car_model = new CarModel($validated);
-        $car_model->save();
-
-        return redirect()->route("home")->with(["message" => "Car model has been created."]);
+        return $success
+            ? redirect()->route("auction.model.create")->with(["message" => "Car model has been created."])
+            : redirect()->route("auction.model.create")->with(["message" => "Invalid request."])->withInput();
     }
 }

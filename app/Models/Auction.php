@@ -19,9 +19,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $model_id
  * @property int $category_id
  * @property int $condition_id
- * @property int $auction_state_id
+ * @property string $auction_state
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ * @property User $owner
+ * @property CarModel $model
+ * @property Category $category
+ * @property Condition $condition
+ * @property AuctionState $auctionState
  */
 class Auction extends Model
 {
@@ -37,31 +42,46 @@ class Auction extends Model
         "model_id",
         "category_id",
         "condition_id",
-        "auction_state_id",
+        "auction_state",
     ];
 
+    /**
+     * @return BelongsTo<User, $this>
+     */
     public function owner(): BelongsTo
     {
         return $this->belongsTo(User::class, "owner_id");
     }
 
+    /**
+     * @return BelongsTo<CarModel, $this>
+     */
     public function model(): BelongsTo
     {
         return $this->belongsTo(CarModel::class, "model_id");
     }
 
+    /**
+     * @return BelongsTo<Category, $this>
+     */
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class, "category_id");
     }
 
+    /**
+     * @return BelongsTo<Condition, $this>
+     */
     public function condition(): BelongsTo
     {
         return $this->belongsTo(Condition::class, "condition_id");
     }
 
+    /**
+     * @return BelongsTo<AuctionState, $this>
+     */
     public function auctionState(): BelongsTo
     {
-        return $this->belongsTo(AuctionState::class, "auction_state_id");
+        return $this->belongsTo(AuctionState::class, "auction_state", "name");
     }
 }

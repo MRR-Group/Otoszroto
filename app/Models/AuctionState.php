@@ -7,10 +7,11 @@ namespace Otoszroto\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Otoszroto\Enums\AuctionStateName;
 
 /**
  * @property int $id
- * @property string $name
+ * @property ActionStateName $name
  * @property Carbon $created_at
  * @property Carbon $updated_at
  */
@@ -21,5 +22,8 @@ class AuctionState extends Model
     public $timestamps = false;
     protected $fillable = [
         "name",
+    ];
+    protected $casts = [
+        "name" => AuctionStateName::class,
     ];
 }

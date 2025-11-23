@@ -7,9 +7,9 @@ namespace Otoszroto\Http\Controllers\Auction;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
+use Otoszroto\Actions\Auction\CreateAuctionStateAction;
 use Otoszroto\Http\Controllers\Controller;
 use Otoszroto\Http\Requests\Auction\CreateAuctionStateRequest;
-use Otoszroto\Models\AuctionState;
 
 class AuctionStateController extends Controller
 {
@@ -18,13 +18,13 @@ class AuctionStateController extends Controller
         return Inertia::render("Auction/CreateAuctionState", []);
     }
 
-    public function store(CreateAuctionStateRequest $request): RedirectResponse
+    public function store(CreateAuctionStateRequest $request, CreateAuctionStateAction $createAuctionStateAction): RedirectResponse
     {
         $validated = $request->validated();
+        $success = $createAuctionStateAction->execute($validated);
 
-        $auction_state = new AuctionState($validated);
-        $auction_state->save();
-
-        return redirect()->route("home")->with(["message" => "Auction state has been created."]);
+        return $success
+            ? redirect()->route("auction.state.create")->with(["message" => "Auction state has been created."])
+            : redirect()->route("auction.state.create")->with(["message" => "Invalid request."])->withInput();
     }
 }

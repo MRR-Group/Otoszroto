@@ -11,7 +11,7 @@ class CreateAuctionRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return true;
+        return auth()->check();
     }
 
     /**
@@ -27,7 +27,6 @@ class CreateAuctionRequest extends FormRequest
             "model_id" => ["required", "integer", "exists:car_models,id"],
             "category_id" => ["required", "integer", "exists:categories,id"],
             "condition_id" => ["required", "integer", "exists:conditions,id"],
-            "auction_state_id" => ["required", "integer", "exists:auction_states,id"],
         ];
     }
 }

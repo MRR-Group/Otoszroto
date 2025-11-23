@@ -7,6 +7,7 @@ namespace Otoszroto\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $id
@@ -14,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $brand_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ * @property Brand $brand
  */
 class CarModel extends Model
 {
@@ -24,4 +26,12 @@ class CarModel extends Model
         "name",
         "brand_id",
     ];
+
+    /**
+     * @return BelongsTo<Brand, $this>
+     */
+    public function brand(): BelongsTo
+    {
+        return $this->belongsTo(Brand::class, "brand_id");
+    }
 }

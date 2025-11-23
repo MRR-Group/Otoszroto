@@ -5,11 +5,6 @@ declare(strict_types=1);
 use Illuminate\Support\Facades\Route;
 use Inertia\Response;
 use Otoszroto\Http\Controllers\Auction\AuctionController;
-use Otoszroto\Http\Controllers\Auction\AuctionStateController;
-use Otoszroto\Http\Controllers\Auction\BrandController;
-use Otoszroto\Http\Controllers\Auction\CarModelController;
-use Otoszroto\Http\Controllers\Auction\CategoryController;
-use Otoszroto\Http\Controllers\Auction\ConditionController;
 use Otoszroto\Http\Controllers\Auth\ForgotPasswordController;
 use Otoszroto\Http\Controllers\Auth\LoginController;
 use Otoszroto\Http\Controllers\Auth\LogoutController;
@@ -37,21 +32,6 @@ Route::post("/user/change-password", [ChangePasswordController::class, "store"])
 Route::post("/logout", [LogoutController::class, "logout"])->name("auth.logout");
 
 Route::middleware("auth")->group(function (): void {
-    Route::get("/auction", [AuctionController::class, "create"])->name("auction.create");
-    Route::post("/auction", [AuctionController::class, "store"])->name("auction.store");
-
-    Route::get("/auction/state", [AuctionStateController::class, "create"])->name("auction.auctionState.create");
-    Route::post("/auction/state", [AuctionStateController::class, "store"])->name("auction.auctionState.store");
-
-    Route::get("/auction/brand", [BrandController::class, "create"])->name("auction.brand.create");
-    Route::post("/auction/brand", [BrandController::class, "store"])->name("auction.brand.store");
-
-    Route::get("/auction/model", [CarModelController::class, "create"])->name("auction.model.create");
-    Route::post("/auction/model", [CarModelController::class, "store"])->name("auction.model.store");
-
-    Route::get("/auction/category", [CategoryController::class, "create"])->name("auction.category.create");
-    Route::post("/auction/category", [CategoryController::class, "store"])->name("auction.category.store");
-
-    Route::get("/auction/condition", [ConditionController::class, "create"])->name("auction.condition.create");
-    Route::post("/auction/condition", [ConditionController::class, "store"])->name("auction.condition.store");
+    Route::get("/auctions/create", [AuctionController::class, "create"])->name("auction.create");
+    Route::post("/auctions", [AuctionController::class, "store"])->name("auction.store");
 });

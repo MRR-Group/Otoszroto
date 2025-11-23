@@ -50,7 +50,7 @@ return new class() extends Migration {
             $table->foreignId("model_id")->constrained("car_models", "id");
             $table->foreignId("category_id")->constrained("categories", "id");
             $table->foreignId("condition_id")->constrained("conditions", "id");
-            $table->foreignId("auction_state_id")->constrained("auction_states", "id");
+            $table->foreignId("auction_state")->constrained("auction_states", "id");
             $table->timestamps();
         });
     }
