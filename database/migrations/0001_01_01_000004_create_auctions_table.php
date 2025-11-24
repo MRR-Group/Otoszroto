@@ -51,10 +51,10 @@ return new class() extends Migration {
             $table->string("description");
             $table->string("photo_url");
             $table->float("price");
-            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(CarModel::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Condition::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(User::class, "owner_id")->constrained("users")->cascadeOnDelete();
+            $table->foreignIdFor(CarModel::class, "model_id")->constrained("car_models")->cascadeOnDelete();
+            $table->foreignIdFor(Category::class)->constrained("categories")->cascadeOnDelete();
+            $table->foreignIdFor(Condition::class)->constrained("conditions")->cascadeOnDelete();
             $table->string("auction_state");
             $table->foreign("auction_state")->references("name")->on("auction_states")->cascadeOnDelete();
             $table->timestamps();

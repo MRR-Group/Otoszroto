@@ -26,11 +26,8 @@ class AuctionController extends Controller
         $user = $request->user();
         $validated = $request->validated();
         $auction = $createAuctionAction->execute($user, $validated);
-        $success = $auction !== null;
 
-        return $success
-            ? redirect()->route("auction.create")->with(["message" => "Aukcja została utworzona."])
-            : redirect()->route("auction.create")->with(["error" => "Nieprawidłowe żądanie."])->withInput();
+        return redirect()->route("auction.create")->with(["message" => "Aukcja została utworzona."]);
     }
 
     public function index(SortHelper $sorter): Response

@@ -14,7 +14,7 @@ class CreateAuctionAction
     {
         $auction = new Auction($validated);
         $auction->owner_id = $user->id;
-        $auction->auction_state = AuctionStateName::ACTIVE;
+        $auction->auction_state = AuctionStateName::ACTIVE->value;
         $auction->save();
 
         return $auction;
