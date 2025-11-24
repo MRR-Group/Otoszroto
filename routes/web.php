@@ -32,6 +32,7 @@ Route::post("/user/change-password", [ChangePasswordController::class, "store"])
 Route::post("/logout", [LogoutController::class, "logout"])->name("auth.logout");
 
 Route::middleware("auth")->group(function (): void {
+    Route::get("/auctions", [AuctionController::class, "index"])->name("auction.index");
     Route::get("/auctions/create", [AuctionController::class, "create"])->name("auction.create");
     Route::post("/auctions", [AuctionController::class, "store"])->name("auction.store");
 });

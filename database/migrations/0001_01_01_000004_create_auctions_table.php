@@ -5,7 +5,6 @@ declare(strict_types=1);
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Otoszroto\Models\AuctionState;
 use Otoszroto\Models\Brand;
 use Otoszroto\Models\CarModel;
 use Otoszroto\Models\Category;
@@ -56,7 +55,8 @@ return new class() extends Migration {
             $table->foreignIdFor(CarModel::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Condition::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(AuctionState::class)->constrained()->cascadeOnDelete();
+            $table->string("auction_state");
+            $table->foreign("auction_state")->references("name")->on("auction_states")->cascadeOnDelete();
             $table->timestamps();
         });
     }

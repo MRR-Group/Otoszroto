@@ -7,7 +7,7 @@ namespace Otoszroto\Http\Requests\Auction;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use Otoszroto\Enums\AuctionStateName;
+use Otoszroto\Enums\ConditionName;
 
 class CreateConditionRequest extends FormRequest
 {
@@ -22,7 +22,7 @@ class CreateConditionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => ["required", "string", Rule::enum(AuctionStateName::class)],
+            "name" => ["required", "string", Rule::enum(ConditionName::class)],
         ];
     }
 }

@@ -11,7 +11,7 @@ use Otoszroto\Enums\AuctionStateName;
 
 /**
  * @property int $id
- * @property ActionStateName $name
+ * @property AuctionStateName $name
  * @property Carbon $created_at
  * @property Carbon $updated_at
  */
@@ -19,7 +19,7 @@ class AuctionState extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
+    public $timestamps = true;
     protected $fillable = [
         "name",
     ];

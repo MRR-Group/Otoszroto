@@ -28,7 +28,7 @@ class AuctionFactory extends Factory
             "model_id" => CarModel::inRandomOrder()->first()->id,
             "category_id" => Category::inRandomOrder()->first()->id,
             "condition_id" => Condition::inRandomOrder()->first()->id,
-            "auction_state" => AuctionState::inRandomOrder()->first()->id,
+            "auction_state_id" => AuctionState::inRandomOrder()->first()->id,
         ];
     }
 }

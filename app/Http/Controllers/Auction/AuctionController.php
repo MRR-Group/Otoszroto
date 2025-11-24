@@ -8,8 +8,11 @@ use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
 use Otoszroto\Actions\Auction\CreateAuctionAction;
+use Otoszroto\Helpers\SortHelper;
 use Otoszroto\Http\Controllers\Controller;
 use Otoszroto\Http\Requests\Auction\CreateAuctionRequest;
+use Otoszroto\Http\Resources\AuctionResource;
+use Otoszroto\Models\Auction;
 
 class AuctionController extends Controller
 {
@@ -22,10 +25,23 @@ class AuctionController extends Controller
     {
         $user = $request->user();
         $validated = $request->validated();
-        $success = $createAuctionAction->execute($user, $validated);
+        $auction = $createAuctionAction->execute($user, $validated);
+        $success = $auction !== null;
 
         return $success
             ? redirect()->route("auction.create")->with(["message" => "Aukcja została utworzona."])
             : redirect()->route("auction.create")->with(["error" => "Nieprawidłowe żądanie."])->withInput();
+    }
+
+    public function index(SortHelper $sorter): Response
+    {
+        $auctions = Auction::query();
+
+        $query = $sorter->sort($auctions, ["id", "name", "price", "model_id", "category_id", "condition_id", "auction_state", "updated_at", "created_at"], ["photo_url", "description", "owner_id"]);
+        $query = $sorter->search($query, "name");
+
+        return Inertia::render("Auction/AuctionPanel", [
+            "auctions" => AuctionResource::collection($query->paginate()),
+        ]);
     }
 }
