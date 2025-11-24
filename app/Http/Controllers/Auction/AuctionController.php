@@ -25,7 +25,7 @@ class AuctionController extends Controller
         $success = $createAuctionAction->execute($user, $validated);
 
         return $success
-            ? redirect()->route("auction.create")->with(["message" => "Auction has been created."])
-            : redirect()->route("auction.create")->with(["message" => "Invalid request."])->withInput();
+            ? redirect()->route("auction.create")->with(["message" => "Aukcja została utworzona."])
+            : redirect()->route("auction.create")->with(["error" => "Nieprawidłowe żądanie."])->withInput();
     }
 }

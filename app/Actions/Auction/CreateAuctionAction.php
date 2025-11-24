@@ -10,13 +10,13 @@ use Otoszroto\Models\User;
 
 class CreateAuctionAction
 {
-    public function execute(User $user, array $validated): bool
+    public function execute(User $user, array $validated): Auction
     {
         $auction = new Auction($validated);
         $auction->owner_id = $user->id;
         $auction->auction_state = AuctionStateName::ACTIVE;
         $auction->save();
 
-        return true;
+        return $auction;
     }
 }

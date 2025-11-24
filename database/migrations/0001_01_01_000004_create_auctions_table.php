@@ -5,6 +5,12 @@ declare(strict_types=1);
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Otoszroto\Models\AuctionState;
+use Otoszroto\Models\Brand;
+use Otoszroto\Models\CarModel;
+use Otoszroto\Models\Category;
+use Otoszroto\Models\Condition;
+use Otoszroto\Models\User;
 
 return new class() extends Migration {
     public function up(): void
@@ -36,7 +42,7 @@ return new class() extends Migration {
         Schema::create("car_models", function (Blueprint $table): void {
             $table->id();
             $table->string("name");
-            $table->foreignId("brand_id")->constrained("brands", "id");
+            $table->foreignIdFor(Brand::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
 
@@ -46,11 +52,11 @@ return new class() extends Migration {
             $table->string("description");
             $table->string("photo_url");
             $table->float("price");
-            $table->foreignId("owner_id")->constrained("users", "id");
-            $table->foreignId("model_id")->constrained("car_models", "id");
-            $table->foreignId("category_id")->constrained("categories", "id");
-            $table->foreignId("condition_id")->constrained("conditions", "id");
-            $table->foreignId("auction_state")->constrained("auction_states", "id");
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(CarModel::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Condition::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(AuctionState::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

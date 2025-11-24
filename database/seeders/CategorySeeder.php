@@ -12,9 +12,24 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         $categoryArray = [
-            "Category1",
-            "Category2",
-            "Category3",
+            "Silnik",
+            "Układ paliwowy",
+            "Układ chłodzenia",
+            "Układ wydechowy",
+            "Układ hamulcowy",
+            "Zawieszenie",
+            "Układ kierowniczy",
+            "Skrzynia biegów",
+            "Sprzęgło",
+            "Nadwozie",
+            "Wnętrze",
+            "Układ elektryczny",
+            "Oświetlenie",
+            "Klimatyzacja",
+            "Opony i koła",
+            "Filtry",
+            "Płyny i oleje",
+            "Akcesoria",
         ];
 
         $formatArray = array_map(fn($data) => ["name" => $data], $categoryArray);

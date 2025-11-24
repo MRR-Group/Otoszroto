@@ -6,7 +6,7 @@ namespace Otoszroto\Enums;
 
 enum AuctionStateName: string
 {
-    case ACTIVE = "active";
-    case FINISHED = "finished";
-    case CANCELLED = "cancelled";
+    case ACTIVE = "aktywna";
+    case FINISHED = "zakończona";
+    case CANCELLED = "anulowana";
 }
