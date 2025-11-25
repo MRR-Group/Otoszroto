@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Otoszroto\Enums\AuctionState;
+use Otoszroto\Enums\Condition;
 use Otoszroto\Models\Auction;
-use Otoszroto\Models\AuctionState;
 use Otoszroto\Models\CarModel;
 use Otoszroto\Models\Category;
-use Otoszroto\Models\Condition;
 use Otoszroto\Models\User;
 
 /**
@@ -27,8 +27,8 @@ class AuctionFactory extends Factory
             "owner_id" => User::factory(),
             "model_id" => CarModel::inRandomOrder()->first()->id,
             "category_id" => Category::inRandomOrder()->first()->id,
-            "condition_id" => Condition::inRandomOrder()->first()->id,
-            "auction_state" => AuctionState::inRandomOrder()->first()->id,
+            "condition" => fake()->randomElement(Condition::cases()),
+            "auction_state" => fake()->randomElement(AuctionState::cases()),
         ];
     }
 }

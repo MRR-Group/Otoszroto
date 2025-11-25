@@ -6,6 +6,8 @@ namespace Otoszroto\Http\Requests\Auction;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use Otoszroto\Enums\Condition;
 
 class CreateAuctionRequest extends FormRequest
 {
@@ -26,7 +28,7 @@ class CreateAuctionRequest extends FormRequest
             "price" => ["required", "numeric"],
             "model_id" => ["required", "integer", "exists:car_models,id"],
             "category_id" => ["required", "integer", "exists:categories,id"],
-            "condition_id" => ["required", "integer", "exists:conditions,id"],
+            "condition" => ["required", Rule::enum(Condition::class)],
         ];
     }
 }

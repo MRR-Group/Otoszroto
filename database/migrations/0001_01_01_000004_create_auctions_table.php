@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Schema;
 use Otoszroto\Models\Brand;
 use Otoszroto\Models\CarModel;
 use Otoszroto\Models\Category;
-use Otoszroto\Models\Condition;
 use Otoszroto\Models\User;
 
 return new class() extends Migration {
@@ -21,18 +20,6 @@ return new class() extends Migration {
         });
 
         Schema::create("categories", function (Blueprint $table): void {
-            $table->id();
-            $table->string("name");
-            $table->timestamps();
-        });
-
-        Schema::create("conditions", function (Blueprint $table): void {
-            $table->id();
-            $table->string("name");
-            $table->timestamps();
-        });
-
-        Schema::create("auction_states", function (Blueprint $table): void {
             $table->id();
             $table->string("name");
             $table->timestamps();
@@ -54,9 +41,8 @@ return new class() extends Migration {
             $table->foreignIdFor(User::class, "owner_id")->constrained("users")->cascadeOnDelete();
             $table->foreignIdFor(CarModel::class, "model_id")->constrained("car_models")->cascadeOnDelete();
             $table->foreignIdFor(Category::class)->constrained("categories")->cascadeOnDelete();
-            $table->foreignIdFor(Condition::class)->constrained("conditions")->cascadeOnDelete();
+            $table->string("condition");
             $table->string("auction_state");
-            $table->foreign("auction_state")->references("name")->on("auction_states")->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -67,7 +53,5 @@ return new class() extends Migration {
         Schema::dropIfExists("car_models");
         Schema::dropIfExists("brands");
         Schema::dropIfExists("categories");
-        Schema::dropIfExists("conditions");
-        Schema::dropIfExists("auction_states");
     }
 };

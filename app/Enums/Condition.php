@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Otoszroto\Enums;
 
-enum ConditionName: string
+enum Condition: string
 {
     case BRAND_NEW = "fabrycznie nowy";
     case NEARLY_NEW = "prawie nowy";

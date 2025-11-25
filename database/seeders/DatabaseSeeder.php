@@ -13,8 +13,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             BrandAndModelsSeeder::class,
             CategorySeeder::class,
-            ConditionSeeder::class,
-            AuctionStatesSeeder::class,
             AuctionSeeder::class,
         ]);
     }

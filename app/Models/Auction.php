@@ -8,6 +8,8 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Otoszroto\Enums\AuctionState;
+use Otoszroto\Enums\Condition;
 
 /**
  * @property int $id
@@ -18,15 +20,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $owner_id
  * @property int $model_id
  * @property int $category_id
- * @property int $condition_id
- * @property string $auction_state
+ * @property Condition $condition
+ * @property AuctionState $auction_state
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property User $owner
  * @property CarModel $model
  * @property Category $category
- * @property Condition $condition
- * @property AuctionState $auctionState
  */
 class Auction extends Model
 {
@@ -41,8 +41,12 @@ class Auction extends Model
         "owner_id",
         "model_id",
         "category_id",
-        "condition_id",
+        "condition",
         "auction_state",
+    ];
+    protected $casts = [
+        "condition" => Condition::class,
+        "auction_state" => AuctionState::class,
     ];
 
     /**
@@ -67,21 +71,5 @@ class Auction extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class, "category_id");
-    }
-
-    /**
-     * @return BelongsTo<Condition, $this>
-     */
-    public function condition(): BelongsTo
-    {
-        return $this->belongsTo(Condition::class, "condition_id");
-    }
-
-    /**
-     * @return BelongsTo<AuctionState, $this>
-     */
-    public function auctionState(): BelongsTo
-    {
-        return $this->belongsTo(AuctionState::class, "auction_state", "name");
     }
 }

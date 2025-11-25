@@ -18,15 +18,15 @@ class AuctionResource extends JsonResource
             "id" => $this->id,
             "name" => $this->name,
             "description" => $this->description,
-            "photo_url" => $this->photo_url,
+            "photo" => $this->photo_url,
             "price" => $this->price,
-            "owner_id" => $this->owner_id,
-            "model_id" => $this->model_id,
-            "category_id" => $this->category_id,
-            "condition_id" => $this->condition_id,
-            "auction_state" => $this->auction_state,
-            "created_at" => $this->created_at,
-            "updated_at" => $this->updated_at,
+            "owner" => UserResource::make($this->owner),
+            "model" => $this->model->name,
+            "category" => $this->category->name,
+            "condition" => $this->condition,
+            "auctionState" => $this->auction_state,
+            "createdAt" => $this->created_at,
+            "updatedAt" => $this->updated_at,
         ];
     }
 }

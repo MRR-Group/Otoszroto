@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Otoszroto\Enums;
 
-enum AuctionStateName: string
+enum AuctionState: string
 {
     case ACTIVE = "aktywna";
     case FINISHED = "zakończona";
