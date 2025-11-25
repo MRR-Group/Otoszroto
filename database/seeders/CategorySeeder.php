@@ -32,8 +32,12 @@ class CategorySeeder extends Seeder
             "Akcesoria",
         ];
 
-        $formatArray = array_map(fn($data) => ["name" => $data], $categoryArray);
+        $formattedArray = array_map(fn($data) => [
+            "name" => $data,
+            "created_at" => now(),
+            "updated_at" => now(),
+        ], $categoryArray);
 
-        Category::insert($formatArray);
+        Category::insert($formattedArray);
     }
 }

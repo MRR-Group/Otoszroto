@@ -34,7 +34,7 @@ class AuctionController extends Controller
     {
         $auctions = Auction::query();
 
-        $query = $sorter->sort($auctions, ["id", "name", "price", "model_id", "category_id", "condition_id", "auction_state", "updated_at", "created_at"], ["photo_url", "description", "owner_id"]);
+        $query = $sorter->sort($auctions, ["id", "name", "price", "model_id", "category_id", "condition", "auction_state", "updated_at", "created_at"], ["photo_url", "description", "owner_id"]);
         $query = $sorter->search($query, "name");
 
         return Inertia::render("Auction/AuctionPanel", [

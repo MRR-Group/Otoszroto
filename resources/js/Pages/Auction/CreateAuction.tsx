@@ -31,8 +31,8 @@ export function CreateAuction({errors}: Props) {
                 <input type="number" placeholder="Category id" name="category_id" required />
                 {errors?.category_id && <p>{errors.category_id}</p>}
 
-                <input type="number" placeholder="Condition id" name="condition_id" required />
-                {errors?.condition_id && <p>{errors.condition_id}</p>}
+                <input type="number" placeholder="Condition" name="condition" required />
+                {errors?.condition && <p>{errors.condition}</p>}
 
                 <input type="submit"></input>
             </Form>
