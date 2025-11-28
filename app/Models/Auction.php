@@ -32,7 +32,7 @@ class Auction extends Model
 {
     use HasFactory;
 
-    public $timestamps = true;
+    public $timestamps = true;    
     protected $fillable = [
         "name",
         "description",
@@ -43,7 +43,7 @@ class Auction extends Model
         "category_id",
         "condition",
         "auction_state",
-    ];
+    ];    
     protected $casts = [
         "condition" => Condition::class,
         "auction_state" => AuctionState::class,
@@ -70,6 +70,6 @@ class Auction extends Model
      */
     public function category(): BelongsTo
     {
-        return $this->belongsTo(Category::class, "category_id");
+        return $this->belongsTo(Category::class);
     }
 }
