@@ -8,9 +8,11 @@ use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
 use Otoszroto\Actions\Auction\CreateAuctionAction;
+use Otoszroto\Actions\Auction\UpdateAuctionAction;
 use Otoszroto\Helpers\SortHelper;
 use Otoszroto\Http\Controllers\Controller;
 use Otoszroto\Http\Requests\Auction\CreateAuctionRequest;
+use Otoszroto\Http\Requests\Auction\UpdateAuctionRequest;
 use Otoszroto\Http\Resources\AuctionResource;
 use Otoszroto\Models\Auction;
 
@@ -19,6 +21,11 @@ class AuctionController extends Controller
     public function create(): Response
     {
         return Inertia::render("Auction/CreateAuction", []);
+    }
+
+    public function edit(Auction $auction): Response
+    {
+        return Inertia::render("Auction/EditAuction", ["auction" => $auction]);
     }
 
     public function store(CreateAuctionRequest $request, CreateAuctionAction $createAuctionAction): RedirectResponse
@@ -40,5 +47,14 @@ class AuctionController extends Controller
         return Inertia::render("Auction/AuctionPanel", [
             "auctions" => AuctionResource::collection($query->paginate()),
         ]);
+    }
+
+    public function update(UpdateAuctionRequest $request, UpdateAuctionAction $updateAuctionAction, Auction $auction): RedirectResponse
+    {
+        $this->authorize("update", $auction);
+        $validated = $request->validated();
+        $auction = $updateAuctionAction->execute($auction, $validated);
+
+        return redirect()->route("auction.edit")->with(["message" => "Aukcja została edytowana."]);
     }
 }
