@@ -64,7 +64,6 @@ export function ForgotPassword({ errors }: Props) {
               <ButtonPrimary
                 text="Wyślij kod"
                 loading={form.processing}
-                disabled={form.processing}
                 onClick={submit}
               />
             </div>

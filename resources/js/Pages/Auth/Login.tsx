@@ -4,8 +4,8 @@ import { Title } from '@/Components/Title';
 import { Panel } from '@/Components/Panel';
 import { Input } from '@/Components/Input';
 import { Text } from '@/Components/Text';
-import { Button, NavButton } from '@/Components/Button';
-import { AsyncButtonPrimary, ButtonPrimary } from '@/Components/ButtonPrimary';
+import { NavButton } from '@/Components/Button';
+import { ButtonPrimary } from '@/Components/ButtonPrimary';
 
 type Props = {
   errors: {

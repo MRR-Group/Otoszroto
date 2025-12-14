@@ -28,7 +28,7 @@ export function ResetPassword({ errors }: Props) {
     if (!form.data.password || !form.data.password_confirmation) {
         return false;
     }
-    
+
     return form.data.password !== form.data.password_confirmation;
   }, [form.data.password, form.data.password_confirmation]);
 
@@ -159,7 +159,6 @@ export function ResetPassword({ errors }: Props) {
               <ButtonPrimary
                 text="Zresetuj hasło"
                 loading={form.processing}
-                disabled={submitDisabled}
                 onClick={submit}
               />
             </div>

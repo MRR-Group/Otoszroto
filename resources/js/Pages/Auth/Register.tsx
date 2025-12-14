@@ -6,6 +6,7 @@ import { Input } from "@/Components/Input";
 import { Text } from "@/Components/Text";
 import { NavButton } from "@/Components/Button";
 import { ButtonPrimary } from "@/Components/ButtonPrimary";
+import { PhoneInput } from "@/Components/PhoneInput";
 
 type Props = {
   errors: Partial<{
@@ -94,14 +95,14 @@ export function Register({ errors }: Props) {
 
           <div className="flex flex-col gap-2">
             <Text>Numer telefonu</Text>
-            <Input
+            <PhoneInput
               name="phone"
               placeholder="+48 123 456 789"
               required
               value={form.data.phone}
-              onChange={(e) => {
+              onChange={(value) => {
                 form.clearErrors("phone");
-                form.setData("phone", e.target.value);
+                form.setData("phone", value);
               }}
             />
             {(errors?.phone || form.errors.phone) && (
@@ -191,7 +192,6 @@ export function Register({ errors }: Props) {
               <ButtonPrimary
                 text="Zarejestruj się"
                 loading={form.processing}
-                disabled={submitDisabled}
                 onClick={submit}
               />
             </div>
