@@ -26,7 +26,7 @@ services:
       - .:/application
     ports:
       - ${DOCKER_APP_HOST_PORT:-63851}:80
-      - ${DOCKER_VITE_PORT:-5173}:5173
+      - ${DOCKER_VITE_PORT:-5172}:5172
     networks:
       - otoszroto-dev
     restart: unless-stopped

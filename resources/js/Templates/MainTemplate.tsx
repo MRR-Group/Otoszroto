@@ -4,6 +4,7 @@ import {Navbar} from "@/Components/Navbar";
 import {Notification} from "@/Components/Notification";
 import {type Flash} from "@/Types/flash";
 import {type User} from "@/Types/user";
+import { MessageBoxProvider } from '@/Components/MessageBoxProvider';
 
 type Props = {
     flash: Flash;
@@ -14,9 +15,11 @@ type Props = {
 export function MainTemplate({children}: PropsWithChildren) {
     const page = usePage<Props>();
 
-    return <>
-        <Notification errors={page.props.errors} flash={page.props.flash}/>
-        <Navbar user={page.props.user}/>
-        {children}
-    </>
+    return (
+        <MessageBoxProvider>
+            <Notification errors={page.props.errors} flash={page.props.flash}/>
+            <Navbar user={page.props.user}/>
+            {children}
+        </MessageBoxProvider>
+    )
 }
