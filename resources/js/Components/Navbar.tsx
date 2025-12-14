@@ -1,7 +1,5 @@
-import React from 'react';
 import {Form} from "@inertiajs/react";
 import {type User} from "@/Types/user";
-import { Button } from './Button';
 
 type Props = {
     user?: User;
