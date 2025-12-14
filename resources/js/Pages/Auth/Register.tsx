@@ -1,37 +1,203 @@
-import React from 'react';
-import {Form} from "@inertiajs/react";
+import React, { useMemo } from "react";
+import { Form, useForm } from "@inertiajs/react";
+import { Title } from "@/Components/Title";
+import { Panel } from "@/Components/Panel";
+import { Input } from "@/Components/Input";
+import { Text } from "@/Components/Text";
+import { NavButton } from "@/Components/Button";
+import { ButtonPrimary } from "@/Components/ButtonPrimary";
 
 type Props = {
-    errors: any;
-}
+  errors: Partial<{
+    firstname: string;
+    surname: string;
+    phone: string;
+    email: string;
+    password: string;
+    password_confirmation: string;
+  }>;
+};
 
-export function Register({errors}: Props) {
-    return (
-        <>
-            <h1 className={"text-lg font-semibold"}>Register</h1>
-            <Form
-                action={"/register"}
-                method="POST"
-            >
-                <input type="text" placeholder="Firstname" name="firstname" required />
-                {errors?.firstname && <p>{errors.firstname}</p>}
+export function Register({ errors }: Props) {
+  const form = useForm({
+    firstname: "",
+    surname: "",
+    phone: "",
+    email: "",
+    password: "",
+    password_confirmation: "",
+  });
 
-                <input type="text" placeholder="Surname" name="surname" required />
-                {errors?.surname && <p>{errors.surname}</p>}
+  const passwordsMismatch = useMemo(() => {
+    if (!form.data.password || !form.data.password_confirmation) {
+        return false;
+    }
+    
+    return form.data.password !== form.data.password_confirmation;
+  }, [form.data.password, form.data.password_confirmation]);
 
-                <input type="text" placeholder="Phone number" name="phone" required />
-                {errors?.phone && <p>{errors.phone}</p>}
+  const submitDisabled = form.processing || passwordsMismatch;
 
-                <input type="email" placeholder="Email" name="email" required />
-                {errors?.email && <p>{errors.email}</p>}
+  const submit = (e: React.MouseEvent) => {
+    e.preventDefault();
+    
+    if (submitDisabled) {
+        return;
+    }
 
-                <input type="password" placeholder="Password" name="password" required />
-                {errors?.password && <p>{errors.password}</p>}
+    form.post("/register");
+  };
 
-                <input type="password" placeholder="Confirm password" name="password_confirmation" required />
+  return (
+    <div className="w-full md:max-w-10/12 p-4 mt-5 mx-auto">
+      <Title type="h2">Rejestracja</Title>
 
-                <input type="submit"></input>
-            </Form>
-        </>
-    );
+      <Panel>
+        <Form action="/register" method="POST" className="flex flex-col gap-3">
+          <div className="flex flex-col gap-2">
+            <Text>Imię</Text>
+            <Input
+              name="firstname"
+              placeholder="Jan"
+              required
+              value={form.data.firstname}
+              onChange={(e) => {
+                form.clearErrors("firstname");
+                form.setData("firstname", e.target.value);
+              }}
+            />
+            {(errors?.firstname || form.errors.firstname) && (
+              <p className="text-danger text-sm">
+                {errors?.firstname ?? form.errors.firstname}
+              </p>
+            )}
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <Text>Nazwisko</Text>
+            <Input
+              name="surname"
+              placeholder="Kowalski"
+              required
+              value={form.data.surname}
+              onChange={(e) => {
+                form.clearErrors("surname");
+                form.setData("surname", e.target.value);
+              }}
+            />
+            {(errors?.surname || form.errors.surname) && (
+              <p className="text-danger text-sm">
+                {errors?.surname ?? form.errors.surname}
+              </p>
+            )}
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <Text>Numer telefonu</Text>
+            <Input
+              name="phone"
+              placeholder="+48 123 456 789"
+              required
+              value={form.data.phone}
+              onChange={(e) => {
+                form.clearErrors("phone");
+                form.setData("phone", e.target.value);
+              }}
+            />
+            {(errors?.phone || form.errors.phone) && (
+              <p className="text-danger text-sm">
+                {errors?.phone ?? form.errors.phone}
+              </p>
+            )}
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <Text>Email</Text>
+            <Input
+              name="email"
+              placeholder="example@mail.com"
+              required
+              email
+              value={form.data.email}
+              onChange={(e) => {
+                form.clearErrors("email");
+                form.setData("email", e.target.value);
+              }}
+            />
+            {(errors?.email || form.errors.email) && (
+              <p className="text-danger text-sm">
+                {errors?.email ?? form.errors.email}
+              </p>
+            )}
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <Text>Hasło</Text>
+            <Input
+              name="password"
+              placeholder="*******"
+              required
+              password
+              value={form.data.password}
+              onChange={(e) => {
+                form.clearErrors("password");
+                form.setData("password", e.target.value);
+              }}
+            />
+            {(errors?.password || form.errors.password) && (
+              <p className="text-danger text-sm">
+                {errors?.password ?? form.errors.password}
+              </p>
+            )}
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <Text>Powtórz hasło</Text>
+            <Input
+              name="password_confirmation"
+              placeholder="*******"
+              required
+              password
+              value={form.data.password_confirmation}
+              onChange={(e) => {
+                form.clearErrors("password_confirmation");
+                form.setData("password_confirmation", e.target.value);
+              }}
+            />
+
+            {passwordsMismatch && (
+              <p className="text-danger text-sm">Hasła muszą być takie same.</p>
+            )}
+
+            {!passwordsMismatch && (errors?.password_confirmation || form.errors.password_confirmation) && (
+              <p className="text-danger text-sm">
+                {errors?.password_confirmation ?? form.errors.password_confirmation}
+              </p>
+            )}
+          </div>
+
+          <a href="/login" className="block">
+            <Text className="text-sm" color="muted">
+              Masz już konto?
+            </Text>
+            <Text className="text-sm" color="primary">
+              Zaloguj się
+            </Text>
+          </a>
+
+          <div className="flex justify-end items-center">
+            <div className="flex gap-2">
+              <NavButton href="/" text="Anuluj" disabled={form.processing} />
+              <ButtonPrimary
+                text="Zarejestruj się"
+                loading={form.processing}
+                disabled={submitDisabled}
+                onClick={submit}
+              />
+            </div>
+          </div>
+        </Form>
+      </Panel>
+    </div>
+  );
 }

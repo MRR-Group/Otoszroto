@@ -37,7 +37,6 @@ export function Login({ errors }: Props) {
         >
           <div className='flex flex-col gap-2'>
             <Text>Email</Text>
-
             <Input 
               name="email"
               placeholder="example@mail.com" 
@@ -46,7 +45,6 @@ export function Login({ errors }: Props) {
               value={form.data.email} 
               onChange={(e)=> form.setData("email", e.target.value)} 
             />
-            
             {(errors?.email || form.errors.email) && (
               <p className="text-danger text-sm">{errors?.email ?? form.errors.email}</p>
             )}
@@ -59,7 +57,6 @@ export function Login({ errors }: Props) {
 
           <div className='flex flex-col gap-2'>
             <Text>Hasło</Text>
-
             <Input 
               name="password" 
               placeholder="*******" 
@@ -68,7 +65,6 @@ export function Login({ errors }: Props) {
               value={form.data.password} 
               onChange={(e)=> form.setData("password", e.target.value)} 
             />
-
             {(errors?.password || form.errors.password) && (
               <p className="text-danger text-sm">{errors?.password ?? form.errors.password}</p>
             )}
