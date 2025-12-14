@@ -14,10 +14,10 @@ export function Navbar({ user }: Props) {
 
   return (
     <div className="flex items-center border-b border-border p-2 gap-2">
-      <div className="flex items-center gap-2">
+      <a href="/" className="flex items-center gap-2">
         <img src={icon} className="h-10 object-contain" />
         <Text bold>OTOSZROTO</Text>
-      </div>
+      </a>
 
       <div className="ml-auto">
         <div className="md:flex hidden gap-2">

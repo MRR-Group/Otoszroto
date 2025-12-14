@@ -50,7 +50,7 @@ export function Login({ errors }: Props) {
             )}
           </div>
 
-          <a href='/forgot-password' className='block'>
+          <a href='/register' className='block'>
             <Text className='text-sm' color='muted'>Nie masz konta?</Text>
             <Text className='text-sm' color='primary'>Zarejestruj się</Text>
           </a>
