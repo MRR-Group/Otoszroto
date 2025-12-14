@@ -1,3 +1,4 @@
+import { MouseEvent } from "react";
 import { withAsyncButton } from "./HOC/WithAsyncButton";
 import { withFormButton } from "./HOC/WithFormButton";
 import { withNavButton } from "./HOC/WithNavButton";
@@ -7,7 +8,7 @@ type Props = {
   disabled?: boolean,
   loading?: boolean,
   full?: boolean,
-  onClick?: () => void
+  onClick?: (e: MouseEvent<HTMLElement>) => void
 }
 
 export const ButtonPrimary = ({text, disabled, loading, full, onClick}: Props) => {
