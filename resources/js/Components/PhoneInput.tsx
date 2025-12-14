@@ -5,7 +5,7 @@ type Props = {
   name?: string;
   placeholder?: string;
   required?: boolean;
-  onChange?: (value: string) => void;
+  onChange?: (_value: string) => void;
 };
 
 function formatPhone(value: string): string {

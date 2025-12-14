@@ -1,4 +1,4 @@
-import { PropsWithChildren, useEffect, useId, useRef, useState } from "react";
+import { MouseEventHandler, PropsWithChildren, useEffect, useId, useRef, useState } from "react";
 
 type Props = PropsWithChildren<{ 
   className?: string 
@@ -37,7 +37,7 @@ export function NavMenu({ children, className = "" }: Props) {
     return () => document.removeEventListener("mousedown", onDoc);
   }, [open]);
 
-  const onClickInside: React.MouseEventHandler<HTMLDivElement> = (e) => {
+  const onClickInside: MouseEventHandler<HTMLDivElement> = (e) => {
     const target = e.target as HTMLElement | null;
     
     if (!target) {

@@ -9,7 +9,7 @@ type FormButtonExtraProps = {
   disabled?: boolean;
   onFinish?: () => void;
   onSuccess?: () => void;
-  onError?: (errors: Record<string, string>) => void;
+  onError?: (_errors: Record<string, string>) => void;
 };
 
 export function withFormButton<P>(Visual: React.ComponentType<P>) {

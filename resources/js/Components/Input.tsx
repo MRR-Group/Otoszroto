@@ -7,7 +7,7 @@ type Props = {
   password?: boolean,
   email?: boolean,
   required?: boolean,
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  onChange?: (_e: React.ChangeEvent<HTMLInputElement>) => void,
 }
 
 export const Input = ({value, name, placeholder, password, email, required, onChange}: Props) => {

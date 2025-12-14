@@ -8,7 +8,7 @@ type Props = {
   disabled?: boolean,
   loading?: boolean,
   full?: boolean,
-  onClick?: (e: MouseEvent<HTMLElement>) => void
+  onClick?: (_e: MouseEvent<HTMLElement>) => void
 }
 
 export const ButtonPrimary = ({text, disabled, loading, full, onClick}: Props) => {

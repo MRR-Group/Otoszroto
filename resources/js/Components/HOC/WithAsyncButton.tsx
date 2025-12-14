@@ -3,7 +3,7 @@ import React, { useState } from "react";
 type NavButtonExtraProps = {
   asyncAction: () => Promise<void>;
   onFinally?: () => void;
-  onError?: (err: unknown) => void;
+  onError?: (_err: unknown) => void;
   disabled?: boolean;
 };
 
