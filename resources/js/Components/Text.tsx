@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react"
 
 type Props = PropsWithChildren<{
-  bold?: string,
+  bold?: boolean,
   className?: string,
 }>
 
@@ -13,6 +13,6 @@ export const Text = ({bold, className, children}: Props) => {
   }
 
   return (
-    <p className={`text-muted`}>{children}</p>
+    <p className={`text-muted ${className}`}>{children}</p>
   )
 }
