@@ -19,7 +19,7 @@ export default ({ mode }) => {
       hmr: {
         host: process.env.VITE_DEV_SERVER_DOCKER_HOST_NAME,
         protocol: "ws",
-        clientPort: 80, 
+        clientPort: 80,
       },
       watch: {
         ignored: [

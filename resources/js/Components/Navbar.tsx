@@ -18,8 +18,6 @@ export function Navbar({ user }: Props) {
                 {<Form action={"/logout"} method="POST"><button type="submit">Logout</button></Form>}
                 {<a href="/user/change-password">Change password</a>}
             </div>
-
-            <Button text='asd'/>
         </>
     }
 

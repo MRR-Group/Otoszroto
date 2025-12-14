@@ -11,7 +11,7 @@ export const Button = ({text, disabled, color="default", loading, onClick}: Prop
 
   if (disabled) {
     return (
-      <div className={`inline-flex border rounded-2lg py-3 px-4 border-borde text-text opacity-60 cursor-not-allowed text-sm ${colorClass}`}>
+      <div className={`inline-flex border rounded-2lg py-3 px-4 border-border text-text opacity-60 cursor-not-allowed text-sm ${colorClass}`}>
         {text}
       </div>
     );

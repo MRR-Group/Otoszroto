@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-type ConfirmOptions = {
+export type ConfirmOptions = {
   title: string;
   message?: string;
   confirmText?: string;
@@ -8,7 +8,7 @@ type ConfirmOptions = {
   danger?: boolean;
 };
 
-type MessageBoxContextType = {
+export type MessageBoxContextType = {
   confirm: (_options: ConfirmOptions) => Promise<boolean>;
 };
 
