@@ -35,7 +35,7 @@ return new class() extends Migration {
         Schema::create("auctions", function (Blueprint $table): void {
             $table->id();
             $table->string("name");
-            $table->string("description");
+            $table->text("description");
             $table->string("photo_url");
             $table->float("price");
             $table->foreignIdFor(User::class, "owner_id")->constrained("users")->cascadeOnDelete();
