@@ -25,6 +25,8 @@ class AuctionController extends Controller
 
     public function edit(Auction $auction): Response
     {
+        $this->authorize("update", $auction);
+
         return Inertia::render("Auction/EditAuction", ["auction" => $auction]);
     }
 
