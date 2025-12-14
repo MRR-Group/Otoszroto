@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext } from "react";
 
 type ConfirmOptions = {
   title: string;
@@ -9,7 +9,7 @@ type ConfirmOptions = {
 };
 
 type MessageBoxContextType = {
-  confirm: (options: ConfirmOptions) => Promise<boolean>;
+  confirm: (_options: ConfirmOptions) => Promise<boolean>;
 };
 
 export const MessageBoxContext = createContext<MessageBoxContextType | null>(null);

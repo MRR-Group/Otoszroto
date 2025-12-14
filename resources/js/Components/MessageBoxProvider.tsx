@@ -7,7 +7,7 @@ import { Title } from "./Title";
 type State = {
   open: boolean;
   options: any;
-  resolve?: (v: boolean) => void;
+  resolve?: (_value: boolean) => void;
 };
 
 type Props = PropsWithChildren<{}>

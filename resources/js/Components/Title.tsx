@@ -1,4 +1,4 @@
-import { Children, PropsWithChildren } from "react"
+import { PropsWithChildren } from "react"
 
 type Props = PropsWithChildren<{
   type?: "h1" | "h2" | "h3" | "bold"

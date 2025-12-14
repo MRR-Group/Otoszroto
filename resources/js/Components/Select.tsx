@@ -3,8 +3,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 type Props<T, V extends string | number> = {
   items: T[];
   selected: V;
-  onChange: (value: V) => void;
-  item?: (item: T) => { value: V; text: string };
+  onChange: (_value: V) => void;
+  item?: (_item: T) => { value: V; text: string };
   placeholder?: string;
 };
 
