@@ -23,7 +23,7 @@ class CreateAuctionRequest extends FormRequest
     {
         return [
             "name" => ["required", "string", "max:255"],
-            "description" => ["required", "string", "max:255"],
+            "description" => ["required", "string", "max:65535"],
             "photo_url" => ["required", "string", "max:255"],
             "price" => ["required", "numeric"],
             "model_id" => ["required", "integer", "exists:car_models,id"],

@@ -23,14 +23,13 @@ class UpdateAuctionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => ["sometimes", "string", "max:255"],
+            "name" => ["sometimes", "required", "string", "min:3", "max:255"],
             "description" => ["sometimes", "string", "max:255"],
-            "photo_url" => ["sometimes", "string", "max:255"],
-            "price" => ["sometimes", "numeric"],
-            "model_id" => ["sometimes", "integer", "exists:car_models,id"],
-            "category_id" => ["sometimes", "integer", "exists:categories,id"],
-            "condition" => ["sometimes", Rule::enum(Condition::class)],
-            "auction_state" => ["sometimes", Rule::enum(AuctionState::class)],
+            "price" => ["sometimes", "required", "numeric", "min:0.01"],
+            "model_id" => ["sometimes", "required", "integer", "exists:car_models,id"],
+            "category_id" => ["sometimes", "required", "integer", "exists:categories,id"],
+            "condition" => ["sometimes", "required", Rule::enum(Condition::class)],
+            "auction_state" => ["sometimes", "required", Rule::enum(AuctionState::class)],
         ];
     }
 }

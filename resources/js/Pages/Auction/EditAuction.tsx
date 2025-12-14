@@ -15,28 +15,25 @@ export function EditAuction({errors,auction}: Props) {
                 action={`/auctions/${auction.id}`}
                 method="PATCH"
             >
-                <input type="text" placeholder="Name" name="name" />
+                <input type="text" placeholder="Name" name="name" defaultValue={auction.name}/>
                 {errors?.name && <p>{errors.name}</p>}
 
-                <input type="text" placeholder="Description" name="description" />
+                <input type="text" placeholder="Description" name="description" defaultValue={auction.description}/>
                 {errors?.description && <p>{errors.description}</p>}
 
-                <input type="text" placeholder="Photo url" name="photo_url" />
-                {errors?.photo_url && <p>{errors.photo_url}</p>}
-
-                <input type="number" placeholder="Price" name="price" />
+                <input type="number" placeholder="Price" name="price" defaultValue={auction.price}/>
                 {errors?.price && <p>{errors.price}</p>}
 
-                <input type="number" placeholder="Model id" name="model_id" />
+                <input type="number" placeholder="Model id" name="model_id" defaultValue={auction.model_id}/>
                 {errors?.model_id && <p>{errors.model_id}</p>}
 
-                <input type="number" placeholder="Category id" name="category_id" />
+                <input type="number" placeholder="Category id" name="category_id" defaultValue={auction.category_id}/>
                 {errors?.category_id && <p>{errors.category_id}</p>}
 
-                <input type="number" placeholder="Condition" name="condition" />
+                <input type="number" placeholder="Condition" name="condition" defaultValue={auction.condition}/>
                 {errors?.condition && <p>{errors.condition}</p>}
 
-                <input type="number" placeholder="Auction State" name="auction_state" />
+                <input type="number" placeholder="Auction State" name="auction_state" defaultValue={auction.auction_state}/>
                 {errors?.auction_state && <p>{errors.auction_state}</p>}
 
                 <input type="submit"></input>

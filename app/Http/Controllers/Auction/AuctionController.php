@@ -55,6 +55,6 @@ class AuctionController extends Controller
         $validated = $request->validated();
         $auction = $updateAuctionAction->execute($auction, $validated);
 
-        return redirect()->route("auction.edit")->with(["message" => "Aukcja została edytowana."]);
+        return redirect()->route("auction.edit", ["auction" => $auction])->with(["message" => "Aukcja została edytowana."]);
     }
 }
