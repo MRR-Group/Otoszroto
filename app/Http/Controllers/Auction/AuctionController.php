@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace Otoszroto\Http\Controllers\Auction;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 use Otoszroto\Actions\Auction\CreateAuctionAction;
-use Otoszroto\Actions\Auction\UpdateAuctionAction;
+use Otoszroto\Enums\AuctionState;
 use Otoszroto\Helpers\SortHelper;
 use Otoszroto\Http\Controllers\Controller;
 use Otoszroto\Http\Requests\Auction\CreateAuctionRequest;
-use Otoszroto\Http\Requests\Auction\UpdateAuctionRequest;
 use Otoszroto\Http\Resources\AuctionResource;
 use Otoszroto\Http\Resources\BrandResource;
 use Otoszroto\Http\Resources\CategoryResource;
@@ -21,9 +22,6 @@ use Otoszroto\Models\Auction;
 use Otoszroto\Models\Brand;
 use Otoszroto\Models\CarModel;
 use Otoszroto\Models\Category;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Http\Request;
-use Otoszroto\Enums\AuctionState;
 
 class AuctionController extends Controller
 {
@@ -55,7 +53,7 @@ class AuctionController extends Controller
         $models = CarModel::query()->with("brand")->get();
         $brands = Brand::query()->get();
 
-        $perPage = (int) request()->query('per_page', 10);
+        $perPage = (int)request()->query("per_page", 10);
 
         $query = $sorter->sort($auctions, ["id", "name", "price", "created_at"], []);
         $query = $sorter->search($query, "name");
@@ -79,7 +77,7 @@ class AuctionController extends Controller
         $category_id = $request->query("category", null);
 
         if ($category_id === null) {
-            return $query;         
+            return $query;
         }
 
         return $query->where(fn(Builder $query) => $query->where("category_id", "=", $category_id));
@@ -87,14 +85,14 @@ class AuctionController extends Controller
 
     private function filterBrand(Builder $query, Request $request): Builder
     {
-        $brandId = $request->query('brand');
+        $brandId = $request->query("brand");
 
         if ($brandId === null) {
             return $query;
         }
 
-        return $query->whereHas('model', function (Builder $q) use ($brandId) {
-            $q->where('brand_id', $brandId);
+        return $query->whereHas("model", function (Builder $q) use ($brandId): void {
+            $q->where("brand_id", $brandId);
         });
     }
 
@@ -103,7 +101,7 @@ class AuctionController extends Controller
         $model_id = $request->query("model", null);
 
         if ($model_id === null) {
-            return $query;         
+            return $query;
         }
 
         return $query->where(fn(Builder $query) => $query->where("model_id", "=", $model_id));
@@ -114,7 +112,7 @@ class AuctionController extends Controller
         $condition = $request->query("condition", null);
 
         if ($condition === null) {
-            return $query;         
+            return $query;
         }
 
         return $query->where(fn(Builder $query) => $query->where("condition", "=", $condition));
@@ -125,7 +123,7 @@ class AuctionController extends Controller
         $min = $request->query("price_min", null);
 
         if ($min === null) {
-            return $query;         
+            return $query;
         }
 
         return $query->where(fn(Builder $query) => $query->where("price", ">=", $min));
@@ -136,7 +134,7 @@ class AuctionController extends Controller
         $max = $request->query("price_max", null);
 
         if ($max === null) {
-            return $query;         
+            return $query;
         }
 
         return $query->where(fn(Builder $query) => $query->where("price", "<=", $max));
