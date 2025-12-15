@@ -48,13 +48,21 @@ class AuctionController extends Controller
         return redirect()->route("auction.create")->with(["message" => "Aukcja została utworzona."]);
     }
 
+    public function show(Auction $auction): Response
+    {
+        $auction->load(['category', 'model.brand', 'owner']);
+
+        return Inertia::render('Auction/ShowAuction', [
+            'auction' => new AuctionResource($auction),
+        ]);
+    }
+
     public function index(SortHelper $sorter, Request $request): Response
     {
         $auctions = Auction::query()->with(["category", "model.brand", "owner"])->where("auction_state", "=", AuctionState::ACTIVE);
         $categories = Category::query()->get();
         $models = CarModel::query()->with("brand")->get();
         $brands = Brand::query()->get();
-
         $perPage = (int) request()->query('per_page', 10);
 
         $query = $sorter->sort($auctions, ["id", "name", "price", "created_at"], []);
