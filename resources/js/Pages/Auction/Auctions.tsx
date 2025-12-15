@@ -35,8 +35,8 @@ const Conditions = [
     text: "Prawie nowy"
   },
   {
-    value: "w dobrym stani",
-    text: "W dobrym stani"
+    value: "w dobrym stanie",
+    text: "W dobrym stanie"
   },
   {
     value: "w zadawalającym stanie",
