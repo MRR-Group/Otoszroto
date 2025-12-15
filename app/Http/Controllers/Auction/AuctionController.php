@@ -8,9 +8,11 @@ use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
 use Otoszroto\Actions\Auction\CreateAuctionAction;
+use Otoszroto\Actions\Auction\UpdateAuctionAction;
 use Otoszroto\Helpers\SortHelper;
 use Otoszroto\Http\Controllers\Controller;
 use Otoszroto\Http\Requests\Auction\CreateAuctionRequest;
+use Otoszroto\Http\Requests\Auction\UpdateAuctionRequest;
 use Otoszroto\Http\Resources\AuctionResource;
 use Otoszroto\Http\Resources\BrandResource;
 use Otoszroto\Http\Resources\CategoryResource;
@@ -28,6 +30,13 @@ class AuctionController extends Controller
     public function create(): Response
     {
         return Inertia::render("Auction/CreateAuction", []);
+    }
+
+    public function edit(Auction $auction): Response
+    {
+        $this->authorize("update", $auction);
+
+        return Inertia::render("Auction/EditAuction", ["auction" => $auction]);
     }
 
     public function store(CreateAuctionRequest $request, CreateAuctionAction $createAuctionAction): RedirectResponse
