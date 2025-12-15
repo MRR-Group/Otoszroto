@@ -1,7 +1,7 @@
 import React from "react";
 
 type NavButtonExtraProps = {
-  href: string;
+  href?: string;
   target?: string;
   disabled?: boolean
 };

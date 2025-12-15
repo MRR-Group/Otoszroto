@@ -25,13 +25,7 @@ function formatPhone(value: string): string {
   return "+" + parts.join(" ");
 }
 
-export const PhoneInput = ({
-  value = "",
-  name,
-  placeholder = "+48 123 456 789",
-  required,
-  onChange,
-}: Props) => {
+export const PhoneInput = ({ value = "", name, placeholder = "+48 123 456 789", required, onChange }: Props) => {
   const displayValue = formatPhone(value);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

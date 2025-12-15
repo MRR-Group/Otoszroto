@@ -16,7 +16,7 @@ export const Button = ({text, disabled, color="default", full, loading, onClick}
 
   if (disabled) {
     return (
-      <div className={`inline-flex border rounded-2lg py-3 px-4 border-border text-text opacity-60 cursor-not-allowed text-sm ${colorClass} ${full ? 'w-full' : ''}`}>
+      <div className={`inline-flex select-none border rounded-2lg py-3 px-4 border-border text-text opacity-60 cursor-not-allowed text-sm ${colorClass} ${full ? 'w-full' : ''}`}>
         {text}
       </div>
     );
@@ -24,7 +24,7 @@ export const Button = ({text, disabled, color="default", full, loading, onClick}
 
   if (loading) {
     return (
-      <div className={`inline-flex border rounded-2lg py-3 px-4 border-border text-text cursor-wait text-sm ${colorClass} ${full ? 'w-full' : ''}`}>
+      <div className={`inline-flex select-none border rounded-2lg py-3 px-4 border-border text-text cursor-wait text-sm ${colorClass} ${full ? 'w-full' : ''}`}>
         Wczytywanie...
       </div>
     )
@@ -32,7 +32,7 @@ export const Button = ({text, disabled, color="default", full, loading, onClick}
 
   return (
     <button 
-      className={`inline-flex border rounded-2lg py-3 px-4 border-border text-text cursor-pointer text-sm transition-transform hover:scale-95 active:scale-105 ${colorClass} ${full ? 'w-full' : ''}`}
+      className={`inline-flex select-none border rounded-2lg py-3 px-4 border-border text-text cursor-pointer text-sm transition-transform hover:scale-95 active:scale-105 ${colorClass} ${full ? 'w-full' : ''}`}
       onClick={onClick}
     >
       {text}

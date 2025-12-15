@@ -21,8 +21,8 @@ export function Navbar({ user }: Props) {
 
       <div className="ml-auto">
         <div className="md:flex hidden gap-2">
-          <NavButton href="/parts" text="Przeglądaj" />
-          {isLoggedIn && <NavButton href="/parts/create" text="Wystaw część" />}
+          <NavButton href="/auctions" text="Przeglądaj" />
+          {isLoggedIn && <NavButton href="/auctions/create" text="Wystaw część" />}
           {isLoggedIn && <NavButton href="/seller" text="Panel sprzedawcy" />}
           {!isLoggedIn && <NavButtonPrimary href="/login" text="Zaloguj" />}
           {isLoggedIn && <FormButtonPrimary url="/logout" text="Wyloguj" />}
