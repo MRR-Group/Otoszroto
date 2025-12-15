@@ -51,7 +51,8 @@ export default [
       'react/no-unescaped-entities': 'off',
       'require-await': 'off',
       '@typescript-eslint/require-await': 'off',
-      '@typescript-eslint/consistent-type-definitions': 'off'
+      '@typescript-eslint/consistent-type-definitions': 'off',
+      'no-unused-vars': ["error", { "argsIgnorePattern": "^_" }]
     },
   },
 
