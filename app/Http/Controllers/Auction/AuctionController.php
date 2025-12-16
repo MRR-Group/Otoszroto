@@ -15,7 +15,6 @@ use Otoszroto\Enums\AuctionState;
 use Otoszroto\Helpers\SortHelper;
 use Otoszroto\Http\Controllers\Controller;
 use Otoszroto\Http\Requests\Auction\CreateAuctionRequest;
-use Otoszroto\Http\Requests\Auction\UpdateAuctionRequest;
 use Otoszroto\Http\Resources\AuctionResource;
 use Otoszroto\Http\Resources\BrandResource;
 use Otoszroto\Http\Resources\CategoryResource;
@@ -63,6 +62,7 @@ class AuctionController extends Controller
         $categories = Category::query()->get();
         $models = CarModel::query()->with("brand")->get();
         $brands = Brand::query()->get();
+
         $perPage = (int)request()->query("per_page", 10);
 
         $query = $sorter->sort($auctions, ["id", "name", "price", "created_at"], []);
@@ -80,15 +80,6 @@ class AuctionController extends Controller
             "models" => ModelResource::collection($models)->resolve(),
             "brands" => BrandResource::collection($brands)->resolve(),
         ]);
-    }
-
-    public function update(UpdateAuctionRequest $request, UpdateAuctionAction $updateAuctionAction, Auction $auction): RedirectResponse
-    {
-        $this->authorize("update", $auction);
-        $validated = $request->validated();
-        $auction = $updateAuctionAction->execute($auction, $validated);
-
-        return redirect()->route("auction.edit", ["auction" => $auction])->with(["message" => "Aukcja została edytowana."]);
     }
 
     private function filterCategory(Builder $query, Request $request): Builder
