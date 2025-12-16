@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 use Otoszroto\Actions\Auction\CreateAuctionAction;
-use Otoszroto\Actions\Auction\UpdateAuctionAction;
 use Otoszroto\Enums\AuctionState;
 use Otoszroto\Helpers\SortHelper;
 use Otoszroto\Http\Controllers\Controller;
