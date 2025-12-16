@@ -21,14 +21,15 @@ class AuctionFactory extends Factory
     {
         return [
             "name" => fake()->word(),
-            "description" => fake()->paragraph(),
-            "photo_url" => fake()->imageUrl(),
+            "description" => fake()->text(200),
+            "photo_url" => fake()->url(),
             "price" => fake()->randomFloat(2, 100, 10000),
             "owner_id" => User::factory(),
             "model_id" => CarModel::inRandomOrder()->first()->id,
             "category_id" => Category::inRandomOrder()->first()->id,
             "condition" => fake()->randomElement(Condition::cases()),
             "auction_state" => fake()->randomElement(AuctionState::cases()),
+            "city" => fake()->city(),
         ];
     }
 }

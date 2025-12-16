@@ -17,7 +17,7 @@ Route::get("/", fn(): Response => inertia("Welcome"))->name("home");
 Route::get("/register", [RegisterController::class, "create"])->name("auth.register.create");
 Route::post("/register", [RegisterController::class, "store"])->name("auth.register.store");
 
-Route::get("/login", [LoginController::class, "create"])->name("auth.login.create");
+Route::get("/login", [LoginController::class, "create"])->name("login");
 Route::post("/login", [LoginController::class, "store"])->name("auth.login.store");
 
 Route::get("/forgot-password", [ForgotPasswordController::class, "create"])->name("auth.forgotPassword.create");
@@ -29,11 +29,13 @@ Route::post("/reset-password", [ResetPasswordController::class, "store"])->name(
 Route::get("/user/change-password", [ChangePasswordController::class, "create"])->name("user.changePassword.create");
 Route::post("/user/change-password", [ChangePasswordController::class, "store"])->name("user.changePassword.store");
 
-Route::post("/logout", [LogoutController::class, "logout"])->name("auth.logout");
+Route::get("/auctions", [AuctionController::class, "index"])->name("auctions.index");
 
 Route::middleware("auth")->group(function (): void {
-    Route::get("/auctions", [AuctionController::class, "index"])->name("auctions.index");
+    Route::post("/logout", [LogoutController::class, "logout"])->name("auth.logout");
     Route::get("/auctions/create", [AuctionController::class, "create"])->name("auctions.create");
+    Route::post("/auctions", [AuctionController::class, "store"])->name("auctions.store");
+
     Route::post("/auctions", [AuctionController::class, "store"])->name("auctions.store");
     Route::get("/auctions/{auction}/edit", [AuctionController::class, "edit"])->name("auctions.edit");
     Route::patch("/auctions/{auction}", [AuctionController::class, "update"])->name("auctions.update");

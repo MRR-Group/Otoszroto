@@ -2,10 +2,12 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 type Props<T, V extends string | number> = {
   items: T[];
-  selected: V;
+  selected: V | undefined;
   onChange: (_value: V) => void;
   item?: (_item: T) => { value: V; text: string };
   placeholder?: string;
+  clearable?: boolean,
+  onClear?: () => void,
 };
 
 function defaultItem<T extends { toString(): string }>(item: T) {
@@ -17,7 +19,7 @@ function defaultItem<T extends { toString(): string }>(item: T) {
 const defaultItemMapper = <T, V extends string | number>(it: T) =>
   defaultItem(it as any) as { value: V; text: string };
 
-export const Select = <T, V extends string | number>({ items, selected, onChange, item = defaultItemMapper, placeholder = "Wybierz"}: Props<T, V>) => {
+export const Select = <T, V extends string | number>({ items, selected, onChange, item = defaultItemMapper, placeholder = "Wybierz", clearable, onClear}: Props<T, V>) => {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -33,7 +35,7 @@ export const Select = <T, V extends string | number>({ items, selected, onChange
   }, []);
 
   return (
-    <div ref={ref} className="relative inline-block w-48">
+    <div ref={ref} className="relative inline-block">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
@@ -71,6 +73,21 @@ export const Select = <T, V extends string | number>({ items, selected, onChange
             overflow-hidden
           "
         >
+          {clearable && (
+            <button 
+              type="button" 
+              onClick={() => { onClear?.(), setOpen(false) }}
+              className={[
+                "flex w-full px-4 py-2.5 text-sm text-left transition",
+                !selected
+                  ? "bg-white/10 text-text font-semibold"
+                  : "text-text hover:bg-white/5",
+              ].join(" ")}
+            >
+              {placeholder}
+            </button>
+          )}
+
           {options.map((opt) => {
             const active = opt.value === selected;
 

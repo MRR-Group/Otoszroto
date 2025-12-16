@@ -43,6 +43,7 @@ return new class() extends Migration {
             $table->foreignIdFor(Category::class)->constrained("categories")->cascadeOnDelete();
             $table->string("condition");
             $table->string("auction_state");
+            $table->string("city");
             $table->timestamps();
         });
     }

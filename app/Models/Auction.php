@@ -16,6 +16,7 @@ use Otoszroto\Enums\Condition;
  * @property string $name
  * @property string $description
  * @property string $photo_url
+ * @property string $city
  * @property float $price
  * @property int $owner_id
  * @property int $model_id
@@ -38,6 +39,7 @@ class Auction extends Model
         "description",
         "photo_url",
         "price",
+        "city",
         "owner_id",
         "model_id",
         "category_id",
