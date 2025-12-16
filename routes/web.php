@@ -36,7 +36,6 @@ Route::middleware("auth")->group(function (): void {
     Route::get("/auctions/create", [AuctionController::class, "create"])->name("auctions.create");
     Route::post("/auctions", [AuctionController::class, "store"])->name("auctions.store");
 
-    Route::get("/auctions", [AuctionController::class, "index"])->name("auctions.index");
     Route::post("/auctions", [AuctionController::class, "store"])->name("auctions.store");
     Route::get("/auctions/{auction}/edit", [AuctionController::class, "edit"])->name("auctions.edit");
     Route::patch("/auctions/{auction}", [AuctionController::class, "update"])->name("auctions.update");
