@@ -41,9 +41,18 @@ class AuctionController extends Controller
     {
         $user = $request->user();
         $validated = $request->validated();
-        $auction = $createAuctionAction->execute($user, $validated);
+        $createAuctionAction->execute($user, $validated);
 
         return redirect()->route("auction.create")->with(["message" => "Aukcja została utworzona."]);
+    }
+
+    public function show(Auction $auction): Response
+    {
+        $auction->load(["category", "model.brand", "owner"]);
+
+        return Inertia::render("Auction/ShowAuction", [
+            "auction" => new AuctionResource($auction),
+        ]);
     }
 
     public function index(SortHelper $sorter, Request $request): Response
