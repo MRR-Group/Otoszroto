@@ -9,11 +9,15 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
+use Otoszroto\Actions\Auction\CancelAuctionAction;
 use Otoszroto\Actions\Auction\CreateAuctionAction;
+use Otoszroto\Actions\Auction\FinishAuctionAction;
+use Otoszroto\Actions\Auction\UpdateAuctionAction;
 use Otoszroto\Enums\AuctionState;
 use Otoszroto\Helpers\SortHelper;
 use Otoszroto\Http\Controllers\Controller;
 use Otoszroto\Http\Requests\Auction\CreateAuctionRequest;
+use Otoszroto\Http\Requests\Auction\UpdateAuctionRequest;
 use Otoszroto\Http\Resources\AuctionResource;
 use Otoszroto\Http\Resources\BrandResource;
 use Otoszroto\Http\Resources\CategoryResource;
@@ -43,7 +47,7 @@ class AuctionController extends Controller
         $validated = $request->validated();
         $createAuctionAction->execute($user, $validated);
 
-        return redirect()->route("auction.create")->with(["message" => "Aukcja została utworzona."]);
+        return redirect()->route("auctions.create")->with(["message" => "Aukcja została utworzona."]);
     }
 
     public function show(Auction $auction): Response
@@ -53,6 +57,31 @@ class AuctionController extends Controller
         return Inertia::render("Auction/ShowAuction", [
             "auction" => new AuctionResource($auction),
         ]);
+    }
+
+    public function update(UpdateAuctionRequest $request, UpdateAuctionAction $updateAuctionAction, Auction $auction): RedirectResponse
+    {
+        $this->authorize("update", $auction);
+        $validated = $request->validated();
+        $auction = $updateAuctionAction->execute($auction, $validated);
+
+        return redirect()->route("auctions.edit", ["auction" => $auction])->with(["message" => "Aukcja została edytowana."]);
+    }
+
+    public function finish(FinishAuctionAction $finishAuctionAction, Auction $auction): RedirectResponse
+    {
+        $this->authorize("update", $auction);
+        $auction = $finishAuctionAction->execute($auction);
+
+        return redirect()->route("auctions.show", ["auction" => $auction])->with(["message" => "Aukcja została zakończona."]);
+    }
+
+    public function cancel(CancelAuctionAction $cancelAuctionAction, Auction $auction): RedirectResponse
+    {
+        $this->authorize("update", $auction);
+        $auction = $cancelAuctionAction->execute($auction);
+
+        return redirect()->route("auctions.show", ["auction" => $auction])->with(["message" => "Aukcja została anulowana."]);
     }
 
     public function index(SortHelper $sorter, Request $request): Response
