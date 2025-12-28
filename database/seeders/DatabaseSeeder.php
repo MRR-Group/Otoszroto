@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
             BrandAndModelsSeeder::class,
             CategorySeeder::class,
             AuctionSeeder::class,
+            PermissionsSeeder::class,
+            RolesSeeder::class,
         ]);
     }
 }
