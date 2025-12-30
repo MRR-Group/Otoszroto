@@ -32,15 +32,15 @@ Route::get("/user/change-password", [ChangePasswordController::class, "create"])
 Route::post("/user/change-password", [ChangePasswordController::class, "store"])->name("user.changePassword.store");
 
 Route::get("/auctions", [AuctionController::class, "index"])->name("auctions.index");
-Route::get("/auctions/{auction}", [AuctionController::class, "show"])->name("auctions.show");
 
 Route::middleware("auth")->group(function (): void {
     Route::post("/logout", [LogoutController::class, "logout"])->name("auth.logout");
     Route::get("/auctions/create", [AuctionController::class, "create"])->name("auctions.create")->middleware([Authorize::using(Permission::CreateAuction)]);
     Route::post("/auctions", [AuctionController::class, "store"])->name("auctions.store");
-
-    Route::post("/auctions", [AuctionController::class, "store"])->name("auctions.store");
     Route::get("/auctions/{auction}/edit", [AuctionController::class, "edit"])->name("auctions.edit");
     Route::patch("/auctions/{auction}", [AuctionController::class, "update"])->name("auctions.update");
-    Route::post("/logout", [LogoutController::class, "logout"])->name("auth.logout");
+    Route::patch("/auctions/{auction}/finish", [AuctionController::class, "finish"])->name("auctions.finish");
+    Route::patch("/auctions/{auction}/cancel", [AuctionController::class, "cancel"])->name("auctions.cancel");
 });
+
+Route::get("/auctions/{auction}", [AuctionController::class, "show"])->name("auctions.show");
