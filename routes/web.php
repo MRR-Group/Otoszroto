@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
+use Illuminate\Auth\Middleware\Authorize;
 use Illuminate\Support\Facades\Route;
 use Inertia\Response;
+use Otoszroto\Enums\Permission;
 use Otoszroto\Http\Controllers\Auction\AuctionController;
 use Otoszroto\Http\Controllers\Auth\ForgotPasswordController;
 use Otoszroto\Http\Controllers\Auth\LoginController;
@@ -34,7 +36,7 @@ Route::get("/auctions/{auction}", [AuctionController::class, "show"])->name("auc
 
 Route::middleware("auth")->group(function (): void {
     Route::post("/logout", [LogoutController::class, "logout"])->name("auth.logout");
-    Route::get("/auctions/create", [AuctionController::class, "create"])->name("auctions.create");
+    Route::get("/auctions/create", [AuctionController::class, "create"])->name("auctions.create")->middleware([Authorize::using(Permission::CreateAuction)]);
     Route::post("/auctions", [AuctionController::class, "store"])->name("auctions.store");
 
     Route::post("/auctions", [AuctionController::class, "store"])->name("auctions.store");
