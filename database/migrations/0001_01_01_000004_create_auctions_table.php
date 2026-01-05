@@ -36,7 +36,6 @@ return new class() extends Migration {
             $table->id();
             $table->string("name");
             $table->text("description");
-            $table->string("photo_url");
             $table->float("price");
             $table->foreignIdFor(User::class, "owner_id")->constrained("users")->cascadeOnDelete();
             $table->foreignIdFor(CarModel::class, "model_id")->constrained("car_models")->cascadeOnDelete();

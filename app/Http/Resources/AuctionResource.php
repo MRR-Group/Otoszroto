@@ -18,7 +18,7 @@ class AuctionResource extends JsonResource
             "id" => $this->id,
             "name" => $this->name,
             "description" => $this->description,
-            "photo" => $this->photo_url,
+            "photo" => $this->photo,
             "price" => $this->price,
             "city" => $this->city,
             "owner" => UserResource::make($this->owner)->resolve(),

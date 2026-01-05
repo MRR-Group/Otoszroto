@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace Otoszroto\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Otoszroto\Enums\AuctionState;
 use Otoszroto\Enums\Condition;
+use Otoszroto\Helpers\IdenticonHelper;
 
 /**
  * @property int $id
@@ -33,7 +35,7 @@ class Auction extends Model
 {
     use HasFactory;
 
-    public $timestamps = true;    
+    public $timestamps = true;
     protected $fillable = [
         "name",
         "description",
@@ -45,7 +47,7 @@ class Auction extends Model
         "category_id",
         "condition",
         "auction_state",
-    ];    
+    ];
     protected $casts = [
         "condition" => Condition::class,
         "auction_state" => AuctionState::class,
@@ -73,5 +75,10 @@ class Auction extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    protected function photo(): Attribute
+    {
+        return Attribute::get(fn(): string => IdenticonHelper::url($this->id));
     }
 }
