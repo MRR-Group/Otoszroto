@@ -2,13 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Models;
+namespace App\Models;
 
+use App\Orchid\Presenters\UserPresenter;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Orchid\Filters\Types\Like;
+use Orchid\Filters\Types\Where;
+use Orchid\Filters\Types\WhereDateStartEnd;
+use Orchid\Metrics\Chartable;
+use Orchid\Platform\Models\User as Authenticatable;
 
 /**
  * @property int $id
@@ -26,17 +32,69 @@ class User extends Authenticatable
     use HasApiTokens;
     use HasFactory;
     use Notifiable;
+    use Chartable;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
+        "name",
         "firstname",
         "surname",
         "phone",
         "email",
         "password",
     ];
+
+    /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
     protected $hidden = [
         "password",
         "remember_token",
+        "permissions",
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        "permissions" => "array",
+        "email_verified_at" => "datetime",
+    ];
+
+    protected string $presenter = UserPresenter::class;
+
+    /**
+     * The attributes for which you can use filters in url.
+     *
+     * @var array
+     */
+    protected $allowedFilters = [
+        "id" => Where::class,
+        "name" => Like::class,
+        "email" => Like::class,
+        "updated_at" => WhereDateStartEnd::class,
+        "created_at" => WhereDateStartEnd::class,
+    ];
+
+    /**
+     * The attributes for which can use sort in url.
+     *
+     * @var array
+     */
+    protected $allowedSorts = [
+        "id",
+        "name",
+        "email",
+        "updated_at",
+        "created_at",
     ];
 
     protected function casts(): array
@@ -45,5 +103,10 @@ class User extends Authenticatable
             "email_verified_at" => "datetime",
             "password" => "hashed",
         ];
+    }
+
+    protected function fullname(): Attribute
+    {
+        return Attribute::get(fn(): string => $this->firstname . " " . $this->surname);
     }
 }

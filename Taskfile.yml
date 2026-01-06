@@ -32,6 +32,12 @@ tasks:
       - cmd: "{{.DOCKER_EXEC_USER}} npm install"
       - cmd: "{{.DOCKER_EXEC_USER}} php artisan migrate"
 
+  seed:
+    desc: "Seed the database"
+    aliases: []
+    cmds:
+      - cmd: "{{.DOCKER_EXEC_USER}} php artisan migrate:fresh --seed"
+
   frp:init:
     desc: "Add default FRP domains (api, app, mail)"
     aliases: [frp-init, init-frp]

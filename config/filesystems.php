@@ -28,6 +28,12 @@ return [
             "use_path_style_endpoint" => env("AWS_USE_PATH_STYLE_ENDPOINT", false),
             "throw" => false,
         ],
+        "auctionImage" => [
+            "driver" => "local",
+            "root" => storage_path("app/public/auctionImage"),
+            "url" => env("APP_URL") . "/storage/auctionImage",
+            "visibility" => "public",
+        ],
     ],
     "links" => [
         public_path("storage") => storage_path("app/public"),
