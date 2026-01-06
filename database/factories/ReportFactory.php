@@ -6,6 +6,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Otoszroto\Models\Auction;
+use Otoszroto\Models\Report;
 use Otoszroto\Models\User;
 
 /**

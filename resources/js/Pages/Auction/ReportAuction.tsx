@@ -18,7 +18,7 @@ export function ReportAuction({errors, auction}: Props) {
                 <input type="text" placeholder="Reason" name="reason"/>
                 {errors?.reason && <p>{errors.reason}</p>}
 
-                <input type="submit"></input>
+                <input type="submit" value="Zgłoś" />
             </Form>
         </>
     );

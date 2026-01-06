@@ -5,7 +5,7 @@ type Props = {
   report: Report,
 }
 
-export function Reports({report}: Props) {
+export function ShowReport({report}: Props) {
   return (
     <div className='w-full p-4 mt-5 mx-auto md:px-10'>
       <Title type='h2'>Szczegóły zgłoszenia</Title>
