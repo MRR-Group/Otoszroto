@@ -47,7 +47,7 @@ class AuctionsStatsScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'AuctionsStatsScreen';
+        return 'Statystyki aukcji';
     }
 
     /**
