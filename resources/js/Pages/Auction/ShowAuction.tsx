@@ -6,7 +6,9 @@ type Props = {
   auction: Auction,
 }
 
-export function Auctions({auction}: Props) {
+export function ShowAuction({auction}: Props) {
+  console.log(auction);
+
   return (
     <div className='w-full p-4 mt-5 mx-auto md:px-10'>
       <Title type='h2'>Szczegóły ogłoszenia</Title>

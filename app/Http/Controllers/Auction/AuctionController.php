@@ -51,7 +51,7 @@ class AuctionController extends Controller
         $auction->load(["category", "model.brand", "owner"]);
 
         return Inertia::render("Auction/ShowAuction", [
-            "auction" => new AuctionResource($auction),
+            "auction" => AuctionResource::make($auction)->resolve(),
         ]);
     }
 
