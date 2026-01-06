@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Response;
 use Otoszroto\Enums\Permission;
 use Otoszroto\Http\Controllers\Auction\AuctionController;
+use Otoszroto\Http\Controllers\Auction\ReportController;
 use Otoszroto\Http\Controllers\Auth\ForgotPasswordController;
 use Otoszroto\Http\Controllers\Auth\LoginController;
 use Otoszroto\Http\Controllers\Auth\LogoutController;
@@ -41,6 +42,11 @@ Route::middleware("auth")->group(function (): void {
     Route::patch("/auctions/{auction}", [AuctionController::class, "update"])->name("auctions.update");
     Route::patch("/auctions/{auction}/finish", [AuctionController::class, "finish"])->name("auctions.finish");
     Route::patch("/auctions/{auction}/cancel", [AuctionController::class, "cancel"])->name("auctions.cancel");
+    Route::get("/auctions/{auction}/report", [ReportController::class, "create"])->name("auctions.report.create");
+    Route::post("/auctions/{auction}/report", [ReportController::class, "store"])->name("auctions.report.store");
+    Route::get("/reports", [ReportController::class, "index"])->name("reports.index")->middleware([Authorize::using(Permission::ManageReports)]);
+    Route::get("/reports/{report}", [ReportController::class, "show"])->name("reports.show")->middleware([Authorize::using(Permission::ManageReports)]);
+    Route::get("/reports/{report}/resolve", [ReportController::class, "resolve"])->name("reports.resolve")->middleware([Authorize::using(Permission::ManageReports)]);
 });
 
 Route::get("/auctions/{auction}", [AuctionController::class, "show"])->name("auctions.show");
