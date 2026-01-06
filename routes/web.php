@@ -2,9 +2,6 @@
 
 declare(strict_types=1);
 
-use Illuminate\Auth\Middleware\Authorize;
-use Illuminate\Support\Facades\Route;
-use Inertia\Response;
 use App\Enums\Permission;
 use App\Http\Controllers\Auction\AuctionController;
 use App\Http\Controllers\Auction\ReportController;
@@ -14,6 +11,9 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\User\ChangePasswordController;
+use Illuminate\Auth\Middleware\Authorize;
+use Illuminate\Support\Facades\Route;
+use Inertia\Response;
 
 Route::get("/", fn(): Response => inertia("Welcome"))->name("home");
 

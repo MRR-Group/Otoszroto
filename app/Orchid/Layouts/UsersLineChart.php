@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Orchid\Layouts;
 
 use Orchid\Screen\Layouts\Chart;
@@ -13,7 +15,7 @@ class UsersLineChart extends Chart
      *
      * @var string
      */
-    protected $type = 'line';
+    protected $type = "line";
 
     protected $height = 250;
 

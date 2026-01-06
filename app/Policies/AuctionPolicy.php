@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Policies;
 
-use Illuminate\Auth\Access\Response;
 use App\Models\Auction;
 use App\Models\User;
+use Illuminate\Auth\Access\Response;
 
 class AuctionPolicy
 {

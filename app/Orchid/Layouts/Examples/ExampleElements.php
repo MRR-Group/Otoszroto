@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Orchid\Layouts\Examples;
 
 use Orchid\Screen\Actions\Menu;
@@ -10,22 +12,22 @@ class ExampleElements extends TabMenu
     /**
      * Get the menu elements to be displayed.
      *
-     * @return Menu[]
+     * @return array<Menu>
      */
     protected function navigations(): iterable
     {
         return [
-            Menu::make('Basic Elements')
-                ->route('platform.example.fields'),
+            Menu::make("Basic Elements")
+                ->route("platform.example.fields"),
 
-            Menu::make('Advanced Elements')
-                ->route('platform.example.advanced'),
+            Menu::make("Advanced Elements")
+                ->route("platform.example.advanced"),
 
-            Menu::make('Text Editors')
-                ->route('platform.example.editors'),
+            Menu::make("Text Editors")
+                ->route("platform.example.editors"),
 
-            Menu::make('Run Actions')
-                ->route('platform.example.actions'),
+            Menu::make("Run Actions")
+                ->route("platform.example.actions"),
         ];
     }
 }

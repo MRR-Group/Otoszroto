@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Actions\Auction;
 
-use Illuminate\Http\UploadedFile;
 use App\Models\Auction;
+use Illuminate\Http\UploadedFile;
 
 class AddImageToAuctionAction
 {

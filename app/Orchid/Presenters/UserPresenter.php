@@ -17,7 +17,7 @@ class UserPresenter extends Presenter implements Personable, Searchable
      */
     public function label(): string
     {
-        return 'Users';
+        return "Users";
     }
 
     /**
@@ -33,11 +33,11 @@ class UserPresenter extends Presenter implements Personable, Searchable
      */
     public function subTitle(): string
     {
-        $roles = $this->entity->roles->pluck('name')->implode(' / ');
+        $roles = $this->entity->roles->pluck("name")->implode(" / ");
 
-        return (string) Str::of($roles)
+        return (string)Str::of($roles)
             ->limit(20)
-            ->whenEmpty(fn () => __('Regular User'));
+            ->whenEmpty(fn() => __("Regular User"));
     }
 
     /**
@@ -45,7 +45,7 @@ class UserPresenter extends Presenter implements Personable, Searchable
      */
     public function url(): string
     {
-        return route('platform.systems.users.edit', $this->entity);
+        return route("platform.systems.users.edit", $this->entity);
     }
 
     /**
@@ -55,7 +55,7 @@ class UserPresenter extends Presenter implements Personable, Searchable
     {
         $hash = md5(strtolower(trim($this->entity->email)));
 
-        $default = urlencode('https://raw.githubusercontent.com/orchidsoftware/.github/main/web/avatars/gravatar.png');
+        $default = urlencode("https://raw.githubusercontent.com/orchidsoftware/.github/main/web/avatars/gravatar.png");
 
         return "https://www.gravatar.com/avatar/$hash?d=$default";
     }

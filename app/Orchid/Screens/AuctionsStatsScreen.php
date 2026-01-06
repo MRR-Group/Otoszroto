@@ -1,13 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Orchid\Screens;
 
+use App\Models\Auction;
 use App\Orchid\Layouts\AuctionsLineChart;
 use Carbon\Carbon;
+use Orchid\Screen\Action;
 use Orchid\Screen\Screen;
 use Orchid\Screen\TD;
 use Orchid\Support\Facades\Layout;
-use App\Models\Auction;
 
 class AuctionsStatsScreen extends Screen
 {
@@ -17,24 +20,25 @@ class AuctionsStatsScreen extends Screen
      * @return array
      */
     public function query(): iterable
-    {$start = Carbon::now()->subDays(6)->startOfDay();
-        $end   = Carbon::now()->endOfDay();
+    {
+        $start = Carbon::now()->subDays(6)->startOfDay();
+        $end = Carbon::now()->endOfDay();
 
         $auctionsTotal = Auction::count();
-        $auctionsToday = Auction::whereDate('created_at', Carbon::today())->count();
+        $auctionsToday = Auction::whereDate("created_at", Carbon::today())->count();
 
         return [
-            'auctionMetrics' => [
-                'total' => $auctionsTotal,
-                'today' => $auctionsToday,
+            "auctionMetrics" => [
+                "total" => $auctionsTotal,
+                "today" => $auctionsToday,
             ],
 
-            'auctionsSeries' => [
-                Auction::countByDays($start, $end)->toChart('Aukcje'),
+            "auctionsSeries" => [
+                Auction::countByDays($start, $end)->toChart("Aukcje"),
             ],
 
-            'latestAuctions' => Auction::query()
-                ->orderByDesc('id')
+            "latestAuctions" => Auction::query()
+                ->orderByDesc("id")
                 ->limit(10)
                 ->get(),
         ];
@@ -42,18 +46,16 @@ class AuctionsStatsScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
-        return 'Statystyki aukcji';
+        return "Statystyki aukcji";
     }
 
     /**
      * The screen's action buttons.
      *
-     * @return \Orchid\Screen\Action[]
+     * @return array<Action>
      */
     public function commandBar(): iterable
     {
@@ -63,32 +65,32 @@ class AuctionsStatsScreen extends Screen
     /**
      * The screen's layout elements.
      *
-     * @return \Orchid\Screen\Layout[]|string[]
+     * @return array<\Orchid\Screen\Layout>|array<string>
      */
     public function layout(): iterable
     {
         return [
             Layout::metrics([
-                'Aukcje (łącznie)' => 'auctionMetrics.total',
-                'Aukcje dziś'      => 'auctionMetrics.today',
+                "Aukcje (łącznie)" => "auctionMetrics.total",
+                "Aukcje dziś" => "auctionMetrics.today",
             ]),
 
-            AuctionsLineChart::make('auctionsSeries', 'Nowe aukcje (ostatnie 7 dni)')
-                ->description('Liczba utworzonych aukcji dziennie'),
+            AuctionsLineChart::make("auctionsSeries", "Nowe aukcje (ostatnie 7 dni)")
+                ->description("Liczba utworzonych aukcji dziennie"),
 
-            Layout::table('latestAuctions', [
-                TD::make('id', 'ID')
-                    ->render(fn ($auction) => $auction->id),
+            Layout::table("latestAuctions", [
+                TD::make("id", "ID")
+                    ->render(fn($auction) => $auction->id),
 
-                TD::make('name', 'Nazwa')
-                    ->render(fn ($auction) => $auction->name),
+                TD::make("name", "Nazwa")
+                    ->render(fn($auction) => $auction->name),
 
-                TD::make('Owner', 'Właściciel')
-                    ->render(fn ($auction) => $auction->owner->fullname),
+                TD::make("Owner", "Właściciel")
+                    ->render(fn($auction) => $auction->owner->fullname),
 
-                TD::make('created_at', 'Utworzono')
-                    ->render(fn ($auction) => $auction->created_at?->format('Y-m-d H:i')),
-            ])->title('Ostatnio dodane aukcje'),
+                TD::make("created_at", "Utworzono")
+                    ->render(fn($auction) => $auction->created_at?->format("Y-m-d H:i")),
+            ])->title("Ostatnio dodane aukcje"),
         ];
     }
 }

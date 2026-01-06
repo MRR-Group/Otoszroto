@@ -10,6 +10,7 @@ use App\Orchid\Layouts\User\UserListLayout;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Orchid\Platform\Models\User;
+use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
@@ -25,9 +26,9 @@ class UserListScreen extends Screen
     public function query(): iterable
     {
         return [
-            'users' => User::with('roles')
+            "users" => User::with("roles")
                 ->filters(UserFiltersLayout::class)
-                ->defaultSort('id', 'desc')
+                ->defaultSort("id", "desc")
                 ->paginate(),
         ];
     }
@@ -37,7 +38,7 @@ class UserListScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'User Management';
+        return "User Management";
     }
 
     /**
@@ -45,34 +46,34 @@ class UserListScreen extends Screen
      */
     public function description(): ?string
     {
-        return 'A comprehensive list of all registered users, including their profiles and privileges.';
+        return "A comprehensive list of all registered users, including their profiles and privileges.";
     }
 
     public function permission(): ?iterable
     {
         return [
-            'platform.systems.users',
+            "platform.systems.users",
         ];
     }
 
     /**
      * The screen's action buttons.
      *
-     * @return \Orchid\Screen\Action[]
+     * @return array<Action>
      */
     public function commandBar(): iterable
     {
         return [
-            Link::make(__('Add'))
-                ->icon('bs.plus-circle')
-                ->route('platform.systems.users.create'),
+            Link::make(__("Add"))
+                ->icon("bs.plus-circle")
+                ->route("platform.systems.users.create"),
         ];
     }
 
     /**
      * The screen's layout elements.
      *
-     * @return string[]|\Orchid\Screen\Layout[]
+     * @return array<string>|array<\Orchid\Screen\Layout>
      */
     public function layout(): iterable
     {
@@ -80,8 +81,8 @@ class UserListScreen extends Screen
             UserFiltersLayout::class,
             UserListLayout::class,
 
-            Layout::modal('editUserModal', UserEditLayout::class)
-                ->deferred('loadUserOnOpenModal'),
+            Layout::modal("editUserModal", UserEditLayout::class)
+                ->deferred("loadUserOnOpenModal"),
         ];
     }
 
@@ -93,28 +94,28 @@ class UserListScreen extends Screen
     public function loadUserOnOpenModal(User $user): iterable
     {
         return [
-            'user' => $user,
+            "user" => $user,
         ];
     }
 
     public function saveUser(Request $request, User $user): void
     {
         $request->validate([
-            'user.email' => [
-                'required',
-                Rule::unique(User::class, 'email')->ignore($user),
+            "user.email" => [
+                "required",
+                Rule::unique(User::class, "email")->ignore($user),
             ],
         ]);
 
-        $user->fill($request->input('user'))->save();
+        $user->fill($request->input("user"))->save();
 
-        Toast::info(__('User was saved.'));
+        Toast::info(__("User was saved."));
     }
 
     public function remove(Request $request): void
     {
-        User::findOrFail($request->get('id'))->delete();
+        User::findOrFail($request->get("id"))->delete();
 
-        Toast::info(__('User was removed'));
+        Toast::info(__("User was removed"));
     }
 }

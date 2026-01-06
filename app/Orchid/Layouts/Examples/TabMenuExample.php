@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Orchid\Layouts\Examples;
 
 use Orchid\Screen\Actions\Menu;
@@ -10,23 +12,23 @@ class TabMenuExample extends TabMenu
     /**
      * Get the menu elements to be displayed.
      *
-     * @return Menu[]
+     * @return array<Menu>
      */
     protected function navigations(): iterable
     {
         return [
-            Menu::make('Layouts Overview')
-                ->route('platform.example.layouts'),
+            Menu::make("Layouts Overview")
+                ->route("platform.example.layouts"),
 
-            Menu::make('Get Started')
-                ->route('platform.main'),
+            Menu::make("Get Started")
+                ->route("platform.main"),
 
-            Menu::make('Documentation')
-                ->url('https://orchid.software/en/docs'),
+            Menu::make("Documentation")
+                ->url("https://orchid.software/en/docs"),
 
-            Menu::make('Example Screen')
-                ->route('platform.example')
-                ->badge(fn () => 6),
+            Menu::make("Example Screen")
+                ->route("platform.example")
+                ->badge(fn() => 6),
         ];
     }
 }

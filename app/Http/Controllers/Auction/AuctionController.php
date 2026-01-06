@@ -4,11 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Auction;
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Inertia\Inertia;
-use Inertia\Response;
 use App\Actions\Auction\AddImageToAuctionAction;
 use App\Actions\Auction\CancelAuctionAction;
 use App\Actions\Auction\CreateAuctionAction;
@@ -29,6 +24,11 @@ use App\Models\Auction;
 use App\Models\Brand;
 use App\Models\CarModel;
 use App\Models\Category;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class AuctionController extends Controller
 {

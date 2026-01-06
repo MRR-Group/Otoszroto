@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Auction;
 
+use App\Enums\Condition;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use App\Enums\Condition;
 
 class CreateAuctionRequest extends FormRequest
 {

@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Auction;
 
-use Illuminate\Http\RedirectResponse;
-use Inertia\Inertia;
-use Inertia\Response;
 use App\Actions\Auction\CreateReportAction;
 use App\Actions\Auction\ResolveReportAction;
 use App\Helpers\SortHelper;
@@ -15,6 +12,9 @@ use App\Http\Requests\Auction\CreateReportRequest;
 use App\Http\Resources\ReportResource;
 use App\Models\Auction;
 use App\Models\Report;
+use Illuminate\Http\RedirectResponse;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class ReportController extends Controller
 {

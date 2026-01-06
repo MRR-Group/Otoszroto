@@ -8,6 +8,7 @@ use App\Orchid\Layouts\Role\RoleListLayout;
 use Orchid\Platform\Models\Role;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 
 class RoleListScreen extends Screen
@@ -20,7 +21,7 @@ class RoleListScreen extends Screen
     public function query(): iterable
     {
         return [
-            'roles' => Role::filters()->defaultSort('id', 'desc')->paginate(),
+            "roles" => Role::filters()->defaultSort("id", "desc")->paginate(),
         ];
     }
 
@@ -29,7 +30,7 @@ class RoleListScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Role Management';
+        return "Role Management";
     }
 
     /**
@@ -37,34 +38,34 @@ class RoleListScreen extends Screen
      */
     public function description(): ?string
     {
-        return 'A comprehensive list of all roles, including their permissions and associated users.';
+        return "A comprehensive list of all roles, including their permissions and associated users.";
     }
 
     public function permission(): ?iterable
     {
         return [
-            'platform.systems.roles',
+            "platform.systems.roles",
         ];
     }
 
     /**
      * The screen's action buttons.
      *
-     * @return Action[]
+     * @return array<Action>
      */
     public function commandBar(): iterable
     {
         return [
-            Link::make(__('Add'))
-                ->icon('bs.plus-circle')
-                ->href(route('platform.systems.roles.create')),
+            Link::make(__("Add"))
+                ->icon("bs.plus-circle")
+                ->href(route("platform.systems.roles.create")),
         ];
     }
 
     /**
      * The screen's layout elements.
      *
-     * @return string[]|\Orchid\Screen\Layout[]
+     * @return array<string>|array<Layout>
      */
     public function layout(): iterable
     {

@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
+use App\Orchid\Presenters\UserPresenter;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,7 +15,6 @@ use Orchid\Filters\Types\Where;
 use Orchid\Filters\Types\WhereDateStartEnd;
 use Orchid\Metrics\Chartable;
 use Orchid\Platform\Models\User as Authenticatable;
-use App\Orchid\Presenters\UserPresenter;
 
 /**
  * @property int $id
@@ -52,9 +54,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',
-        'remember_token',
-        'permissions',
+        "password",
+        "remember_token",
+        "permissions",
     ];
 
     /**
@@ -63,8 +65,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'permissions'          => 'array',
-        'email_verified_at'    => 'datetime',
+        "permissions" => "array",
+        "email_verified_at" => "datetime",
     ];
 
     protected string $presenter = UserPresenter::class;
@@ -75,11 +77,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $allowedFilters = [
-           'id'         => Where::class,
-           'name'       => Like::class,
-           'email'      => Like::class,
-           'updated_at' => WhereDateStartEnd::class,
-           'created_at' => WhereDateStartEnd::class,
+        "id" => Where::class,
+        "name" => Like::class,
+        "email" => Like::class,
+        "updated_at" => WhereDateStartEnd::class,
+        "created_at" => WhereDateStartEnd::class,
     ];
 
     /**
@@ -88,11 +90,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $allowedSorts = [
-        'id',
-        'name',
-        'email',
-        'updated_at',
-        'created_at',
+        "id",
+        "name",
+        "email",
+        "updated_at",
+        "created_at",
     ];
 
     protected function casts(): array
@@ -103,9 +105,8 @@ class User extends Authenticatable
         ];
     }
 
-
     protected function fullname(): Attribute
     {
-        return Attribute::get(fn(): string => $this->firstname . ' ' . $this->surname);
+        return Attribute::get(fn(): string => $this->firstname . " " . $this->surname);
     }
 }

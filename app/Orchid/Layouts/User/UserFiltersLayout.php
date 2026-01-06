@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Orchid\Layouts\User;
 
 use App\Orchid\Filters\RoleFilter;
@@ -9,7 +11,7 @@ use Orchid\Screen\Layouts\Selection;
 class UserFiltersLayout extends Selection
 {
     /**
-     * @return string[]|Filter[]
+     * @return array<string>|array<Filter>
      */
     public function filters(): array
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Orchid\Screens\Examples;
 
 use App\Orchid\Layouts\Examples\ExampleElements;
@@ -10,6 +12,7 @@ use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Fields\SimpleMDE;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
+use Throwable;
 
 class ExampleTextEditorsScreen extends Screen
 {
@@ -21,9 +24,9 @@ class ExampleTextEditorsScreen extends Screen
     public function query(): iterable
     {
         return [
-            'quill'     => 'Hello! We collected all the fields in one place',
-            'simplemde' => '# Big header',
-            'code'      => Str::limit(file_get_contents(__FILE__), 500),
+            "quill" => "Hello! We collected all the fields in one place",
+            "simplemde" => "# Big header",
+            "code" => Str::limit(file_get_contents(__FILE__), 500),
         ];
     }
 
@@ -32,7 +35,7 @@ class ExampleTextEditorsScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Form Text Editors';
+        return "Form Text Editors";
     }
 
     /**
@@ -40,13 +43,13 @@ class ExampleTextEditorsScreen extends Screen
      */
     public function description(): ?string
     {
-        return 'Examples for creating a wide variety of forms.';
+        return "Examples for creating a wide variety of forms.";
     }
 
     /**
      * The screen's action buttons.
      *
-     * @return Action[]
+     * @return array<Action>
      */
     public function commandBar(): iterable
     {
@@ -56,28 +59,26 @@ class ExampleTextEditorsScreen extends Screen
     /**
      * The screen's layout elements.
      *
-     * @throws \Throwable
+     * @throws Throwable
      *
-     * @return \Orchid\Screen\Layout[]
+     * @return array<\Orchid\Screen\Layout>
      */
     public function layout(): iterable
     {
         return [
-
             ExampleElements::class,
 
             Layout::rows([
-                SimpleMDE::make('simplemde')
-                    ->title('SimpleMDE')
-                    ->popover('SimpleMDE is a simple, embeddable, and beautiful JS markdown editor'),
+                SimpleMDE::make("simplemde")
+                    ->title("SimpleMDE")
+                    ->popover("SimpleMDE is a simple, embeddable, and beautiful JS markdown editor"),
 
-                Quill::make('quill')
-                    ->title('Quill')
-                    ->popover('Quill is a free, open source WYSIWYG editor built for the modern web.'),
+                Quill::make("quill")
+                    ->title("Quill")
+                    ->popover("Quill is a free, open source WYSIWYG editor built for the modern web."),
 
-                Code::make('snippet')
-                    ->title('Snippet'),
-
+                Code::make("snippet")
+                    ->title("Snippet"),
             ]),
         ];
     }

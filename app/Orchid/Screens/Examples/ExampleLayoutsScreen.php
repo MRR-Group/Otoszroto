@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Orchid\Screens\Examples;
 
 use App\Orchid\Layouts\Examples\TabMenuExample;
 use Orchid\Screen\Action;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
+use Throwable;
 
 class ExampleLayoutsScreen extends Screen
 {
@@ -24,7 +27,7 @@ class ExampleLayoutsScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Layout Overview';
+        return "Layout Overview";
     }
 
     /**
@@ -32,13 +35,13 @@ class ExampleLayoutsScreen extends Screen
      */
     public function description(): ?string
     {
-        return 'A comprehensive guide to the different layout options available.';
+        return "A comprehensive guide to the different layout options available.";
     }
 
     /**
      * The screen's action buttons.
      *
-     * @return Action[]
+     * @return array<Action>
      */
     public function commandBar(): iterable
     {
@@ -48,39 +51,37 @@ class ExampleLayoutsScreen extends Screen
     /**
      * The screen's layout elements.
      *
-     * @throws \Throwable
+     * @throws Throwable
      *
-     * @return \Orchid\Screen\Layout[]
+     * @return array<\Orchid\Screen\Layout>
      */
     public function layout(): iterable
     {
         return [
-
-            Layout::block(Layout::view('platform::dummy.block'))
-                ->title('Block Header')
-                ->description('Excellent description that editing or views in block'),
+            Layout::block(Layout::view("platform::dummy.block"))
+                ->title("Block Header")
+                ->description("Excellent description that editing or views in block"),
 
             Layout::tabs([
-                'Example Tab 1' => Layout::view('platform::dummy.block'),
-                'Example Tab 2' => Layout::view('platform::dummy.block'),
-                'Example Tab 3' => Layout::view('platform::dummy.block'),
+                "Example Tab 1" => Layout::view("platform::dummy.block"),
+                "Example Tab 2" => Layout::view("platform::dummy.block"),
+                "Example Tab 3" => Layout::view("platform::dummy.block"),
             ]),
 
             TabMenuExample::class,
-            Layout::view('platform::dummy.block'),
+            Layout::view("platform::dummy.block"),
 
             Layout::columns([
-                Layout::view('platform::dummy.block'),
-                Layout::view('platform::dummy.block'),
-                Layout::view('platform::dummy.block'),
+                Layout::view("platform::dummy.block"),
+                Layout::view("platform::dummy.block"),
+                Layout::view("platform::dummy.block"),
             ]),
 
             Layout::accordion([
-                'Collapsible Group Item #1' => Layout::view('platform::dummy.block'),
-                'Collapsible Group Item #2' => Layout::view('platform::dummy.block'),
-                'Collapsible Group Item #3' => Layout::view('platform::dummy.block'),
+                "Collapsible Group Item #1" => Layout::view("platform::dummy.block"),
+                "Collapsible Group Item #2" => Layout::view("platform::dummy.block"),
+                "Collapsible Group Item #3" => Layout::view("platform::dummy.block"),
             ]),
-
         ];
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Orchid\Layouts;
 
 use Orchid\Screen\Layouts\Chart;
@@ -13,7 +15,7 @@ class AuctionsLineChart extends Chart
      *
      * @var string
      */
-    protected $type = 'bar';
+    protected $type = "bar";
 
     /**
      * Determines whether to display the export button.

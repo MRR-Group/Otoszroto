@@ -13,23 +13,23 @@ class UserEditLayout extends Rows
     /**
      * The screen's layout elements.
      *
-     * @return Field[]
+     * @return array<Field>
      */
     public function fields(): array
     {
         return [
-            Input::make('user.name')
-                ->type('text')
+            Input::make("user.name")
+                ->type("text")
                 ->max(255)
                 ->required()
-                ->title(__('Name'))
-                ->placeholder(__('Name')),
+                ->title(__("Name"))
+                ->placeholder(__("Name")),
 
-            Input::make('user.email')
-                ->type('email')
+            Input::make("user.email")
+                ->type("email")
                 ->required()
-                ->title(__('Email'))
-                ->placeholder(__('Email')),
+                ->title(__("Email"))
+                ->placeholder(__("Email")),
         ];
     }
 }

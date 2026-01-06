@@ -13,35 +13,27 @@ class RoleFilter extends Filter
 {
     /**
      * The displayable name of the filter.
-     *
-     * @return string
      */
     public function name(): string
     {
-        return __('Roles');
+        return __("Roles");
     }
 
     /**
      * The array of matched parameters.
-     *
-     * @return array
      */
     public function parameters(): array
     {
-        return ['role'];
+        return ["role"];
     }
 
     /**
      * Apply to a given Eloquent query builder.
-     *
-     * @param Builder $builder
-     *
-     * @return Builder
      */
     public function run(Builder $builder): Builder
     {
-        return $builder->whereHas('roles', function (Builder $query) {
-            $query->where('slug', $this->request->get('role'));
+        return $builder->whereHas("roles", function (Builder $query): void {
+            $query->where("slug", $this->request->get("role"));
         });
     }
 
@@ -51,11 +43,11 @@ class RoleFilter extends Filter
     public function display(): array
     {
         return [
-            Select::make('role')
-                ->fromModel(Role::class, 'name', 'slug')
+            Select::make("role")
+                ->fromModel(Role::class, "name", "slug")
                 ->empty()
-                ->value($this->request->get('role'))
-                ->title(__('Roles')),
+                ->value($this->request->get("role"))
+                ->title(__("Roles")),
         ];
     }
 
@@ -64,6 +56,6 @@ class RoleFilter extends Filter
      */
     public function value(): string
     {
-        return $this->name() . ': ' . Role::where('slug', $this->request->get('role'))->first()->name;
+        return $this->name() . ": " . Role::where("slug", $this->request->get("role"))->first()->name;
     }
 }

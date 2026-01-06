@@ -13,26 +13,26 @@ class RoleEditLayout extends Rows
     /**
      * The screen's layout elements.
      *
-     * @return Field[]
+     * @return array<Field>
      */
     public function fields(): array
     {
         return [
-            Input::make('role.name')
-                ->type('text')
+            Input::make("role.name")
+                ->type("text")
                 ->max(255)
                 ->required()
-                ->title(__('Name'))
-                ->placeholder(__('Name'))
-                ->help(__('Role display name')),
+                ->title(__("Name"))
+                ->placeholder(__("Name"))
+                ->help(__("Role display name")),
 
-            Input::make('role.slug')
-                ->type('text')
+            Input::make("role.slug")
+                ->type("text")
                 ->max(255)
                 ->required()
-                ->title(__('Slug'))
-                ->placeholder(__('Slug'))
-                ->help(__('Actual name in the system')),
+                ->title(__("Slug"))
+                ->placeholder(__("Slug"))
+                ->help(__("Actual name in the system")),
         ];
     }
 }

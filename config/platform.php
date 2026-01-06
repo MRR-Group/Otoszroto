@@ -1,7 +1,12 @@
 <?php
 
-return [
+declare(strict_types=1);
 
+use App\Orchid\PlatformProvider;
+use Orchid\Attachment\Engines\Generator;
+use Orchid\Support\BootstrapIconsPath;
+
+return [
     /*
      |--------------------------------------------------------------------------
      | Sub-Domain Routing
@@ -16,7 +21,7 @@ return [
      |
      */
 
-    'domain' => env('PLATFORM_DOMAIN'),
+    "domain" => env("PLATFORM_DOMAIN"),
 
     /*
      |--------------------------------------------------------------------------
@@ -29,7 +34,7 @@ return [
      |
      */
 
-    'prefix' => env('PLATFORM_PREFIX', '/admin'),
+    "prefix" => env("PLATFORM_PREFIX", "/admin"),
 
     /*
      |--------------------------------------------------------------------------
@@ -44,9 +49,9 @@ return [
      |
      */
 
-    'middleware' => [
-        'public'  => ['web', 'cache.headers:private;must_revalidate;etag'],
-        'private' => ['web', 'platform', 'cache.headers:private;must_revalidate;etag'],
+    "middleware" => [
+        "public" => ["web", "cache.headers:private;must_revalidate;etag"],
+        "private" => ["web", "platform", "cache.headers:private;must_revalidate;etag"],
     ],
 
     /*
@@ -67,7 +72,7 @@ return [
     |
     */
 
-    'guard' => env('AUTH_GUARD', 'web'),
+    "guard" => env("AUTH_GUARD", "web"),
 
     /*
      |--------------------------------------------------------------------------
@@ -84,7 +89,7 @@ return [
      |
      */
 
-    'auth' => true,
+    "auth" => true,
 
     /*
      |--------------------------------------------------------------------------
@@ -99,7 +104,7 @@ return [
      |
      */
 
-    'index' => 'platform.statistics.users',
+    "index" => "platform.statistics.users",
 
     /*
      |--------------------------------------------------------------------------
@@ -111,7 +116,7 @@ return [
      |
      */
 
-    'profile' => 'platform.profile',
+    "profile" => "platform.profile",
 
     /*
      |--------------------------------------------------------------------------
@@ -125,9 +130,9 @@ return [
      |
      */
 
-    'resource' => [
-        'stylesheets' => [],
-        'scripts'     => [],
+    "resource" => [
+        "stylesheets" => [],
+        "scripts" => [],
     ],
 
     /*
@@ -142,7 +147,7 @@ return [
      |
      */
 
-    'vite' => [],
+    "vite" => [],
 
     /*
      |--------------------------------------------------------------------------
@@ -159,9 +164,9 @@ return [
      |
      */
 
-    'template' => [
-        'header' => '',
-        'footer' => '',
+    "template" => [
+        "header" => "",
+        "footer" => "",
     ],
 
     /*
@@ -184,9 +189,9 @@ return [
      |
      */
 
-    'attachment' => [
-        'disk'      => env('PLATFORM_FILESYSTEM_DISK', 'public'),
-        'generator' => \Orchid\Attachment\Engines\Generator::class,
+    "attachment" => [
+        "disk" => env("PLATFORM_FILESYSTEM_DISK", "public"),
+        "generator" => Generator::class,
     ],
 
     /*
@@ -202,8 +207,8 @@ return [
      |
      */
 
-    'icons' => [
-        'bs'  => \Orchid\Support\BootstrapIconsPath::getFolder(),
+    "icons" => [
+        "bs" => BootstrapIconsPath::getFolder(),
     ],
 
     /*
@@ -220,9 +225,9 @@ return [
      | By default, the interval for updating notifications is set to one minute.
      */
 
-    'notifications' => [
-        'enabled'  => true,
-        'interval' => 60,
+    "notifications" => [
+        "enabled" => true,
+        "interval" => 60,
     ],
 
     /*
@@ -243,9 +248,7 @@ return [
      |
      */
 
-    'search' => [
-        // \App\Models\User::class
-    ],
+    "search" => [],
 
     /*
      |--------------------------------------------------------------------------
@@ -259,11 +262,11 @@ return [
      |
      */
 
-    'turbo' => [
-        'cache'          => true,
-        'prefetch'       => true,
-        'refresh-method' => 'replace',
-        'refresh-scroll' => 'preserve',
+    "turbo" => [
+        "cache" => true,
+        "prefetch" => true,
+        "refresh-method" => "replace",
+        "refresh-scroll" => "preserve",
     ],
 
     /*
@@ -278,7 +281,7 @@ return [
      |
      */
 
-    'fallback' => true,
+    "fallback" => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -293,7 +296,7 @@ return [
     |
     */
 
-    'workspace' => 'platform::workspace.compact',
+    "workspace" => "platform::workspace.compact",
 
     /*
     |--------------------------------------------------------------------------
@@ -305,7 +308,7 @@ return [
     |
     */
 
-    'prevents_abandonment' => true,
+    "prevents_abandonment" => true,
 
     /*
      |--------------------------------------------------------------------------
@@ -319,6 +322,5 @@ return [
      |
      */
 
-    'provider' => \App\Orchid\PlatformProvider::class,
-
+    "provider" => PlatformProvider::class,
 ];

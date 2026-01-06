@@ -14,16 +14,16 @@ class UserRoleLayout extends Rows
     /**
      * The screen's layout elements.
      *
-     * @return Field[]
+     * @return array<Field>
      */
     public function fields(): array
     {
         return [
-            Select::make('user.roles.')
-                ->fromModel(Role::class, 'name')
+            Select::make("user.roles.")
+                ->fromModel(Role::class, "name")
                 ->multiple()
-                ->title(__('Name role'))
-                ->help('Specify which groups this account should belong to'),
+                ->title(__("Name role"))
+                ->help("Specify which groups this account should belong to"),
         ];
     }
 }
