@@ -28,9 +28,6 @@ class RegisterController extends Controller
         $user->password = Hash::make($validated["password"]);
         $user->save();
 
-        $user->assignRole(Role::User);
-        $user->syncPermissions(Role::User->permissions());
-
         return redirect()->route("home")->with(["message" => "Your account has been created."]);
     }
 }

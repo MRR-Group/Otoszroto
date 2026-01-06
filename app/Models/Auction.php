@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Orchid\Metrics\Chartable;
 use Otoszroto\Enums\AuctionState;
 use Otoszroto\Enums\Condition;
 use Otoszroto\Helpers\IdenticonHelper;
@@ -34,6 +35,7 @@ use Otoszroto\Helpers\IdenticonHelper;
 class Auction extends Model
 {
     use HasFactory;
+    use Chartable;
 
     public $timestamps = true;
     protected $fillable = [

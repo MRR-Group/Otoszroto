@@ -10,6 +10,9 @@ class AppServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
+        config([
+            'platform.models.user' => \Otoszroto\Models\User::class,
+        ]);
     }
 
     public function boot(): void
