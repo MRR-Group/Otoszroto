@@ -1,2 +1,4 @@
 *
 !.gitignore
+!auctionImage
+!auctionImage/default.png

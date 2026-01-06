@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Actions\Auth;
+namespace App\Actions\Auth;
 
+use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
-use Otoszroto\Models\User;
 
 class ResetPasswordAction
 {

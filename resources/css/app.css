@@ -2,4 +2,26 @@
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 
-@source '../**/*.{vue,js,ts}';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.{tsx,js,ts}';
+
+@theme {
+  --color-background: #0b0d10;
+  --color-panel: #12151b;
+  --color-input: #0f1217;
+  --color-primary: #7a5cff;
+  --color-accent : #4dd3ff;
+  --color-text: #e9edf1;
+  --color-muted: #9aa6b2;
+  --color-border: rgba(255,255,255,.08);
+  --color-ok : #2ecc71;
+  --color-warn : #f39c12;
+  --color-danger : #e74c3c;
+  --radius-2lg: 10px;
+}
+
+body {
+  background-color: #0b0d10;
+}

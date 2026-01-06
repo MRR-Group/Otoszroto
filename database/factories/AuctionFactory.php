@@ -1,0 +1,34 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Database\Factories;
+
+use App\Enums\AuctionState;
+use App\Enums\Condition;
+use App\Models\Auction;
+use App\Models\CarModel;
+use App\Models\Category;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+/**
+ * @extends Factory<Auction>
+ */
+class AuctionFactory extends Factory
+{
+    public function definition(): array
+    {
+        return [
+            "name" => fake()->word(),
+            "description" => fake()->text(200),
+            "price" => fake()->randomFloat(2, 100, 10000),
+            "owner_id" => User::factory(),
+            "model_id" => CarModel::inRandomOrder()->first()->id,
+            "category_id" => Category::inRandomOrder()->first()->id,
+            "condition" => fake()->randomElement(Condition::cases()),
+            "auction_state" => fake()->randomElement(AuctionState::cases()),
+            "city" => fake()->city(),
+        ];
+    }
+}

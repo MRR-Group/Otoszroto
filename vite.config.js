@@ -12,10 +12,15 @@ export default ({ mode }) => {
     },
     server: {
       host: true,
-      port: 5173,
+      port: 5172,
       strictPort: true,
       origin: 'http://' + process.env.VITE_DEV_SERVER_DOCKER_HOST_NAME,
       cors: true, // Allow any origin
+      hmr: {
+        host: process.env.VITE_DEV_SERVER_DOCKER_HOST_NAME,
+        protocol: "ws",
+        clientPort: 80,
+      },
       watch: {
         ignored: [
           '**/.idea/**',
