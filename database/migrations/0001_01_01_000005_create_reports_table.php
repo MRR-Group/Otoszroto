@@ -18,6 +18,7 @@ return new class() extends Migration {
             $table->text("reason")->nullable();
             $table->timestamp("resolved_at")->nullable();
             $table->timestamps();
+            $table->unique(["reporter_id", "auction_id"]);
         });
     }
 
