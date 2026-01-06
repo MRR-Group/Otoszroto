@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -100,5 +101,11 @@ class User extends Authenticatable
             "email_verified_at" => "datetime",
             "password" => "hashed",
         ];
+    }
+
+
+    protected function fullname(): Attribute
+    {
+        return Attribute::get(fn(): string => $this->firstname . ' ' . $this->surname);
     }
 }

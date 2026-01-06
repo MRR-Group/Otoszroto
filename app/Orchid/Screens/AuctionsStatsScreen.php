@@ -23,13 +23,6 @@ class AuctionsStatsScreen extends Screen
         $auctionsTotal = Auction::count();
         $auctionsToday = Auction::whereDate('created_at', Carbon::today())->count();
 
-        $byStatus = Auction::query()
-            ->selectRaw('status, COUNT(*) as c')
-            ->groupBy('status')
-            ->orderByDesc('c')
-            ->get()
-            ->map(fn($row) => ['status' => $row->status, 'count' => (int)$row->c]);
-
         return [
             'auctionMetrics' => [
                 'total' => $auctionsTotal,
@@ -39,8 +32,6 @@ class AuctionsStatsScreen extends Screen
             'auctionsSeries' => [
                 Auction::countByDays($start, $end)->toChart('Aukcje'),
             ],
-
-            'auctionsByStatus' => $byStatus,
 
             'latestAuctions' => Auction::query()
                 ->orderByDesc('id')
@@ -86,10 +77,17 @@ class AuctionsStatsScreen extends Screen
                 ->description('Liczba utworzonych aukcji dziennie'),
 
             Layout::table('latestAuctions', [
-                TD::make('id', 'ID'),
-                TD::make('title', 'Tytuł'),
-                TD::make('status', 'Status'),
-                TD::make('created_at', 'Utworzono'),
+                TD::make('id', 'ID')
+                    ->render(fn ($auction) => $auction->id),
+
+                TD::make('name', 'Nazwa')
+                    ->render(fn ($auction) => $auction->name),
+
+                TD::make('Owner', 'Właściciel')
+                    ->render(fn ($auction) => $auction->owner->fullname),
+
+                TD::make('created_at', 'Utworzono')
+                    ->render(fn ($auction) => $auction->created_at?->format('Y-m-d H:i')),
             ])->title('Ostatnio dodane aukcje'),
         ];
     }

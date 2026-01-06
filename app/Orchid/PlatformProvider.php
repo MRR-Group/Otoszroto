@@ -41,8 +41,7 @@ class PlatformProvider extends OrchidServiceProvider
 
             Menu::make(__('Aukcje'))
                 ->icon('bs.shield')
-                ->route('platform.systems.roles')
-                ->permission('platform.statistics.auctions')
+                ->route('platform.statistics.auctions')
                 ->divider(),
 
             Menu::make('Get Started')
