@@ -9,9 +9,12 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
+use Otoszroto\Actions\Auction\AddImageToAuctionAction;
 use Otoszroto\Actions\Auction\CancelAuctionAction;
 use Otoszroto\Actions\Auction\CreateAuctionAction;
 use Otoszroto\Actions\Auction\FinishAuctionAction;
+use Otoszroto\Actions\Auction\GetAuctionImageAction;
+use Otoszroto\Actions\Auction\GetDefaultAuctionImageAction;
 use Otoszroto\Actions\Auction\UpdateAuctionAction;
 use Otoszroto\Enums\AuctionState;
 use Otoszroto\Helpers\SortHelper;
@@ -41,11 +44,17 @@ class AuctionController extends Controller
         return Inertia::render("Auction/EditAuction", ["auction" => $auction]);
     }
 
-    public function store(CreateAuctionRequest $request, CreateAuctionAction $createAuctionAction): RedirectResponse
+    public function store(CreateAuctionRequest $request, CreateAuctionAction $createAuctionAction, AddImageToAuctionAction $addImageToAuctionAction): RedirectResponse
     {
         $user = $request->user();
         $validated = $request->validated();
-        $createAuctionAction->execute($user, $validated);
+        $auction = $createAuctionAction->execute($user, $validated);
+
+        $photo = $validated["photo"];
+
+        if ($photo) {
+            $addImageToAuctionAction->execute($auction, $photo);
+        }
 
         return redirect()->route("auctions.create")->with(["message" => "Aukcja została utworzona."]);
     }
@@ -108,6 +117,16 @@ class AuctionController extends Controller
             "models" => ModelResource::collection($models)->resolve(),
             "brands" => BrandResource::collection($brands)->resolve(),
         ]);
+    }
+
+    public function getImage(int $id, GetAuctionImageAction $getAuctionImageAction, GetDefaultAuctionImageAction $getDefaultAuctionImageAction): \Illuminate\Http\Response
+    {
+        $image = $getAuctionImageAction->execute($id);
+        $default = $getDefaultAuctionImageAction->execute();
+
+        return response($image ?? $default)
+            ->header("Content-Type", "image/png")
+            ->header("Cache-Control", "max-age=31536000, public");
     }
 
     private function filterCategory(Builder $query, Request $request): Builder

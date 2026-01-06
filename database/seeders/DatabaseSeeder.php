@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             AuctionSeeder::class,
             PermissionsSeeder::class,
             RolesSeeder::class,
+            ReportSeeder::class,
         ]);
 
         if (!User::where('email', 'example@mrrgroup.pl')->exists()) {

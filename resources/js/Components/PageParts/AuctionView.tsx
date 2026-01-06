@@ -1,6 +1,5 @@
 import { Auction } from "@/Types/auction"
 import { Panel } from "../Panel";
-import exampleImage from "@/Assets/example.png"
 import { Text } from "../Text";
 import { Button } from "../Button";
 import { ButtonPrimary } from "../ButtonPrimary";
@@ -20,13 +19,13 @@ export const AuctionView = ({ data, fullView, onClick }: Props) => {
       <div className="-m-4 mb-0">
          <div className="relative w-full aspect-square overflow-hidden rounded-xl rounded-b-none">
           <img
-            src={exampleImage}
+            src={data.photo}
             alt={data.name}
             className="absolute inset-0 w-full h-full object-cover select-none"
           />
         </div>
       </div>
-      
+
       <div className="pt-2 flex justify-between">
         <div>
           <Text className="font-bold" color="text">

@@ -18,7 +18,7 @@ class AuctionResource extends JsonResource
             "id" => $this->id,
             "name" => $this->name,
             "description" => $this->description,
-            "photo" => $this->photo_url,
+            "photo" => $this->photo,
             "price" => $this->price,
             "city" => $this->city,
             "owner" => UserResource::make($this->owner)->resolve(),
@@ -28,6 +28,9 @@ class AuctionResource extends JsonResource
             "auctionState" => $this->auction_state,
             "createdAt" => $this->created_at,
             "updatedAt" => $this->updated_at,
+            "wasReported" => auth()->check()
+                ? $this->reports->contains("reporter_id", auth()->id())
+                : false,
         ];
     }
 }
