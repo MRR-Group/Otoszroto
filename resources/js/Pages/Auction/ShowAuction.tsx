@@ -5,7 +5,6 @@ import { Text } from "@/Components/Text";
 import { Button, FormButton } from "@/Components/Button";
 import { useState } from "react";
 import { ButtonPrimary } from "@/Components/ButtonPrimary";
-import exampleImage from "@/Assets/example.png"
 import { secondsAgo, secondsToTimeParts, timeToString } from "@/Utils/Time";
 
 type Props = {
@@ -22,7 +21,7 @@ export function ShowAuction({auction}: Props) {
           <Title type='h2'>Szczegóły ogłoszenia</Title>
           <div className="relative w-full aspect-square overflow-hidden rounded-xl">
             <img
-              src={exampleImage}
+              src={auction.photo}
               alt={auction.name}
               className="absolute inset-0 w-full h-full object-cover select-none"
             />

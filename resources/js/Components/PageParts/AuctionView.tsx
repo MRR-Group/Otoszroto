@@ -9,13 +9,14 @@ type Props = {
   data: Auction,
   fullView?: boolean,
   onClick?: () => void,
+  singleMode?: boolean,
 }
 
-export const AuctionView = ({ data, fullView, onClick }: Props) => {
+export const AuctionView = ({ data, fullView, singleMode, onClick }: Props) => {
   const [showPhone, setShowPhone] = useState(false);
 
   return (
-    <Panel>
+    <Panel className={singleMode ? "h-min" : ""}>
       <div className="-m-4 mb-0">
          <div className="relative w-full aspect-square overflow-hidden rounded-xl rounded-b-none">
           <img
