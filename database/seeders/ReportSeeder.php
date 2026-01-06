@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Models\Report;
 use Illuminate\Database\Seeder;
-use Otoszroto\Models\Report;
 
 class ReportSeeder extends Seeder
 {

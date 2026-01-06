@@ -2,16 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Models;
+namespace App\Models;
 
+use App\Enums\AuctionState;
+use App\Enums\Condition;
+use App\Helpers\IdenticonHelper;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Otoszroto\Enums\AuctionState;
-use Otoszroto\Enums\Condition;
-use Otoszroto\Helpers\IdenticonHelper;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Orchid\Metrics\Chartable;
 
 /**
  * @property int $id
@@ -34,6 +36,7 @@ use Otoszroto\Helpers\IdenticonHelper;
 class Auction extends Model
 {
     use HasFactory;
+    use Chartable;
 
     public $timestamps = true;
     protected $fillable = [
@@ -77,10 +80,7 @@ class Auction extends Model
         return $this->belongsTo(Category::class);
     }
 
-    /**
-     * @return HasMany<Report>
-     */
-    public function reports()
+    public function reports(): HasMany
     {
         return $this->hasMany(Report::class);
     }

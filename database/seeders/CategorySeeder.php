@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use Illuminate\Database\Seeder;
-use Otoszroto\Models\Category;
 
 class CategorySeeder extends Seeder
 {

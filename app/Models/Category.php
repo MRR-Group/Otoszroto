@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Models;
+namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,7 +18,7 @@ class Category extends Model
 {
     use HasFactory;
 
-    public $timestamps = true;    
+    public $timestamps = true;
     protected $fillable = [
         "name",
     ];

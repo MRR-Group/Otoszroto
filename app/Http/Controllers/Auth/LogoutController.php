@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Otoszroto\Http\Controllers\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class LogoutController extends Controller

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Enums;
+namespace App\Enums;
 
 enum AuctionState: string
 {
