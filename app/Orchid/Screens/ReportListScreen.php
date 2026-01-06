@@ -77,9 +77,6 @@ class ReportListScreen extends Screen
                 TD::make('reporter', 'Zgłaszający')
                     ->render(fn (Report $r) => $r->reporter?->email ?? ('#'.$r->reporter_id)),
 
-                TD::make('reason', 'Powód')
-                    ->render(fn (Report $r) => e($r->reason ?? '—')),
-
                 TD::make('status', 'Status')
                     ->render(fn (Report $r) => $r->resolved_at ? '✅ rozwiązany' : '⏳ otwarty'),
 
@@ -90,7 +87,19 @@ class ReportListScreen extends Screen
                 TD::make('Akcje')
                     ->align(TD::ALIGN_RIGHT)
                     ->render(function (Report $r) {
+
+                        $viewAuction = $r->auction
+                            ? Link::make('Zobacz aukcję')
+                                ->icon('bs.eye')
+                                ->href(url('/auctions/' . $r->auction->id))
+                                ->target('_blank')
+                                ->render()
+                            : '<span class="text-muted">Brak aukcji</span>';
+
                         return
+                            $viewAuction
+                            .' '.
+
                             Button::make($r->resolved_at ? 'Cofnij' : 'Rozwiąż')
                                 ->icon($r->resolved_at ? 'bs.arrow-counterclockwise' : 'bs.check2')
                                 ->method('toggleResolved')
@@ -101,7 +110,7 @@ class ReportListScreen extends Screen
 
                             Button::make('Usuń aukcję')
                                 ->icon('bs.trash')
-                                ->confirm('Na pewno usunąć zgłoszoną aukcję? To usunie rekord aukcji (i ewentualnie powiązane dane zależnie od relacji).')
+                                ->confirm('Na pewno usunąć zgłoszoną aukcję?')
                                 ->method('deleteAuction')
                                 ->parameters(['report_id' => $r->id])
                                 ->render()
@@ -110,7 +119,7 @@ class ReportListScreen extends Screen
 
                             Button::make('Usuń zgłaszającego')
                                 ->icon('bs.person-x')
-                                ->confirm('Na pewno usunąć użytkownika zgłaszającego? (opcjonalnie można też usunąć jego raporty)')
+                                ->confirm('Na pewno usunąć użytkownika zgłaszającego?')
                                 ->method('deleteReporter')
                                 ->parameters(['report_id' => $r->id])
                                 ->render();
