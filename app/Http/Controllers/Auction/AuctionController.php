@@ -119,7 +119,7 @@ class AuctionController extends Controller
         ]);
     }
 
-    public function getImage(int $id, GetAuctionImageAction $getAuctionImageAction, GetDefaultAuctionImageAction $getDefaultAuctionImageAction): ?\Illuminate\Http\Response
+    public function getImage(int $id, GetAuctionImageAction $getAuctionImageAction, GetDefaultAuctionImageAction $getDefaultAuctionImageAction): \Illuminate\Http\Response
     {
         $image = $getAuctionImageAction->execute($id);
         $default = $getDefaultAuctionImageAction->execute();

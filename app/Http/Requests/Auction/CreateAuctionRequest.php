@@ -29,7 +29,7 @@ class CreateAuctionRequest extends FormRequest
             "model_id" => ["required", "integer", "exists:car_models,id"],
             "category_id" => ["required", "integer", "exists:categories,id"],
             "condition" => ["required", Rule::enum(Condition::class)],
-            "photo" => ["required", "image", "mimes:png", "max:2048"],
+            "photo" => ["image", "mimes:png", "max:2048"],
         ];
     }
 }
