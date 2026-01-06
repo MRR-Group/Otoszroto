@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 use Inertia\Response;
+use Otoszroto\Enums\Role;
 use Otoszroto\Http\Controllers\Controller;
 use Otoszroto\Http\Requests\Auth\RegisterRequest;
 use Otoszroto\Models\User;
@@ -26,6 +27,8 @@ class RegisterController extends Controller
         $user = new User($validated);
         $user->password = Hash::make($validated["password"]);
         $user->save();
+
+        $user->syncPermissions(Role::User->permissions());
 
         return redirect()->route("home")->with(["message" => "Your account has been created."]);
     }
