@@ -21,12 +21,12 @@ class DatabaseSeeder extends Seeder
             ReportSeeder::class,
         ]);
 
-        if (!User::where('email', 'example@mrrgroup.pl')->exists()) {
+        if (!User::where("email", "example@mrrgroup.pl")->exists()) {
             User::factory()->count(1)->create([
                 "firstname" => "User",
                 "surname" => "Example",
                 "email" => "example@mrrgroup.pl",
-                "password" => Hash::make("example@mrrgroup.pl")
+                "password" => Hash::make("example@mrrgroup.pl"),
             ]);
         }
     }
