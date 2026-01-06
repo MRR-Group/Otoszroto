@@ -50,3 +50,4 @@ Route::middleware("auth")->group(function (): void {
 });
 
 Route::get("/auctions/{auction}", [AuctionController::class, "show"])->name("auctions.show");
+Route::get("/auctions/{id}/image", [AuctionController::class, "getImage"])->name("auction.image.show");

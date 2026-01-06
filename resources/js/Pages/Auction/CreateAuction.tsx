@@ -19,8 +19,11 @@ export function CreateAuction({errors}: Props) {
                 <input type="text" placeholder="Description" name="description" required />
                 {errors?.description && <p>{errors.description}</p>}
 
-                <input type="text" placeholder="Photo url" name="photo_url" required />
-                {errors?.photo_url && <p>{errors.photo_url}</p>}
+                <input type="text" placeholder="City" name="city" required />
+                {errors?.city && <p>{errors.city}</p>}
+
+                <input type="file" placeholder="Photo" name="photo" accept="image/png" className={"dark:text-white"}/>
+                {errors?.photo && <p>{errors.photo}</p>}
 
                 <input type="number" placeholder="Price" name="price" required />
                 {errors?.price && <p>{errors.price}</p>}
@@ -31,7 +34,14 @@ export function CreateAuction({errors}: Props) {
                 <input type="number" placeholder="Category id" name="category_id" required />
                 {errors?.category_id && <p>{errors.category_id}</p>}
 
-                <input type="number" placeholder="Condition" name="condition" required />
+                <select name="condition" required>
+                    <option value="fabrycznie nowy">Fabrycznie nowy</option>
+                    <option value="prawie nowy">Prawie nowy</option>
+                    <option value="w dobrym stanie">W dobrym stanie</option>
+                    <option value="w zadawalającym stanie">W zadawalającym stanie</option>
+                    <option value="uszkodzony">Uszkodzony</option>
+                    <option value="na części">Na części</option>
+                </select>
                 {errors?.condition && <p>{errors.condition}</p>}
 
                 <input type="submit"></input>
