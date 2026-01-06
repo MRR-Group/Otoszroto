@@ -1,6 +1,6 @@
 <?php
 
-namespace Otoszroto\Orchid\Screens\Examples;
+namespace App\Orchid\Screens\Examples;
 
 use Orchid\Screen\Action;
 use Orchid\Screen\Screen;

@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
-use Otoszroto\Http\Controllers\Controller;
-use Otoszroto\Http\Requests\Auth\LoginRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\LoginRequest;
 use Symfony\Component\HttpFoundation\Response;
 
 class LoginController extends Controller

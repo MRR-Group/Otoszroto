@@ -6,7 +6,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use Otoszroto\Models\User;
+use App\Models\User;
 
 /**
  * @extends Factory<User>

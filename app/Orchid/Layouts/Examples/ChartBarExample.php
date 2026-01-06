@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Orchid\Layouts\Examples;
+namespace App\Orchid\Layouts\Examples;
 
 use Orchid\Screen\Layouts\Chart;
 

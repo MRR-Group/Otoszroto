@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Orchid\Screens\Role;
+namespace App\Orchid\Screens\Role;
 
-use Otoszroto\Orchid\Layouts\Role\RoleEditLayout;
-use Otoszroto\Orchid\Layouts\Role\RolePermissionLayout;
+use App\Orchid\Layouts\Role\RoleEditLayout;
+use App\Orchid\Layouts\Role\RolePermissionLayout;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Orchid\Platform\Models\Role;

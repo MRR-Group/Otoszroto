@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Policies;
 
 use Illuminate\Auth\Access\Response;
-use Otoszroto\Models\Auction;
-use Otoszroto\Models\User;
+use App\Models\Auction;
+use App\Models\User;
 
 class AuctionPolicy
 {

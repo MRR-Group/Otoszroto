@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Orchid\Layouts\Role;
+namespace App\Orchid\Layouts\Role;
 
 use Orchid\Screen\Field;
 use Orchid\Screen\Fields\Input;

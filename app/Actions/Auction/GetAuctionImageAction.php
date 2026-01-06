@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Actions\Auction;
+namespace App\Actions\Auction;
 
 use Illuminate\Support\Facades\Storage;
 

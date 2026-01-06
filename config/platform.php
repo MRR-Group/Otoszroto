@@ -99,7 +99,7 @@ return [
      |
      */
 
-    'index' => 'platform.index',
+    'index' => 'platform.statistics.users',
 
     /*
      |--------------------------------------------------------------------------
@@ -319,6 +319,6 @@ return [
      |
      */
 
-    'provider' => \Otoszroto\Orchid\PlatformProvider::class,
+    'provider' => \App\Orchid\PlatformProvider::class,
 
 ];

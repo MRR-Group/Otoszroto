@@ -1,6 +1,6 @@
 <?php
 
-namespace Otoszroto\Orchid\Layouts\Examples;
+namespace App\Orchid\Layouts\Examples;
 
 use Orchid\Screen\Actions\Menu;
 use Orchid\Screen\Layouts\TabMenu;

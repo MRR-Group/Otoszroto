@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Otoszroto\Models\Brand;
-use Otoszroto\Models\CarModel;
+use App\Models\Brand;
+use App\Models\CarModel;
 
 /**
  * @extends Factory<CarModel>

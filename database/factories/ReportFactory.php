@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Otoszroto\Models\Auction;
-use Otoszroto\Models\Report;
-use Otoszroto\Models\User;
+use App\Models\Auction;
+use App\Models\Report;
+use App\Models\User;
 
 /**
  * @extends Factory<Report>

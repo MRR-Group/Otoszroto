@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Orchid\Screens\Role;
+namespace App\Orchid\Screens\Role;
 
-use Otoszroto\Orchid\Layouts\Role\RoleListLayout;
+use App\Orchid\Layouts\Role\RoleListLayout;
 use Orchid\Platform\Models\Role;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Link;

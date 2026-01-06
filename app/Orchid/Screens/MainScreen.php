@@ -1,11 +1,11 @@
 <?php
 
-namespace Otoszroto\Orchid\Screens;
+namespace App\Orchid\Screens;
 
 use App\Orchid\Layouts\UsersLineChart;
 use Carbon\Carbon;
 use Orchid\Screen\TD;
-use Otoszroto\Models\User;
+use App\Models\User;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 

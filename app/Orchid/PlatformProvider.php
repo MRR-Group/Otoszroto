@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Orchid;
+namespace App\Orchid;
 
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\ItemPermission;

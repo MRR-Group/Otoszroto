@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Actions\Auth;
+namespace App\Actions\Auth;
 
 use Illuminate\Support\Facades\Hash;
-use Otoszroto\Models\User;
+use App\Models\User;
 
 class ChangePasswordAction
 {

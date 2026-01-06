@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Otoszroto\Models\Category;
+use App\Models\Category;
 
 /**
  * @extends Factory<Category>

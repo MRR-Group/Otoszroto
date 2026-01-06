@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Actions\Auction;
+namespace App\Actions\Auction;
 
-use Otoszroto\Models\Report;
+use App\Models\Report;
 
 class ResolveReportAction
 {

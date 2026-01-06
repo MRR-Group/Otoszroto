@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Orchid\Screens;
+namespace App\Orchid\Screens;
 
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;

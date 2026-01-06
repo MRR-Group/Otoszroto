@@ -1,6 +1,6 @@
 <?php
 
-namespace Otoszroto\Orchid\Screens\Examples;
+namespace App\Orchid\Screens\Examples;
 
 use Illuminate\Http\Request;
 use Orchid\Platform\Models\User;

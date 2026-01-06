@@ -2,17 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Models;
+namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Orchid\Metrics\Chartable;
-use Otoszroto\Enums\AuctionState;
-use Otoszroto\Enums\Condition;
-use Otoszroto\Helpers\IdenticonHelper;
+use App\Enums\AuctionState;
+use App\Enums\Condition;
+use App\Helpers\IdenticonHelper;
 
 /**
  * @property int $id
@@ -80,9 +81,9 @@ class Auction extends Model
     }
 
     /**
-     * @return HasMany<Report>
+     * @return HasMany
      */
-    public function reports()
+    public function reports(): HasMany
     {
         return $this->hasMany(Report::class);
     }

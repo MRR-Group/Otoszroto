@@ -1,8 +1,8 @@
 <?php
 
-namespace Otoszroto\Orchid\Screens\Examples;
+namespace App\Orchid\Screens\Examples;
 
-use Otoszroto\Orchid\Layouts\Examples\TabMenuExample;
+use App\Orchid\Layouts\Examples\TabMenuExample;
 use Orchid\Screen\Action;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;

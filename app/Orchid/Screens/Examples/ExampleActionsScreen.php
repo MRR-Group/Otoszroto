@@ -1,8 +1,8 @@
 <?php
 
-namespace Otoszroto\Orchid\Screens\Examples;
+namespace App\Orchid\Screens\Examples;
 
-use Otoszroto\Orchid\Layouts\Examples\ExampleElements;
+use App\Orchid\Layouts\Examples\ExampleElements;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Otoszroto\Models\Brand;
-use Otoszroto\Models\CarModel;
+use App\Models\Brand;
+use App\Models\CarModel;
 
 class BrandAndModelsSeeder extends Seeder
 {

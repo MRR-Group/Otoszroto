@@ -1,8 +1,8 @@
 <?php
 
-namespace Otoszroto\Orchid\Layouts\User;
+namespace App\Orchid\Layouts\User;
 
-use Otoszroto\Orchid\Filters\RoleFilter;
+use App\Orchid\Filters\RoleFilter;
 use Orchid\Filters\Filter;
 use Orchid\Screen\Layouts\Selection;
 

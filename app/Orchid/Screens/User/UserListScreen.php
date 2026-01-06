@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Orchid\Screens\User;
+namespace App\Orchid\Screens\User;
 
-use Otoszroto\Orchid\Layouts\User\UserEditLayout;
-use Otoszroto\Orchid\Layouts\User\UserFiltersLayout;
-use Otoszroto\Orchid\Layouts\User\UserListLayout;
+use App\Orchid\Layouts\User\UserEditLayout;
+use App\Orchid\Layouts\User\UserFiltersLayout;
+use App\Orchid\Layouts\User\UserListLayout;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Orchid\Platform\Models\User;

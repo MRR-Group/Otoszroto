@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
-use Otoszroto\Actions\Auth\GenerateResetCodeAction;
-use Otoszroto\Http\Controllers\Controller;
-use Otoszroto\Http\Requests\Auth\ForgotPasswordRequest;
-use Otoszroto\Models\User;
-use Otoszroto\Notifications\ForgotPasswordNotification;
+use App\Actions\Auth\GenerateResetCodeAction;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\ForgotPasswordRequest;
+use App\Models\User;
+use App\Notifications\ForgotPasswordNotification;
 
 class ForgotPasswordController extends Controller
 {

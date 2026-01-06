@@ -1,11 +1,11 @@
 <?php
 
-namespace Otoszroto\Orchid\Screens\Examples;
+namespace App\Orchid\Screens\Examples;
 
-use Otoszroto\Orchid\Layouts\Examples\ChartBarExample;
-use Otoszroto\Orchid\Layouts\Examples\ChartLineExample;
-use Otoszroto\Orchid\Layouts\Examples\ChartPercentageExample;
-use Otoszroto\Orchid\Layouts\Examples\ChartPieExample;
+use App\Orchid\Layouts\Examples\ChartBarExample;
+use App\Orchid\Layouts\Examples\ChartLineExample;
+use App\Orchid\Layouts\Examples\ChartPercentageExample;
+use App\Orchid\Layouts\Examples\ChartPieExample;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 

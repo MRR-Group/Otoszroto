@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use Orchid\Screen\Screen;
 use Orchid\Screen\TD;
 use Orchid\Support\Facades\Layout;
-use Otoszroto\Models\Auction;
+use App\Models\Auction;
 
 class AuctionsStatsScreen extends Screen
 {

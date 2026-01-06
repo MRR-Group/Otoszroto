@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Orchid\Filters;
+namespace App\Orchid\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 use Orchid\Filters\Filter;

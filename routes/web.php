@@ -5,15 +5,15 @@ declare(strict_types=1);
 use Illuminate\Auth\Middleware\Authorize;
 use Illuminate\Support\Facades\Route;
 use Inertia\Response;
-use Otoszroto\Enums\Permission;
-use Otoszroto\Http\Controllers\Auction\AuctionController;
-use Otoszroto\Http\Controllers\Auction\ReportController;
-use Otoszroto\Http\Controllers\Auth\ForgotPasswordController;
-use Otoszroto\Http\Controllers\Auth\LoginController;
-use Otoszroto\Http\Controllers\Auth\LogoutController;
-use Otoszroto\Http\Controllers\Auth\RegisterController;
-use Otoszroto\Http\Controllers\Auth\ResetPasswordController;
-use Otoszroto\Http\Controllers\User\ChangePasswordController;
+use App\Enums\Permission;
+use App\Http\Controllers\Auction\AuctionController;
+use App\Http\Controllers\Auction\ReportController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\User\ChangePasswordController;
 
 Route::get("/", fn(): Response => inertia("Welcome"))->name("home");
 

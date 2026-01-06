@@ -1,9 +1,9 @@
 <?php
 
-namespace Otoszroto\Orchid\Screens\Examples;
+namespace App\Orchid\Screens\Examples;
 
-use Otoszroto\Orchid\Layouts\Examples\ChartBarExample;
-use Otoszroto\Orchid\Layouts\Examples\ChartLineExample;
+use App\Orchid\Layouts\Examples\ChartBarExample;
+use App\Orchid\Layouts\Examples\ChartLineExample;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Orchid\Screen\Actions\Button;
