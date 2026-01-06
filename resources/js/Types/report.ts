@@ -6,7 +6,7 @@ export type Report = {
     reporter: User;
     auction: Auction;
     reason: string;
-    resolvedAt: string;
-    createdAt: string,
-    updatedAt: string,
+    resolvedAt: string | null;
+    createdAt: string;
+    updatedAt: string;
 }

@@ -13,8 +13,8 @@ class CreateReportAction
     public function execute(User $user, Auction $auction, array $reportData): Report
     {
         $report = new Report($reportData);
-        $report->reporter_id = $user->id;
-        $report->auction_id = $auction->id;
+        $report->reporter->associate($user);
+        $report->auction->associate($auction);
         $report->save();
 
         return $report;

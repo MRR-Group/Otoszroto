@@ -11,7 +11,14 @@ class CreateReportRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return auth()->check();
+        $user = $this->user();
+        $auction = $this->route("auction");
+
+        if ($user === null || $auction === null) {
+            return false;
+        }
+
+        return $user->can("report", $auction);
     }
 
     /**

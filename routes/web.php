@@ -46,6 +46,7 @@ Route::middleware("auth")->group(function (): void {
     Route::post("/auctions/{auction}/report", [ReportController::class, "store"])->name("auctions.report.store");
     Route::get("/reports", [ReportController::class, "index"])->name("reports.index")->middleware([Authorize::using(Permission::ManageReports)]);
     Route::get("/reports/{report}", [ReportController::class, "show"])->name("reports.show")->middleware([Authorize::using(Permission::ManageReports)]);
+    Route::get("/reports/{report}/resolve", [ReportController::class, "resolve"])->name("reports.resolve")->middleware([Authorize::using(Permission::ManageReports)]);
 });
 
 Route::get("/auctions/{auction}", [AuctionController::class, "show"])->name("auctions.show");

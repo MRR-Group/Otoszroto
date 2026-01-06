@@ -20,8 +20,8 @@ class ReportResource extends JsonResource
             "auction" => AuctionResource::make($this->whenLoaded("auction")),
             "reason" => $this->reason,
             "resolvedAt" => optional($this->resolved_at)?->toDateTimeString(),
-            "createdAt" => $this->created_at,
-            "updatedAt" => $this->updated_at,
+            "createdAt" => optional($this->created_at)?->toDateTimeString(),
+            "updatedAt" => optional($this->updated_at)?->toDateTimeString(),
         ];
     }
 }

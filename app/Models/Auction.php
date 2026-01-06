@@ -74,4 +74,12 @@ class Auction extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    /**
+     * @return HasMany<Report>
+     */
+    public function reports()
+    {
+        return $this->hasMany(Report::class);
+    }
 }
