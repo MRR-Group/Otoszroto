@@ -16,4 +16,21 @@ class AuctionPolicy
             ? Response::allow()
             : Response::deny();
     }
+
+    public function report(User $user, Auction $auction): Response
+    {
+        $alreadyReported = $auction->reports()
+            ->where("reporter_id", $user->id)
+            ->exists();
+
+        if ($user->id === $auction->owner_id) {
+            return Response::deny("Nie można zgłosić własnej aukcji.");
+        }
+
+        if ($alreadyReported) {
+            return Response::deny("Aukcja została już przez Ciebie zgłoszona.");
+        }
+
+        return Response::allow();
+    }
 }

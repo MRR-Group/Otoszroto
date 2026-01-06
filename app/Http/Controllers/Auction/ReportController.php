@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
 use Otoszroto\Actions\Auction\CreateReportAction;
+use Otoszroto\Actions\Auction\ResolveReportAction;
 use Otoszroto\Helpers\SortHelper;
 use Otoszroto\Http\Controllers\Controller;
 use Otoszroto\Http\Requests\Auction\CreateReportRequest;
@@ -25,6 +26,7 @@ class ReportController extends Controller
     public function store(CreateReportRequest $request, CreateReportAction $createReportAction, Auction $auction): RedirectResponse
     {
         $user = $request->user();
+        $this->authorize("report", $auction);
         $validated = $request->validated();
         $createReportAction->execute($user, $auction, $validated);
 
@@ -52,5 +54,12 @@ class ReportController extends Controller
         return Inertia::render("Auction/ShowReport", [
             "report" => new ReportResource($report),
         ]);
+    }
+
+    public function resolve(ResolveReportAction $resolveReportAction, Report $report): RedirectResponse
+    {
+        $report = $resolveReportAction->execute($report);
+
+        return redirect()->route("reports.show", ["report" => $report])->with(["message" => "Zgłoszenie zostało rozwiązane."]);
     }
 }

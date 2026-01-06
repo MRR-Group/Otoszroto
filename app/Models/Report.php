@@ -13,8 +13,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $id
  * @property int $reporter_id
  * @property int $auction_id
- * @property string $reason
- * @property Carbon $resolved_at
+ * @property string|null $reason
+ * @property Carbon|null $resolved_at
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property User $reporter
@@ -24,13 +24,16 @@ class Report extends Model
 {
     use HasFactory;
 
-    public $timestamps = true;    
+    public $timestamps = true;
     protected $fillable = [
         "reporter_id",
         "auction_id",
         "reason",
         "resolved_at",
-    ];    
+    ];
+    protected $casts = [
+        "resolved_at" => "datetime",
+    ];
 
     /**
      * @return BelongsTo<User, $this>

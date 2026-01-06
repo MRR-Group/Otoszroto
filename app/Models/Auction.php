@@ -79,6 +79,14 @@ class Auction extends Model
         return $this->belongsTo(Category::class);
     }
 
+    /**
+     * @return HasMany<Report>
+     */
+    public function reports()
+    {
+        return $this->hasMany(Report::class);
+    }
+
     protected function photo(): Attribute
     {
         return Attribute::get(fn(): string => IdenticonHelper::url($this->id));

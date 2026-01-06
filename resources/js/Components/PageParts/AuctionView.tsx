@@ -7,14 +7,16 @@ import { useState } from "react";
 
 type Props = {
   data: Auction,
-  onClick?: () => void;
+  fullView?: boolean,
+  onClick?: () => void,
+  singleMode?: boolean,
 }
 
-export const AuctionView = ({ data, onClick }: Props) => {
+export const AuctionView = ({ data, fullView, singleMode, onClick }: Props) => {
   const [showPhone, setShowPhone] = useState(false);
 
   return (
-    <Panel>
+    <Panel className={singleMode ? "h-min" : ""}>
       <div className="-m-4 mb-0">
          <div className="relative w-full aspect-square overflow-hidden rounded-xl rounded-b-none">
           <img
@@ -42,11 +44,11 @@ export const AuctionView = ({ data, onClick }: Props) => {
       </div>
 
       <div className="flex justify-between pt-3">
-        <Button text="Podgląd" onClick={onClick} />
-
-        {!showPhone && <ButtonPrimary text="Telefon" onClick={() => setShowPhone(true)} /> }
-
-        {(showPhone && (
+        {!fullView && <Button text="Podgląd" onClick={onClick} />}
+        
+        {!fullView && !showPhone && <ButtonPrimary text="Telefon" onClick={() => setShowPhone(true)} /> }
+        
+        {(!fullView && showPhone && (
           <div className="flex flex-col text-sm pt-2 items-end">
             <Text>{data.owner.phone}</Text>
             <div className="text-primary font-bold select-none transition-colors hover:text-accent cursor-pointer" onClick={() => setShowPhone(false)}>Schowaj</div>

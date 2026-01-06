@@ -28,6 +28,9 @@ class AuctionResource extends JsonResource
             "auctionState" => $this->auction_state,
             "createdAt" => $this->created_at,
             "updatedAt" => $this->updated_at,
+            "wasReported" => auth()->check()
+                ? $this->reports->contains("reporter_id", auth()->id())
+                : false,
         ];
     }
 }

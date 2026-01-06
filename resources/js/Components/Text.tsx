@@ -6,7 +6,7 @@ type Props = PropsWithChildren<{
   color?: "text" | "muted" | "ok" | "warn" | "danger" | "primary"
 }>
 
-export const Text = ({bold, className, color="text", children}: Props) => {
+export const Text = ({bold, className="", color="text", children}: Props) => {
   const colorClass = {"text": "text-text", "muted": "text-muted", "ok": "text-ok", "warn": "text-warn", "primary": "text-primary", danger: "text-danger" }[color];
 
   if (bold) {

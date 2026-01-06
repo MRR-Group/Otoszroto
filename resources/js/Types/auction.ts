@@ -14,6 +14,6 @@ export type Auction = {
     category: Category;
     condition: string;
     auctionState: string;
-    createAt: string,
+    createdAt: string,
     updatedAt: string,
 }
