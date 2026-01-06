@@ -22,7 +22,6 @@ class AuctionFactory extends Factory
         return [
             "name" => fake()->word(),
             "description" => fake()->text(200),
-            "photo_url" => fake()->url(),
             "price" => fake()->randomFloat(2, 100, 10000),
             "owner_id" => User::factory(),
             "model_id" => CarModel::inRandomOrder()->first()->id,

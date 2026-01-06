@@ -344,7 +344,7 @@ export function Auctions({auctions, brands, categories, models}: Props) {
           
           <div className="w-full grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 min-h-10/12">
             {auctions.data.flatMap(auctions => auctions).map(auction => (
-              <AuctionView key={auction.id} data={auction} onClick={() => router.visit(`/auctions/${auction.id}`)} />
+              <AuctionView key={auction.id} singleMode={auctions.data.flatMap(auctions => auctions).length === 1} data={auction} onClick={() => router.visit(`/auctions/${auction.id}`)} />
             ))}
           </div>
           
