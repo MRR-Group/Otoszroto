@@ -14,6 +14,7 @@ use App\Orchid\Screens\Examples\ExampleScreen;
 use App\Orchid\Screens\Examples\ExampleTextEditorsScreen;
 use App\Orchid\Screens\MainScreen;
 use App\Orchid\Screens\PlatformScreen;
+use App\Orchid\Screens\ReportListScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
 use App\Orchid\Screens\User\UserEditScreen;
@@ -42,6 +43,9 @@ Route::screen('/statistics/users', MainScreen::class)
 
 Route::screen('/statistics/auctions', AuctionsStatsScreen::class)
     ->name('platform.statistics.auctions');
+
+Route::screen('/reports', ReportListScreen::class)
+    ->name('platform.reports');
 
 // Platform > Profile
 Route::screen('profile', UserProfileScreen::class)

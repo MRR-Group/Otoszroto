@@ -34,46 +34,23 @@ class PlatformProvider extends OrchidServiceProvider
     public function menu(): array
     {
         return [
-            Menu::make(__('Użytkownicy'))
+            Menu::make(__('Statystyki użytkowników'))
                 ->icon('bs.house')
                 ->route('platform.statistics.users')
+                ->permission('platform.statistics.users')
                 ->title(__('Statystyki')),
 
-            Menu::make(__('Aukcje'))
+            Menu::make(__('Statystyki aukcji'))
                 ->icon('bs.shield')
                 ->route('platform.statistics.auctions')
+                ->permission('platform.statistics.auctions')
                 ->divider(),
 
-            Menu::make('Get Started')
-                ->icon('bs.book')
-                ->title('Navigation')
-                ->route(config('platform.index')),
-
-            Menu::make('Sample Screen')
-                ->icon('bs.collection')
-                ->route('platform.example')
-                ->badge(fn () => 6),
-
-            Menu::make('Form Elements')
-                ->icon('bs.card-list')
-                ->route('platform.example.fields')
-                ->active('*/examples/form/*'),
-
-            Menu::make('Layouts Overview')
-                ->icon('bs.window-sidebar')
-                ->route('platform.example.layouts'),
-
-            Menu::make('Grid System')
-                ->icon('bs.columns-gap')
-                ->route('platform.example.grid'),
-
-            Menu::make('Charts')
-                ->icon('bs.bar-chart')
-                ->route('platform.example.charts'),
-
-            Menu::make('Cards')
-                ->icon('bs.card-text')
-                ->route('platform.example.cards')
+            Menu::make('Zgłoszone aukcje')
+                ->icon('bs.flag')
+                ->title('Zgłoszenia')
+                ->permission('platform.reports')
+                ->route('platform.reports')
                 ->divider(),
 
             Menu::make(__('Users'))
@@ -111,8 +88,16 @@ class PlatformProvider extends OrchidServiceProvider
     {
         return [
             ItemPermission::group(__('System'))
-                ->addPermission('platform.systems.roles', __('Roles'))
-                ->addPermission('platform.systems.users', __('Users')),
+                ->addPermission('platform.systems.roles', "Zarządzanie rolami")
+                ->addPermission('platform.systems.users', "Zarządzanie użytkownikami"),
+
+            ItemPermission::group('Statystyki')
+                ->addPermission('platform.statistics.users', 'Przeglądanie statystyk użytkowników')
+                ->addPermission('platform.statistics.auctions', 'Przeglądanie statystyk aukcji'),
+
+            ItemPermission::group('Reports')
+                ->addPermission('platform.reports', 'Rozpatrywanie reportów')
+
         ];
     }
 }
