@@ -6,7 +6,6 @@ import { Button, FormButton } from "@/Components/Button";
 import { useState } from "react";
 import { ButtonPrimary } from "@/Components/ButtonPrimary";
 import exampleImage from "@/Assets/example.png"
-import dayjs from "dayjs";
 import { secondsAgo, secondsToTimeParts, timeToString } from "@/Utils/Time";
 
 type Props = {
