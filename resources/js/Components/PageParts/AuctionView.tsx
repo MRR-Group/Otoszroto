@@ -8,10 +8,11 @@ import { useState } from "react";
 
 type Props = {
   data: Auction,
-  onClick?: () => void;
+  fullView?: boolean,
+  onClick?: () => void,
 }
 
-export const AuctionView = ({ data, onClick }: Props) => {
+export const AuctionView = ({ data, fullView, onClick }: Props) => {
   const [showPhone, setShowPhone] = useState(false);
 
   return (
@@ -43,11 +44,11 @@ export const AuctionView = ({ data, onClick }: Props) => {
       </div>
 
       <div className="flex justify-between pt-3">
-        <Button text="Podgląd" onClick={onClick} />
+        {!fullView && <Button text="Podgląd" onClick={onClick} />}
         
-        {!showPhone && <ButtonPrimary text="Telefon" onClick={() => setShowPhone(true)} /> }
+        {!fullView && !showPhone && <ButtonPrimary text="Telefon" onClick={() => setShowPhone(true)} /> }
         
-        {(showPhone && (
+        {(!fullView && showPhone && (
           <div className="flex flex-col text-sm pt-2 items-end">
             <Text>{data.owner.phone}</Text>
             <div className="text-primary font-bold select-none transition-colors hover:text-accent cursor-pointer" onClick={() => setShowPhone(false)}>Schowaj</div>
