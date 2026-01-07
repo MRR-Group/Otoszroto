@@ -24,7 +24,7 @@ class ResetPasswordController extends Controller
         $success = $resetPasswordAction->execute($validated);
 
         return $success
-            ? redirect()->route("auth.login.create")->with(["message" => "Your password has been reset."])
+            ? redirect()->route("login")->with(["message" => "Your password has been reset."])
             : redirect()->route("auth.resetPassword.create")->with(["message" => "Reset token has expired or is invalid."])->withInput();
     }
 }
