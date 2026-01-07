@@ -93,7 +93,7 @@ class AuctionController extends Controller
         if ($auction->owner->id !== auth()->id()) {
             return redirect()->route("auctions.show", ["auction" => $auction])->with(["message" => "Nie możesz edytować nie swoich aukcji"]);
         }
-        
+
         $validated = $request->validated();
         $auction = $updateAuctionAction->execute($auction, $validated);
 
@@ -105,7 +105,7 @@ class AuctionController extends Controller
         if ($auction->owner->id !== auth()->id()) {
             return redirect()->route("auctions.show", ["auction" => $auction])->with(["message" => "Nie możesz edytować nie swoich aukcji"]);
         }
-        
+
         $auction = $finishAuctionAction->execute($auction);
 
         return redirect()->route("auctions.show", ["auction" => $auction])->with(["message" => "Aukcja została zakończona."]);

@@ -46,8 +46,7 @@ class Auction extends Model
         "category_id",
         "condition",
         "auction_state",
-    ];
-    
+    ];    
     protected $casts = [
         "condition" => Condition::class,
         "auction_state" => AuctionState::class,
