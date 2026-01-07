@@ -4,10 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Seller;
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Http\Request;
-use Inertia\Inertia;
-use Inertia\Response;
 use App\Helpers\SortHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AuctionResource;
@@ -18,6 +14,10 @@ use App\Models\Auction;
 use App\Models\Brand;
 use App\Models\CarModel;
 use App\Models\Category;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class SellerController extends Controller
 {

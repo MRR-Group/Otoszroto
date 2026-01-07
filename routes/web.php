@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Enums\Permission;
 use App\Http\Controllers\Auction\AuctionController;
 use App\Http\Controllers\Auction\ReportController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -10,10 +9,10 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Seller\SellerController;
 use App\Http\Controllers\User\ChangePasswordController;
-use Illuminate\Auth\Middleware\Authorize;
+use App\Http\Controllers\Welcome\WelcomeController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Response;
 
 Route::get("/", [WelcomeController::class, "index"])->name("home");
 
