@@ -36,7 +36,7 @@ Route::get("/auctions", [AuctionController::class, "index"])->name("auctions.ind
 
 Route::middleware("auth")->group(function (): void {
     Route::post("/logout", [LogoutController::class, "logout"])->name("auth.logout");
-    Route::get("/auctions/create", [AuctionController::class, "create"])->name("auctions.create")->middleware([Authorize::using(Permission::CreateAuction)]);
+    Route::get("/auctions/create", [AuctionController::class, "create"])->name("auctions.create");
     Route::post("/auctions", [AuctionController::class, "store"])->name("auctions.store");
     Route::get("/auctions/{auction}/edit", [AuctionController::class, "edit"])->name("auctions.edit");
     Route::patch("/auctions/{auction}", [AuctionController::class, "update"])->name("auctions.update");
@@ -44,9 +44,9 @@ Route::middleware("auth")->group(function (): void {
     Route::patch("/auctions/{auction}/cancel", [AuctionController::class, "cancel"])->name("auctions.cancel");
     Route::get("/auctions/{auction}/report", [ReportController::class, "create"])->name("auctions.report.create");
     Route::post("/auctions/{auction}/report", [ReportController::class, "store"])->name("auctions.report.store");
-    Route::get("/reports", [ReportController::class, "index"])->name("reports.index")->middleware([Authorize::using(Permission::ManageReports)]);
-    Route::get("/reports/{report}", [ReportController::class, "show"])->name("reports.show")->middleware([Authorize::using(Permission::ManageReports)]);
-    Route::get("/reports/{report}/resolve", [ReportController::class, "resolve"])->name("reports.resolve")->middleware([Authorize::using(Permission::ManageReports)]);
+    Route::get("/reports", [ReportController::class, "index"])->name("reports.index");
+    Route::get("/reports/{report}", [ReportController::class, "show"])->name("reports.show");
+    Route::get("/reports/{report}/resolve", [ReportController::class, "resolve"])->name("reports.resolve");
 });
 
 Route::get("/auctions/{auction}", [AuctionController::class, "show"])->name("auctions.show");
