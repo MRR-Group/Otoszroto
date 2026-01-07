@@ -218,6 +218,7 @@ export function CreateAuction({ errors, categories, brands, models }: Props) {
             <NumberInput
               name="price"
               placeholder="Cena"
+              float
               value={form.data.price}
               onChange={(value) => {
                 form.clearErrors("price");

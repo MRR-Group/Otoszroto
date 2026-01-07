@@ -39,7 +39,6 @@ export const ImageInput = ({
   const [dragOver, setDragOver] = useState(false);
 
   const previewSrc = useMemo(() => {
-    console.log("previerw", value, defaultValue);
 
     if (value instanceof File) {
       return objectUrl;

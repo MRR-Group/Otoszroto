@@ -48,7 +48,7 @@ class AuctionController extends Controller
     public function edit(Auction $auction): Response | RedirectResponse
     {
         if ($auction->owner->id !== auth()->id()) {
-            return redirect()->route("auctions.show", ["auction" => $auction])->with(["message" => "Nie możesz edytować nie swoich aukcji"]);
+            return redirect()->route("auctions.show", ["auction" => $auction])->with(["message" => "Nie możesz edytować cudzych aukcji"]);
         }
 
         $auction->load(["category", "model.brand", "owner"]);
@@ -91,7 +91,7 @@ class AuctionController extends Controller
     public function update(UpdateAuctionRequest $request, UpdateAuctionAction $updateAuctionAction, Auction $auction): RedirectResponse
     {
         if ($auction->owner->id !== auth()->id()) {
-            return redirect()->route("auctions.show", ["auction" => $auction])->with(["message" => "Nie możesz edytować nie swoich aukcji"]);
+            return redirect()->route("auctions.show", ["auction" => $auction])->with(["message" => "Nie możesz edytować cudzych aukcji"]);
         }
 
         $validated = $request->validated();
@@ -103,7 +103,7 @@ class AuctionController extends Controller
     public function finish(FinishAuctionAction $finishAuctionAction, Auction $auction): RedirectResponse
     {
         if ($auction->owner->id !== auth()->id()) {
-            return redirect()->route("auctions.show", ["auction" => $auction])->with(["message" => "Nie możesz edytować nie swoich aukcji"]);
+            return redirect()->route("auctions.show", ["auction" => $auction])->with(["message" => "Nie możesz edytować cudzych aukcji"]);
         }
 
         $auction = $finishAuctionAction->execute($auction);
@@ -114,7 +114,7 @@ class AuctionController extends Controller
     public function cancel(CancelAuctionAction $cancelAuctionAction, Auction $auction): RedirectResponse
     {
         if ($auction->owner->id !== auth()->id()) {
-            return redirect()->route("auctions.show", ["auction" => $auction])->with(["message" => "Nie możesz edytować nie swoich aukcji"]);
+            return redirect()->route("auctions.show", ["auction" => $auction])->with(["message" => "Nie możesz edytować cudzych aukcji"]);
         }
 
         $auction = $cancelAuctionAction->execute($auction);

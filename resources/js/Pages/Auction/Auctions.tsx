@@ -130,7 +130,7 @@ export function Auctions({auctions, brands, categories, models}: Props) {
   const rows = useMemo(() => is2XL ? 4 : isLG ? 3 : isSM ? 2 : 1, [isSM, isLG, is2XL]);
 
   const brandModels = useMemo(() => models.filter(model => model.brand.id === selectedBrand), [models, selectedBrand])
-  const tranlsateResult = usePlurals("wynik", "wyniki", "wyników");
+  const translateResult  = usePlurals("wynik", "wyniki", "wyników");
 
 
   function asNumber(data: number | string | undefined): number | undefined {
@@ -320,7 +320,7 @@ export function Auctions({auctions, brands, categories, models}: Props) {
         <div className='mt-4 flex flex-wrap gap-4 w-full'>
           <div className='w-full flex justify-between items-center'>
             <div className='w-min whitespace-nowrap'>
-              <Tag>{auctions.meta.total} {tranlsateResult(auctions.meta.total)}</Tag>
+              <Tag>{auctions.meta.total} {translateResult (auctions.meta.total)}</Tag>
             </div>
 
             <div className='flex gap-2 items-center'>

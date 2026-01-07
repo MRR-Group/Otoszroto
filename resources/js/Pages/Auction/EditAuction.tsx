@@ -222,6 +222,7 @@ export function EditAuction({ errors, auction, categories, brands, models }: Pro
             <NumberInput
               name="price"
               placeholder="Cena"
+              float
               value={form.data.price}
               onChange={(value) => {
                 form.clearErrors("price");
