@@ -2,10 +2,7 @@
 
 declare(strict_types=1);
 
-use Illuminate\Auth\Middleware\Authorize;
 use Illuminate\Support\Facades\Route;
-use Inertia\Response;
-use Otoszroto\Enums\Permission;
 use Otoszroto\Http\Controllers\Auction\AuctionController;
 use Otoszroto\Http\Controllers\Auction\ReportController;
 use Otoszroto\Http\Controllers\Auth\ForgotPasswordController;
@@ -15,8 +12,9 @@ use Otoszroto\Http\Controllers\Auth\RegisterController;
 use Otoszroto\Http\Controllers\Auth\ResetPasswordController;
 use Otoszroto\Http\Controllers\Seller\SellerController;
 use Otoszroto\Http\Controllers\User\ChangePasswordController;
+use Otoszroto\Http\Controllers\Welcome\WelcomeController;
 
-Route::get("/", fn(): Response => inertia("Welcome"))->name("home");
+Route::get("/", [WelcomeController::class, "index"])->name("home");
 
 Route::get("/register", [RegisterController::class, "create"])->name("auth.register.create");
 Route::post("/register", [RegisterController::class, "store"])->name("auth.register.store");
