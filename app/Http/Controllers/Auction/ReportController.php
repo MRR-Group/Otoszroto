@@ -26,7 +26,16 @@ class ReportController extends Controller
     public function store(CreateReportRequest $request, CreateReportAction $createReportAction, Auction $auction): RedirectResponse
     {
         $user = $request->user();
-        $this->authorize("report", $auction);
+        $alreadyReported = $auction->reports()->where("reporter_id", $user->id)->exists();
+
+        if ($user->id === $auction->owner_id) {
+            return redirect()->route("auctions.show", ["auction" => $auction])->with(["message" => "Nie można zgłosić własnej aukcji."]);
+        }
+
+        if ($alreadyReported) {
+            return redirect()->route("auctions.show", ["auction" => $auction])->with(["message" => "Aukcja została już przez Ciebie zgłoszona."]);
+        }
+
         $validated = $request->validated();
         $createReportAction->execute($user, $auction, $validated);
 

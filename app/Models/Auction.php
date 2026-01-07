@@ -19,7 +19,7 @@ use Orchid\Metrics\Chartable;
  * @property int $id
  * @property string $name
  * @property string $description
- * @property string $photo_url
+ * @property string $photo
  * @property string $city
  * @property float $price
  * @property int $owner_id
@@ -42,7 +42,6 @@ class Auction extends Model
     protected $fillable = [
         "name",
         "description",
-        "photo_url",
         "price",
         "city",
         "owner_id",
@@ -50,7 +49,7 @@ class Auction extends Model
         "category_id",
         "condition",
         "auction_state",
-    ];
+    ];    
     protected $casts = [
         "condition" => Condition::class,
         "auction_state" => AuctionState::class,

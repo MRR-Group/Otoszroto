@@ -1,43 +1,291 @@
-import React from 'react';
-import {Form} from "@inertiajs/react";
+import { Form, useForm } from "@inertiajs/react";
+import { Title } from '@/Components/Title';
+import { Panel } from '@/Components/Panel';
+import { Text } from '@/Components/Text';
+import { Input } from '@/Components/Input';
+import { Category } from "@/Types/category";
+import { Brand } from "@/Types/brand";
+import { Model } from "@/Types/model";
+import React, { useMemo, useState } from "react";
+import { NavButton } from "@/Components/Button";
+import { ButtonPrimary } from "@/Components/ButtonPrimary";
+import { Select } from "@/Components/Select";
+import { NumberInput } from "@/Components/NumberInput";
+import { ImageInput } from "@/Components/ImageInput";
 import { Auction } from "@/Types/auction";
+import { MultilineInput } from "@/Components/MultilineInput";
 
 type Props = {
-    errors: any;
-    auction: Auction;
+  auction: Auction,
+  categories: Category[];
+  brands: Brand[];
+  models: Model[];
+  errors: Partial<{
+    name: string;
+    description: string;
+    city: string;
+    model_id: string;
+    category_id: string;
+    condition: string;
+    price: string;
+    photo: string;
+  }>;
 }
 
-export function EditAuction({errors,auction}: Props) {
-    return (
-        <>
-            <h1 className={"text-lg font-semibold"}>Edit auction</h1>
-            <Form
-                action={`/auctions/${auction.id}`}
-                method="PATCH"
-            >
-                <input type="text" placeholder="Name" name="name" defaultValue={auction.name}/>
-                {errors?.name && <p>{errors.name}</p>}
+const Conditions = [
+  {
+    value: "fabrycznie nowy",
+    text: "Fabrycznie nowy"
+  },
+  {
+    value: "prawie nowy",
+    text: "Prawie nowy"
+  },
+  {
+    value: "w dobrym stanie",
+    text: "W dobrym stanie"
+  },
+  {
+    value: "w zadawalającym stanie",
+    text: "W zadawalającym stanie"
+  },
+  {
+    value: "uszkodzony",
+    text: "Uszkodzony"
+  },
+  {
+    value: "na części",
+    text: "Na części"
+  },
+]
 
-                <input type="text" placeholder="Description" name="description" defaultValue={auction.description}/>
-                {errors?.description && <p>{errors.description}</p>}
+export function EditAuction({ errors, auction, categories, brands, models }: Props) {
+  const form = useForm({
+    name: auction.name,
+    description: auction.description,
+    city: auction.city,
+    price: auction.price,
+    model_id: auction.model.id as (number | undefined),
+    category_id: auction.category.id as (number | undefined),
+    condition: auction.condition as (string | undefined),
+    photo: auction.photo as (File | string | undefined),
+  });
 
-                <input type="number" placeholder="Price" name="price" defaultValue={auction.price}/>
-                {errors?.price && <p>{errors.price}</p>}
+  const [selectedBrand, setSelectedBrand] = useState(asNumber(auction.model.brand.id));
+  const brandModels = useMemo(() => models.filter(model => model.brand.id === selectedBrand), [models, selectedBrand])
 
-                <input type="number" placeholder="Model id" name="model_id" defaultValue={auction.model_id}/>
-                {errors?.model_id && <p>{errors.model_id}</p>}
+  function asNumber(data: number | string | undefined): number | undefined {
+    if (data === undefined) {
+      return undefined;
+    }
 
-                <input type="number" placeholder="Category id" name="category_id" defaultValue={auction.category_id}/>
-                {errors?.category_id && <p>{errors.category_id}</p>}
+    if (typeof (data) === "number") {
+      return data;
+    }
 
-                <input type="number" placeholder="Condition" name="condition" defaultValue={auction.condition}/>
-                {errors?.condition && <p>{errors.condition}</p>}
+    return parseFloat(data);
+  }
 
-                <input type="number" placeholder="Auction State" name="auction_state" defaultValue={auction.auction_state}/>
-                {errors?.auction_state && <p>{errors.auction_state}</p>}
+  const submitDisabled = form.processing;
 
-                <input type="submit"></input>
-            </Form>
-        </>
-    );
+  const submit = (e: React.MouseEvent) => {
+    e.preventDefault();
+
+    if (submitDisabled) {
+      return;
+    }
+
+    form.patch(`/auctions/${auction.id}`);
+  };
+
+  return (
+    <div className='w-full p-8'>
+      <Panel className="w-full mx-auto max-w-4xl">
+        <Title type="h2">Edytuj aukcje</Title>
+        <Form action="/register" method="POST" className="flex flex-col gap-3">
+          <div className="flex flex-col gap-2">
+            <Text>Nazwa</Text>
+            <Input
+              name="name"
+              placeholder="Nazwa"
+              required
+              value={form.data.name}
+              onChange={(e) => {
+                form.clearErrors("name");
+                form.setData("name", e.target.value);
+              }}
+            />
+            {(errors?.name || form.errors.name) && (
+              <p className="text-danger text-sm">
+                {errors?.name ?? form.errors.name}
+              </p>
+            )}
+          </div>
+
+          <div className='flex flex-col gap-2'>
+            <Text>Kategoria</Text>
+            <Select
+              placeholder='Kategoria'
+              items={categories}
+              selected={form.data.category_id}
+              onChange={(category) => form.setData("category_id", category)}
+              onClear={() => form.setData("category_id", undefined)}
+              item={(item) => ({
+                value: item.id,
+                text: item.name,
+              })}
+              clearable
+            />
+            {(errors?.category_id || form.errors.category_id) && (
+              <p className="text-danger text-sm">
+                {errors?.category_id ?? form.errors.category_id}
+              </p>
+            )}
+          </div>
+
+          <div className='flex flex-col gap-2'>
+            <Text>Marka</Text>
+            <Select
+              placeholder='Marka'
+              items={brands}
+              selected={selectedBrand}
+              onChange={(brand) => { setSelectedBrand(brand); form.setData("model_id", undefined) }}
+              onClear={() => { setSelectedBrand(undefined); form.setData("model_id", undefined) }}
+              item={(item) => ({
+                value: item.id,
+                text: item.name,
+              })}
+              clearable
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <Text color='muted'>Model</Text>
+            <Select
+              placeholder='Model'
+              items={brandModels}
+              selected={form.data.model_id}
+              onChange={(model) => form.setData("model_id", model)}
+              onClear={() => form.setData("model_id", undefined)}
+              item={(item) => ({
+                value: item.id,
+                text: item.name,
+              })}
+              clearable
+            />
+            {(errors?.model_id || form.errors.model_id) && (
+              <p className="text-danger text-sm">
+                {errors?.model_id ?? form.errors.model_id}
+              </p>
+            )}
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <Text color='muted'>Stan</Text>
+            <Select
+              placeholder='Stan'
+              items={Conditions}
+              selected={form.data.condition}
+              onChange={(condition) => form.setData("condition", condition)}
+              onClear={() => form.setData("condition", undefined)}
+              item={(item) => item}
+              clearable
+            />
+            {(errors?.condition || form.errors.condition) && (
+              <p className="text-danger text-sm">
+                {errors?.condition ?? form.errors.condition}
+              </p>
+            )}
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <Text>Lokalizacja</Text>
+            <Input
+              name="city"
+              placeholder="Lokalizacja"
+              required
+              value={form.data.city}
+              onChange={(e) => {
+                form.clearErrors("city");
+                form.setData("city", e.target.value);
+              }}
+            />
+            {(errors?.city || form.errors.city) && (
+              <p className="text-danger text-sm">
+                {errors?.city ?? form.errors.city}
+              </p>
+            )}
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <Text>Cena</Text>
+            <NumberInput
+              name="price"
+              placeholder="Cena"
+              float
+              value={form.data.price}
+              onChange={(value) => {
+                form.clearErrors("price");
+                form.setData("price", value ?? 0);
+              }}
+            />
+            {(errors?.price || form.errors.price) && (
+              <p className="text-danger text-sm">
+                {errors?.price ?? form.errors.price}
+              </p>
+            )}
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <Text>Zdjęcie</Text>
+
+            <ImageInput
+              name="photo"
+              value={form.data.photo}
+              full
+              onChange={(file) => {
+                form.setData("photo", file ?? undefined);
+              }}
+            />
+
+            {(errors?.photo || form.errors.photo) && (
+              <p className="text-danger text-sm">
+                {errors?.photo ?? form.errors.photo}
+              </p>
+            )}
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <Text>Opis</Text>
+            <MultilineInput
+              name="description"
+              placeholder="Opis"
+              required
+              value={form.data.description}
+              onChange={(e) => {
+                form.clearErrors("description");
+                form.setData("description", e.target.value);
+              }}
+            />
+            {(errors?.description || form.errors.description) && (
+              <p className="text-danger text-sm">
+                {errors?.description ?? form.errors.description}
+              </p>
+            )}
+          </div>
+
+          <div className="flex justify-end items-center">
+            <div className="flex gap-2">
+              <NavButton href="/" text="Anuluj" disabled={form.processing} />
+              <ButtonPrimary
+                text="Zapisz"
+                loading={form.processing}
+                onClick={submit}
+              />
+            </div>
+          </div>
+        </Form>
+      </Panel>
+    </div>
+  );
 }

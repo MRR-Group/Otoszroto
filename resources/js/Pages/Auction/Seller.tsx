@@ -27,6 +27,21 @@ type Props = {
   models: Model[],
 }
 
+const AuctionStatus = [
+  {
+    value: "aktywna",
+    text: "Aktywna"
+  },
+  {
+    value: "zakończona",
+    text: "Zakończona"
+  },
+  {
+    value: "anulowana",
+    text: "Anulowana"
+  },
+]
+
 const Conditions = [
   {
     value: "fabrycznie nowy",
@@ -102,6 +117,7 @@ type QueryParams = {
   category?: number,
   brand?: number,
   model?: number,
+  status?: string,
   condition?: string,
   price_min?: number,
   price_max?: number,
@@ -109,9 +125,10 @@ type QueryParams = {
   page?: number,
 }
 
-export function Auctions({auctions, brands, categories, models}: Props) {
+export function Seller({auctions, brands, categories, models}: Props) {
   const { params, isNavigating, patchParams } = useSearchParams<QueryParams>({ only: ["auctions"] });
 
+  const [auctionState, setAuctionState] = useState(params.status);
   const [selectedCategory, setSelectedCategory] = useState(asNumber(params.category));
   const [selectedBrand, setSelectedBrand] = useState(asNumber(params.brand));
   const [selectedModel, setSelectedModel] = useState(asNumber(params.model));
@@ -130,8 +147,8 @@ export function Auctions({auctions, brands, categories, models}: Props) {
   const rows = useMemo(() => is2XL ? 4 : isLG ? 3 : isSM ? 2 : 1, [isSM, isLG, is2XL]);
 
   const brandModels = useMemo(() => models.filter(model => model.brand.id === selectedBrand), [models, selectedBrand])
-  const translateResult  = usePlurals("wynik", "wyniki", "wyników");
 
+  const translateResult  = usePlurals("wynik", "wyniki", "wyników");
 
   function asNumber(data: number | string | undefined): number | undefined {
     if (data === undefined) {
@@ -151,6 +168,7 @@ export function Auctions({auctions, brands, categories, models}: Props) {
   }
 
   function clearForm() {
+    setAuctionState(undefined);
     setSelectedCategory(undefined);
     setSelectedBrand(undefined);
     setSelectedModel(undefined);
@@ -178,6 +196,7 @@ export function Auctions({auctions, brands, categories, models}: Props) {
       category: selectedCategory,
       brand: selectedBrand,
       model: selectedModel,
+      status: auctionState,
       condition: selectedState,
       price_min: priceMin,
       price_max: priceMax,
@@ -212,7 +231,7 @@ export function Auctions({auctions, brands, categories, models}: Props) {
 
   return (
     <div className='w-full p-4 mt-5 mx-auto md:px-10'>
-      <Title type='h2'>Przeglądaj części</Title>
+      <Title type='h2'>Przeglądaj twoje oferty</Title>
       <div className="w-full h-min flex flex-col md:flex-row gap-4">
         <Panel className="w-full md:max-w-80 h-min">
           <Text color="muted">Kategorie</Text>
@@ -236,6 +255,19 @@ export function Auctions({auctions, brands, categories, models}: Props) {
               placeholder="np. alternator" 
               value={search} 
               onChange={(e) => setSearch(e.target.value)} 
+            />
+          </div>
+
+          <div className='flex flex-col gap-2 mt-4'>
+            <Text color='muted'>Status Aukcji</Text>
+            <Select
+              placeholder='Dowolny'
+              items={AuctionStatus}
+              selected={auctionState}
+              onChange={setAuctionState}
+              onClear={() => setAuctionState(undefined)}
+              item={(item) => item}
+              clearable
             />
           </div>
 
@@ -353,7 +385,7 @@ export function Auctions({auctions, brands, categories, models}: Props) {
           
           <div className="w-full grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 min-h-10/12">
             {auctions.data.flatMap(auctions => auctions).map(auction => (
-              <AuctionView key={auction.id} singleMode={auctions.data.flatMap(auctions => auctions).length <= rows} data={auction} onClick={() => router.visit(`/auctions/${auction.id}`)} />
+              <AuctionView key={auction.id} sellerPage singleMode={auctions.data.flatMap(auctions => auctions).length <= rows} data={auction} onClick={() => router.visit(`/auctions/${auction.id}`)} />
             ))}
           </div>
           

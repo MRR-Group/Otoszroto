@@ -34,14 +34,34 @@ class AuctionController extends Controller
 {
     public function create(): Response
     {
-        return Inertia::render("Auction/CreateAuction", []);
+        $categories = Category::query()->get();
+        $models = CarModel::query()->with("brand")->get();
+        $brands = Brand::query()->get();
+
+        return Inertia::render("Auction/CreateAuction", [
+            "categories" => CategoryResource::collection($categories)->resolve(),
+            "models" => ModelResource::collection($models)->resolve(),
+            "brands" => BrandResource::collection($brands)->resolve(),
+        ]);
     }
 
-    public function edit(Auction $auction): Response
+    public function edit(Auction $auction): Response | RedirectResponse
     {
-        $this->authorize("update", $auction);
+        if ($auction->owner->id !== auth()->id()) {
+            return redirect()->route("auctions.show", ["auction" => $auction])->with(["message" => "Nie możesz edytować cudzych aukcji"]);
+        }
 
-        return Inertia::render("Auction/EditAuction", ["auction" => $auction]);
+        $auction->load(["category", "model.brand", "owner"]);
+        $categories = Category::query()->get();
+        $models = CarModel::query()->with("brand")->get();
+        $brands = Brand::query()->get();
+
+        return Inertia::render("Auction/EditAuction", [
+            "auction" => AuctionResource::make($auction)->resolve(),
+            "categories" => CategoryResource::collection($categories)->resolve(),
+            "models" => ModelResource::collection($models)->resolve(),
+            "brands" => BrandResource::collection($brands)->resolve(),
+        ]);
     }
 
     public function store(CreateAuctionRequest $request, CreateAuctionAction $createAuctionAction, AddImageToAuctionAction $addImageToAuctionAction): RedirectResponse
@@ -56,7 +76,7 @@ class AuctionController extends Controller
             $addImageToAuctionAction->execute($auction, $photo);
         }
 
-        return redirect()->route("auctions.create")->with(["message" => "Aukcja została utworzona."]);
+        return redirect()->route("auctions.show", ["auction" => $auction])->with(["message" => "Aukcja została utworzona."]);
     }
 
     public function show(Auction $auction): Response
@@ -70,16 +90,22 @@ class AuctionController extends Controller
 
     public function update(UpdateAuctionRequest $request, UpdateAuctionAction $updateAuctionAction, Auction $auction): RedirectResponse
     {
-        $this->authorize("update", $auction);
+        if ($auction->owner->id !== auth()->id()) {
+            return redirect()->route("auctions.show", ["auction" => $auction])->with(["message" => "Nie możesz edytować cudzych aukcji"]);
+        }
+
         $validated = $request->validated();
         $auction = $updateAuctionAction->execute($auction, $validated);
 
-        return redirect()->route("auctions.edit", ["auction" => $auction])->with(["message" => "Aukcja została edytowana."]);
+        return redirect()->route("auctions.show", ["auction" => $auction])->with(["message" => "Aukcja została edytowana."]);
     }
 
     public function finish(FinishAuctionAction $finishAuctionAction, Auction $auction): RedirectResponse
     {
-        $this->authorize("update", $auction);
+        if ($auction->owner->id !== auth()->id()) {
+            return redirect()->route("auctions.show", ["auction" => $auction])->with(["message" => "Nie możesz edytować cudzych aukcji"]);
+        }
+
         $auction = $finishAuctionAction->execute($auction);
 
         return redirect()->route("auctions.show", ["auction" => $auction])->with(["message" => "Aukcja została zakończona."]);
@@ -87,7 +113,10 @@ class AuctionController extends Controller
 
     public function cancel(CancelAuctionAction $cancelAuctionAction, Auction $auction): RedirectResponse
     {
-        $this->authorize("update", $auction);
+        if ($auction->owner->id !== auth()->id()) {
+            return redirect()->route("auctions.show", ["auction" => $auction])->with(["message" => "Nie możesz edytować cudzych aukcji"]);
+        }
+
         $auction = $cancelAuctionAction->execute($auction);
 
         return redirect()->route("auctions.show", ["auction" => $auction])->with(["message" => "Aukcja została anulowana."]);
