@@ -13,6 +13,7 @@ import { Select } from "@/Components/Select";
 import { NumberInput } from "@/Components/NumberInput";
 import { ImageInput } from "@/Components/ImageInput";
 import { Auction } from "@/Types/auction";
+import { MultilineInput } from "@/Components/MultilineInput";
 
 type Props = {
   auction: Auction,
@@ -255,7 +256,7 @@ export function EditAuction({ errors, auction, categories, brands, models }: Pro
 
           <div className="flex flex-col gap-2">
             <Text>Opis</Text>
-            <Input
+            <MultilineInput
               name="description"
               placeholder="Opis"
               required

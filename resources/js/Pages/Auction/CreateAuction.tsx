@@ -12,6 +12,7 @@ import { ButtonPrimary } from "@/Components/ButtonPrimary";
 import { Select } from "@/Components/Select";
 import { NumberInput } from "@/Components/NumberInput";
 import { ImageInput } from "@/Components/ImageInput";
+import { MultilineInput } from "@/Components/MultilineInput";
 
 type Props = {
   categories: Category[];
@@ -105,7 +106,6 @@ export function CreateAuction({ errors, categories, brands, models }: Props) {
             <Input
               name="name"
               placeholder="Nazwa"
-              required
               value={form.data.name}
               onChange={(e) => {
                 form.clearErrors("name");
@@ -200,7 +200,6 @@ export function CreateAuction({ errors, categories, brands, models }: Props) {
             <Input
               name="city"
               placeholder="Lokalizacja"
-              required
               value={form.data.city}
               onChange={(e) => {
                 form.clearErrors("city");
@@ -253,10 +252,9 @@ export function CreateAuction({ errors, categories, brands, models }: Props) {
 
           <div className="flex flex-col gap-2">
             <Text>Opis</Text>
-            <Input
+            <MultilineInput
               name="description"
               placeholder="Opis"
-              required
               value={form.data.description}
               onChange={(e) => {
                 form.clearErrors("description");
