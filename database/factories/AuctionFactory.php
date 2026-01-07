@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Enums\AuctionState;
+use App\Enums\Condition;
+use App\Models\Auction;
+use App\Models\CarModel;
+use App\Models\Category;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Otoszroto\Enums\AuctionState;
-use Otoszroto\Enums\Condition;
-use Otoszroto\Models\Auction;
-use Otoszroto\Models\CarModel;
-use Otoszroto\Models\Category;
-use Otoszroto\Models\User;
 
 /**
  * @extends Factory<Auction>

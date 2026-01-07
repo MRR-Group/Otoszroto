@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Http\Controllers\Seller;
+namespace App\Http\Controllers\Seller;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
-use Otoszroto\Helpers\SortHelper;
-use Otoszroto\Http\Controllers\Controller;
-use Otoszroto\Http\Resources\AuctionResource;
-use Otoszroto\Http\Resources\BrandResource;
-use Otoszroto\Http\Resources\CategoryResource;
-use Otoszroto\Http\Resources\ModelResource;
-use Otoszroto\Models\Auction;
-use Otoszroto\Models\Brand;
-use Otoszroto\Models\CarModel;
-use Otoszroto\Models\Category;
+use App\Helpers\SortHelper;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\AuctionResource;
+use App\Http\Resources\BrandResource;
+use App\Http\Resources\CategoryResource;
+use App\Http\Resources\ModelResource;
+use App\Models\Auction;
+use App\Models\Brand;
+use App\Models\CarModel;
+use App\Models\Category;
 
 class SellerController extends Controller
 {

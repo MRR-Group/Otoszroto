@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Http\Controllers\User;
+namespace App\Http\Controllers\User;
 
+use App\Actions\Auth\ChangePasswordAction;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\ChangePasswordRequest;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
-use Otoszroto\Actions\Auth\ChangePasswordAction;
-use Otoszroto\Http\Controllers\Controller;
-use Otoszroto\Http\Requests\Auth\ChangePasswordRequest;
 
 class ChangePasswordController extends Controller
 {

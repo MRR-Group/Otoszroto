@@ -2,17 +2,18 @@
 
 declare(strict_types=1);
 
+use App\Enums\Permission;
+use App\Http\Controllers\Auction\AuctionController;
+use App\Http\Controllers\Auction\ReportController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\User\ChangePasswordController;
+use Illuminate\Auth\Middleware\Authorize;
 use Illuminate\Support\Facades\Route;
-use Otoszroto\Http\Controllers\Auction\AuctionController;
-use Otoszroto\Http\Controllers\Auction\ReportController;
-use Otoszroto\Http\Controllers\Auth\ForgotPasswordController;
-use Otoszroto\Http\Controllers\Auth\LoginController;
-use Otoszroto\Http\Controllers\Auth\LogoutController;
-use Otoszroto\Http\Controllers\Auth\RegisterController;
-use Otoszroto\Http\Controllers\Auth\ResetPasswordController;
-use Otoszroto\Http\Controllers\Seller\SellerController;
-use Otoszroto\Http\Controllers\User\ChangePasswordController;
-use Otoszroto\Http\Controllers\Welcome\WelcomeController;
+use Inertia\Response;
 
 Route::get("/", [WelcomeController::class, "index"])->name("home");
 

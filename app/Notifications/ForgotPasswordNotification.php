@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Notifications;
+namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Helpers;
+namespace App\Helpers;
 
 use Identicon\Identicon;
 use Illuminate\Support\Facades\Storage;

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Models\Auction;
 use Illuminate\Database\Seeder;
-use Otoszroto\Models\Auction;
 
 class AuctionSeeder extends Seeder
 {

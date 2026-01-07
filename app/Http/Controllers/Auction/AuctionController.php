@@ -2,33 +2,33 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Http\Controllers\Auction;
+namespace App\Http\Controllers\Auction;
 
+use App\Actions\Auction\AddImageToAuctionAction;
+use App\Actions\Auction\CancelAuctionAction;
+use App\Actions\Auction\CreateAuctionAction;
+use App\Actions\Auction\FinishAuctionAction;
+use App\Actions\Auction\GetAuctionImageAction;
+use App\Actions\Auction\GetDefaultAuctionImageAction;
+use App\Actions\Auction\UpdateAuctionAction;
+use App\Enums\AuctionState;
+use App\Helpers\SortHelper;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Auction\CreateAuctionRequest;
+use App\Http\Requests\Auction\UpdateAuctionRequest;
+use App\Http\Resources\AuctionResource;
+use App\Http\Resources\BrandResource;
+use App\Http\Resources\CategoryResource;
+use App\Http\Resources\ModelResource;
+use App\Models\Auction;
+use App\Models\Brand;
+use App\Models\CarModel;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
-use Otoszroto\Actions\Auction\AddImageToAuctionAction;
-use Otoszroto\Actions\Auction\CancelAuctionAction;
-use Otoszroto\Actions\Auction\CreateAuctionAction;
-use Otoszroto\Actions\Auction\FinishAuctionAction;
-use Otoszroto\Actions\Auction\GetAuctionImageAction;
-use Otoszroto\Actions\Auction\GetDefaultAuctionImageAction;
-use Otoszroto\Actions\Auction\UpdateAuctionAction;
-use Otoszroto\Enums\AuctionState;
-use Otoszroto\Helpers\SortHelper;
-use Otoszroto\Http\Controllers\Controller;
-use Otoszroto\Http\Requests\Auction\CreateAuctionRequest;
-use Otoszroto\Http\Requests\Auction\UpdateAuctionRequest;
-use Otoszroto\Http\Resources\AuctionResource;
-use Otoszroto\Http\Resources\BrandResource;
-use Otoszroto\Http\Resources\CategoryResource;
-use Otoszroto\Http\Resources\ModelResource;
-use Otoszroto\Models\Auction;
-use Otoszroto\Models\Brand;
-use Otoszroto\Models\CarModel;
-use Otoszroto\Models\Category;
 
 class AuctionController extends Controller
 {

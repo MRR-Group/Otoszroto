@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use Otoszroto\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,8 +16,6 @@ class DatabaseSeeder extends Seeder
             BrandAndModelsSeeder::class,
             CategorySeeder::class,
             AuctionSeeder::class,
-            PermissionsSeeder::class,
-            RolesSeeder::class,
             ReportSeeder::class,
         ]);
 

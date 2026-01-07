@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Http\Controllers\Welcome;
+namespace App\Http\Controllers\Welcome;
 
 use Inertia\Inertia;
 use Inertia\Response;
-use Otoszroto\Enums\AuctionState;
-use Otoszroto\Http\Controllers\Controller;
-use Otoszroto\Http\Resources\AuctionResource;
-use Otoszroto\Models\Auction;
+use App\Enums\AuctionState;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\AuctionResource;
+use App\Models\Auction;
 
 class WelcomeController extends Controller
 {

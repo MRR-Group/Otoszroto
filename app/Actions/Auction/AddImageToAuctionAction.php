@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Actions\Auction;
+namespace App\Actions\Auction;
 
+use App\Models\Auction;
 use Illuminate\Http\UploadedFile;
-use Otoszroto\Models\Auction;
 
 class AddImageToAuctionAction
 {

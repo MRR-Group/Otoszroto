@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Otoszroto\Models\User;
+use App\Models\User;
 
 return [
     "defaults" => [

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Actions\Auction;
+namespace App\Actions\Auction;
 
-use Otoszroto\Enums\AuctionState;
-use Otoszroto\Models\Auction;
-use Otoszroto\Models\User;
+use App\Enums\AuctionState;
+use App\Models\Auction;
+use App\Models\User;
 
 class CreateAuctionAction
 {

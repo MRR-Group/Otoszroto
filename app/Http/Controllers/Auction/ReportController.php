@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Otoszroto\Http\Controllers\Auction;
+namespace App\Http\Controllers\Auction;
 
+use App\Actions\Auction\CreateReportAction;
+use App\Actions\Auction\ResolveReportAction;
+use App\Helpers\SortHelper;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Auction\CreateReportRequest;
+use App\Http\Resources\ReportResource;
+use App\Models\Auction;
+use App\Models\Report;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
-use Otoszroto\Actions\Auction\CreateReportAction;
-use Otoszroto\Actions\Auction\ResolveReportAction;
-use Otoszroto\Helpers\SortHelper;
-use Otoszroto\Http\Controllers\Controller;
-use Otoszroto\Http\Requests\Auction\CreateReportRequest;
-use Otoszroto\Http\Resources\ReportResource;
-use Otoszroto\Models\Auction;
-use Otoszroto\Models\Report;
 
 class ReportController extends Controller
 {
