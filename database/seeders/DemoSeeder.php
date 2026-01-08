@@ -852,13 +852,12 @@ class DemoSeeder extends Seeder
             $auction->save();
 
             $images = $a["images"] ?? [$a["title"] . ".png"];
-            $first  = $images[0] ?? null;
+            $first = $images[0] ?? null;
 
             if ($first) {
                 $sourcePath = $seedImagesDir . DIRECTORY_SEPARATOR . $first;
 
                 if (!is_file($sourcePath)) {
-                    dd($sourcePath);
                     throw new RuntimeException("Demo image not found: {$sourcePath}");
                 }
 
