@@ -17,6 +17,8 @@ import { MinMaxInput } from "@/Components/MinMaxInput";
 import { AuctionView } from "@/Components/PageParts/AuctionView";
 import { PaginationNav } from "@/Components/PageParts/PaginationNav";
 import { router } from "@inertiajs/react";
+import { usePlurals } from "@/Utils/Plurals";
+import { useMediaQuery } from "@/Hooks/useMediaQuery";
 
 type Props = {
   auctions: Pagination<Auction[]>,
@@ -122,7 +124,14 @@ export function Auctions({auctions, brands, categories, models}: Props) {
   const [perPage, setPerPage] = useState(asNumber(params.per_page));
   const [page, setPage] = useState(asNumber(params.page));
 
+  const isSM = useMediaQuery('(width >= 40rem)');
+  const isLG = useMediaQuery('(width >= 64rem )');
+  const is2XL = useMediaQuery('(width >= 1536px)');
+  const rows = useMemo(() => is2XL ? 4 : isLG ? 3 : isSM ? 2 : 1, [isSM, isLG, is2XL]);
+
   const brandModels = useMemo(() => models.filter(model => model.brand.id === selectedBrand), [models, selectedBrand])
+  const translateResult  = usePlurals("wynik", "wyniki", "wyników");
+
 
   function asNumber(data: number | string | undefined): number | undefined {
     if (data === undefined) {
@@ -311,7 +320,7 @@ export function Auctions({auctions, brands, categories, models}: Props) {
         <div className='mt-4 flex flex-wrap gap-4 w-full'>
           <div className='w-full flex justify-between items-center'>
             <div className='w-min whitespace-nowrap'>
-              <Tag>{auctions.meta.total} wyników</Tag>
+              <Tag>{auctions.meta.total} {translateResult (auctions.meta.total)}</Tag>
             </div>
 
             <div className='flex gap-2 items-center'>
@@ -344,7 +353,7 @@ export function Auctions({auctions, brands, categories, models}: Props) {
           
           <div className="w-full grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 min-h-10/12">
             {auctions.data.flatMap(auctions => auctions).map(auction => (
-              <AuctionView key={auction.id} singleMode={auctions.data.flatMap(auctions => auctions).length === 1} data={auction} onClick={() => router.visit(`/auctions/${auction.id}`)} />
+              <AuctionView key={auction.id} singleMode={auctions.data.flatMap(auctions => auctions).length <= rows} data={auction} onClick={() => router.visit(`/auctions/${auction.id}`)} />
             ))}
           </div>
           

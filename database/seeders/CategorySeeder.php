@@ -13,6 +13,7 @@ class CategorySeeder extends Seeder
     {
         $categoryArray = [
             "Silnik",
+            "Drzwi",
             "Układ paliwowy",
             "Układ chłodzenia",
             "Układ wydechowy",
@@ -28,6 +29,7 @@ class CategorySeeder extends Seeder
             "Klimatyzacja",
             "Opony i koła",
             "Filtry",
+            "Mosty",
             "Płyny i oleje",
             "Akcesoria",
         ];

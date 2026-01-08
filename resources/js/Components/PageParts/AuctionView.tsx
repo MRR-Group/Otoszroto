@@ -10,9 +10,10 @@ type Props = {
   fullView?: boolean,
   onClick?: () => void,
   singleMode?: boolean,
+  sellerPage?: boolean,
 }
 
-export const AuctionView = ({ data, fullView, singleMode, onClick }: Props) => {
+export const AuctionView = ({ data, fullView, singleMode, sellerPage, onClick }: Props) => {
   const [showPhone, setShowPhone] = useState(false);
 
   return (
@@ -38,8 +39,14 @@ export const AuctionView = ({ data, fullView, singleMode, onClick }: Props) => {
           </Text>
         </div>
 
-        <div className="text-transparent bg-clip-text font-extrabold bg-gradient-to-r from-primary to-accent whitespace-nowrap">
+        <div className="text-transparent bg-clip-text font-extrabold bg-gradient-to-r from-primary to-accent whitespace-nowrap text-end">
           {data.price.toFixed(2)} zł
+
+          {sellerPage && (
+            <div>
+              {data.auctionState}
+            </div>
+          )}
         </div>
       </div>
 
@@ -54,7 +61,6 @@ export const AuctionView = ({ data, fullView, singleMode, onClick }: Props) => {
             <div className="text-primary font-bold select-none transition-colors hover:text-accent cursor-pointer" onClick={() => setShowPhone(false)}>Schowaj</div>
           </div>
       ))}
-
       </div>
     </Panel>
   );

@@ -15,8 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             BrandAndModelsSeeder::class,
             CategorySeeder::class,
-            AuctionSeeder::class,
-            ReportSeeder::class,
+            DemoSeeder::class,
         ]);
 
         if (!User::where("email", "example@mrrgroup.pl")->exists()) {

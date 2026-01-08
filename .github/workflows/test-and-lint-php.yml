@@ -65,4 +65,6 @@ jobs:
       - name: Execute tests
         run: |
           cp .env.ci .env
+          php artisan key:generate --force
+          php artisan migrate --force
           php artisan test --colors=always

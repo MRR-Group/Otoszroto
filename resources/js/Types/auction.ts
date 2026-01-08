@@ -14,6 +14,8 @@ export type Auction = {
     category: Category;
     condition: string;
     auctionState: string;
+    wasReported: boolean;
+    isOwner: boolean;
     createdAt: string,
     updatedAt: string,
 }

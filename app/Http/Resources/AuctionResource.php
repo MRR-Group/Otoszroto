@@ -31,6 +31,7 @@ class AuctionResource extends JsonResource
             "wasReported" => auth()->check()
                 ? $this->reports->contains("reporter_id", auth()->id())
                 : false,
+            "isOwner" => auth()->check() ? $this->owner->id === auth()->id() : false,
         ];
     }
 }

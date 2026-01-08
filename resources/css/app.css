@@ -25,3 +25,8 @@
 body {
   background-color: #0b0d10;
 }
+
+@keyframes toast-progress {
+  from { transform: scaleX(1); transform-origin: left; }
+  to   { transform: scaleX(0); transform-origin: left; }
+}
