@@ -7,65 +7,65 @@ namespace Tests\Feature\Http\Controllers\Auth;
 use App\Actions\Auth\ResetPasswordAction;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Inertia\Testing\AssertableInertia as Assert;
-use Mockery;
 use Tests\TestCase;
 
 class ResetPasswordControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_reset_password_page_renders(): void
+    public function testResetPasswordPageRenders(): void
     {
-        $response = $this->get(route('auth.resetPassword.create'));
+        $response = $this->get(route("auth.resetPassword.create"));
 
         $response->assertOk();
 
-        $response->assertInertia(fn (Assert $page) => $page
-            ->component('Auth/ResetPassword')
+        $response->assertInertia(
+            fn(Assert $page) => $page
+                ->component("Auth/ResetPassword"),
         );
     }
 
-    public function test_password_is_reset_successfully(): void
+    public function testPasswordIsResetSuccessfully(): void
     {
         $this->mock(ResetPasswordAction::class, function ($mock): void {
-            $mock->shouldReceive('execute')
+            $mock->shouldReceive("execute")
                 ->once()
                 ->andReturn(true);
         });
 
         $payload = [
-            'token' => 'valid-token',
-            'email' => 'jan@example.com',
-            'password' => 'password123',
-            'password_confirmation' => 'password123',
+            "token" => "valid-token",
+            "email" => "jan@example.com",
+            "password" => "password123",
+            "password_confirmation" => "password123",
         ];
 
-        $response = $this->post(route('auth.resetPassword.store'), $payload);
+        $response = $this->post(route("auth.resetPassword.store"), $payload);
 
-        $response->assertRedirect(route('login'));
-        $response->assertSessionHas('message', 'Your password has been reset.');
+        $response->assertRedirect(route("login"));
+        $response->assertSessionHas("message", "Your password has been reset.");
     }
 
-    public function test_password_reset_fails_with_invalid_token(): void
+    public function testPasswordResetFailsWithInvalidToken(): void
     {
         $this->mock(ResetPasswordAction::class, function ($mock): void {
-            $mock->shouldReceive('execute')
+            $mock->shouldReceive("execute")
                 ->once()
                 ->andReturn(false);
         });
 
         $payload = [
-            'token' => 'invalid-token',
-            'email' => 'jan@example.com',
-            'password' => 'password123',
-            'password_confirmation' => 'password123',
+            "token" => "invalid-token",
+            "email" => "jan@example.com",
+            "password" => "password123",
+            "password_confirmation" => "password123",
         ];
 
-        $response = $this->from(route('auth.resetPassword.create'))
-            ->post(route('auth.resetPassword.store'), $payload);
+        $response = $this->from(route("auth.resetPassword.create"))
+            ->post(route("auth.resetPassword.store"), $payload);
 
-        $response->assertRedirect(route('auth.resetPassword.create'));
-        $response->assertSessionHas('message', 'Reset token has expired or is invalid.');
-        $response->assertSessionHasInput(['email']);
+        $response->assertRedirect(route("auth.resetPassword.create"));
+        $response->assertSessionHas("message", "Reset token has expired or is invalid.");
+        $response->assertSessionHasInput(["email"]);
     }
 }

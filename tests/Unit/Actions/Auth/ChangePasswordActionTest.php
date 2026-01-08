@@ -14,37 +14,37 @@ class ChangePasswordActionTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_returns_false_when_current_password_is_invalid(): void
+    public function testItReturnsFalseWhenCurrentPasswordIsInvalid(): void
     {
         $user = User::query()->create([
-            'firstname' => 'Jan',
-            'surname' => 'Kowalski',
-            'phone' => '123123123',
-            'email' => 'jan@example.com',
-            'password' => 'password123',
+            "firstname" => "Jan",
+            "surname" => "Kowalski",
+            "phone" => "123123123",
+            "email" => "jan@example.com",
+            "password" => "password123",
         ]);
 
         $action = new ChangePasswordAction();
-        $result = $action->execute($user, 'wrong-password', 'newpassword123');
+        $result = $action->execute($user, "wrong-password", "newpassword123");
 
         $this->assertFalse($result);
-        $this->assertTrue(Hash::check('password123', $user->password));
+        $this->assertTrue(Hash::check("password123", $user->password));
     }
 
-    public function test_it_updates_password_and_returns_true_when_current_password_is_valid(): void
+    public function testItUpdatesPasswordAndReturnsTrueWhenCurrentPasswordIsValid(): void
     {
         $user = User::query()->create([
-            'firstname' => 'Jan',
-            'surname' => 'Kowalski',
-            'phone' => '123123123',
-            'email' => 'jan@example.com',
-            'password' => 'password123',
+            "firstname" => "Jan",
+            "surname" => "Kowalski",
+            "phone" => "123123123",
+            "email" => "jan@example.com",
+            "password" => "password123",
         ]);
 
         $action = new ChangePasswordAction();
-        $result = $action->execute($user, 'password123', 'newpassword123');
+        $result = $action->execute($user, "password123", "newpassword123");
 
         $this->assertTrue($result);
-        $this->assertTrue(Hash::check('newpassword123', $user->fresh()->password));
+        $this->assertTrue(Hash::check("newpassword123", $user->fresh()->password));
     }
 }

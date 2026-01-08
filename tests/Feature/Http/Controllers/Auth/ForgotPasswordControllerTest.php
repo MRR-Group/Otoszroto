@@ -16,60 +16,59 @@ class ForgotPasswordControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_forgot_password_page_renders(): void
+    public function testForgotPasswordPageRenders(): void
     {
-        $response = $this->get(route('auth.forgotPassword.create'));
+        $response = $this->get(route("auth.forgotPassword.create"));
 
         $response->assertOk();
 
-        $response->assertInertia(fn (Assert $page) => $page
-            ->component('Auth/ForgotPassword')
+        $response->assertInertia(
+            fn(Assert $page) => $page
+                ->component("Auth/ForgotPassword"),
         );
     }
 
-    public function test_it_redirects_and_does_not_send_notification_when_user_does_not_exist(): void
+    public function testItRedirectsAndDoesNotSendNotificationWhenUserDoesNotExist(): void
     {
         Notification::fake();
 
         $this->mock(GenerateResetCodeAction::class, function ($mock): void {
-            $mock->shouldReceive('execute')->once()->andReturn('123456');
+            $mock->shouldReceive("execute")->once()->andReturn("123456");
         });
 
-        $response = $this->post(route('auth.forgotPassword.store'), [
-            'email' => 'missing@example.com',
+        $response = $this->post(route("auth.forgotPassword.store"), [
+            "email" => "missing@example.com",
         ]);
 
-        $response->assertRedirect(route('auth.resetPassword.create'));
-        $response->assertSessionHas('message', 'If your email exists, we have sent you a code to reset your password.');
+        $response->assertRedirect(route("auth.resetPassword.create"));
+        $response->assertSessionHas("message", "If your email exists, we have sent you a code to reset your password.");
 
         Notification::assertNothingSent();
     }
 
-    public function test_it_sends_notification_when_user_exists(): void
+    public function testItSendsNotificationWhenUserExists(): void
     {
         Notification::fake();
 
         $user = User::query()->create([
-            'firstname' => 'Jan',
-            'surname' => 'Kowalski',
-            'phone' => '123123123',
-            'email' => 'jan@example.com',
-            'password' => 'password123',
+            "firstname" => "Jan",
+            "surname" => "Kowalski",
+            "phone" => "123123123",
+            "email" => "jan@example.com",
+            "password" => "password123",
         ]);
 
         $this->mock(GenerateResetCodeAction::class, function ($mock): void {
-            $mock->shouldReceive('execute')->once()->andReturn('123456');
+            $mock->shouldReceive("execute")->once()->andReturn("123456");
         });
 
-        $response = $this->post(route('auth.forgotPassword.store'), [
-            'email' => 'jan@example.com',
+        $response = $this->post(route("auth.forgotPassword.store"), [
+            "email" => "jan@example.com",
         ]);
 
-        $response->assertRedirect(route('auth.resetPassword.create'));
-        $response->assertSessionHas('message', 'If your email exists, we have sent you a code to reset your password.');
+        $response->assertRedirect(route("auth.resetPassword.create"));
+        $response->assertSessionHas("message", "If your email exists, we have sent you a code to reset your password.");
 
-        Notification::assertSentTo($user, ForgotPasswordNotification::class, function ($notification) {
-            return true;
-        });
+        Notification::assertSentTo($user, ForgotPasswordNotification::class, fn($notification) => true);
     }
 }

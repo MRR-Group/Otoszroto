@@ -14,36 +14,36 @@ class GenerateResetCodeActionTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_generates_six_digit_code_and_persists_hashed_token(): void
+    public function testItGeneratesSixDigitCodeAndPersistsHashedToken(): void
     {
-        $email = 'jan@example.com';
+        $email = "jan@example.com";
 
         $action = new GenerateResetCodeAction();
         $code = $action->execute($email);
 
         $this->assertMatchesRegularExpression('/^\d{6}$/', $code);
 
-        $record = DB::table('password_reset_tokens')->where('email', $email)->first();
+        $record = DB::table("password_reset_tokens")->where("email", $email)->first();
 
         $this->assertNotNull($record);
         $this->assertTrue(Hash::check($code, $record->token));
         $this->assertNotNull($record->created_at);
     }
 
-    public function test_it_updates_existing_token_for_same_email(): void
+    public function testItUpdatesExistingTokenForSameEmail(): void
     {
-        $email = 'jan@example.com';
+        $email = "jan@example.com";
 
-        DB::table('password_reset_tokens')->insert([
-            'email' => $email,
-            'token' => Hash::make('123456'),
-            'created_at' => now()->subHour(),
+        DB::table("password_reset_tokens")->insert([
+            "email" => $email,
+            "token" => Hash::make("123456"),
+            "created_at" => now()->subHour(),
         ]);
 
         $action = new GenerateResetCodeAction();
         $code = $action->execute($email);
 
-        $record = DB::table('password_reset_tokens')->where('email', $email)->first();
+        $record = DB::table("password_reset_tokens")->where("email", $email)->first();
 
         $this->assertTrue(Hash::check($code, $record->token));
     }
