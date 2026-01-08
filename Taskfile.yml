@@ -116,9 +116,9 @@ tasks:
       - cmd: "{{.DOCKER_EXEC_USER}} php artisan {{.CLI_ARGS}}"
 
   test:
-    desc: "Run pest tests"
+    desc: "Run tests"
     cmds:
-      - cmd: "{{.DOCKER_EXEC_USER}} vendor/bin/pest {{.CLI_ARGS}}"
+      - cmd: "{{.DOCKER_EXEC_USER}} composer test"
 
   fix:
     desc: "Run fixers"
