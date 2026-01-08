@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature;
+namespace Feature\Http\Controllers\Auth;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Inertia\Testing\AssertableInertia as Assert;
 use Tests\TestCase;
 
-class RegisterTest extends TestCase
+class RegisterControllerTest extends TestCase
 {
     use RefreshDatabase;
 
