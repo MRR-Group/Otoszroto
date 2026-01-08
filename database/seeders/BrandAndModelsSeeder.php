@@ -220,7 +220,7 @@ class BrandAndModelsSeeder extends Seeder
             "Suzuki" => [
                 "Swift", "Baleno", "Ignis",
                 "Vitara", "SX4", "S-Cross",
-                "Jimny",
+                "Jimny", "Alto",
             ],
 
             "Hyundai" => [
