@@ -79,6 +79,10 @@ export function ShowAuction({auction}: Props) {
             <Title type="h2">{auction.name}</Title>
 
             <Text>
+              <b>Cena:</b> {auction.price} zł
+            </Text>
+
+            <Text>
               <b>Auto:</b> {auction.model.brand.name} {auction.model.name}
             </Text>
 
