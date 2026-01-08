@@ -21,4 +21,6 @@ jobs:
             git fetch --all
             git reset --hard origin/production
             task init
+            task seed
+            task frontend
             task run

@@ -115,6 +115,11 @@ tasks:
     cmds:
       - cmd: "{{.DOCKER_EXEC_USER}} php artisan {{.CLI_ARGS}}"
 
+  frontend:
+    desc: "Build frontend"
+    cmds:
+      - cmd: "{{.DOCKER_EXEC_USER}} npm run build"
+
   test:
     desc: "Run pest tests"
     cmds:
